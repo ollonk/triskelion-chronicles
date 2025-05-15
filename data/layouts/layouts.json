@@ -4414,8 +4414,8 @@
     {
       "id": "LAYOUT_NEW_BARK_TOWN",
       "name": "NewBarkTown_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 34,
+      "height": 25,
       "primary_tileset": "gTileset_Johto",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/NewBarkTown/border.bin",
