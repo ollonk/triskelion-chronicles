@@ -4410,6 +4410,26 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN",
+      "name": "NewBarkTown_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/NewBarkTown/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK2",
+      "name": "NewBark2_Layout",
+      "width": 34,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/NewBark2/border.bin",
+      "blockdata_filepath": "data/layouts/NewBark2/map.bin"
     }
   ]
 }
