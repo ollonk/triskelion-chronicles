@@ -1,10 +1,12 @@
 **Current Todo List
--Convert the Newbark tileset into a Secondary tileset
--Fix errors and omissions in the Newbark tileset
+-Establish tilesets from Liquid Crystal and FireRed
+-Get a fully functional New Bark Town going
 -Make the player's family occupy one of the houses in newbark (leave Gold's house in its location)
 -Create indoor maps for new bark Town
 -Change spawn location to player's room (it's a basement!)
--
+-Script events in New Bark Town
+-Get starter selection working
+-Work on the first routes and Cherrygrove City
 
 
 

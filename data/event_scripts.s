@@ -1157,4 +1157,3 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/NewBarkTown/scripts.inc"
 
-	.include "data/maps/NewBark2/scripts.inc"

@@ -1653,3 +1653,22 @@ const u16 gTilesetPalettes_Johto[][16] =
 };
 
 const u32 gTilesetTiles_Johto[] = INCBIN_U32("data/tilesets/primary/johto/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Newbark[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/newbark/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Newbark[] = INCBIN_U32("data/tilesets/secondary/newbark/tiles.4bpp.lz");
