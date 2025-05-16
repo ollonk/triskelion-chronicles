@@ -1,9 +1,9 @@
 {
-  "id": "MAP_ROUTE29",
-  "name": "Route29",
-  "layout": "LAYOUT_ROUTE29",
+  "id": "MAP_ROUTE30",
+  "name": "Route30",
+  "layout": "LAYOUT_ROUTE30",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_WATER_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_NEW_BARK_TOWN",
-      "offset": 0,
-      "direction": "right"
+      "map": "MAP_CHERRYGROVE_CITY",
+      "offset": -10,
+      "direction": "down"
     },
     {
-      "map": "MAP_CHERRYGROVE_CITY",
-      "offset": 0,
-      "direction": "left"
+      "map": "MAP_ROUTE31",
+      "offset": -18,
+      "direction": "up"
     }
   ],
   "object_events": [

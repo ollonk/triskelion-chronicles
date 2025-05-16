@@ -4430,6 +4430,36 @@
       "secondary_tileset": "gTileset_Newbark",
       "border_filepath": "data/layouts/Route29/border.bin",
       "blockdata_filepath": "data/layouts/Route29/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_CITY",
+      "name": "CherrygroveCity_Layout",
+      "width": 56,
+      "height": 35,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cherrygrove",
+      "border_filepath": "data/layouts/CherrygroveCity/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE30",
+      "name": "Route30_Layout",
+      "width": 38,
+      "height": 62,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cherrygrove",
+      "border_filepath": "data/layouts/Route30/border.bin",
+      "blockdata_filepath": "data/layouts/Route30/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE31",
+      "name": "Route31_Layout",
+      "width": 58,
+      "height": 23,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cherrygrove",
+      "border_filepath": "data/layouts/Route31/border.bin",
+      "blockdata_filepath": "data/layouts/Route31/map.bin"
     }
   ]
 }

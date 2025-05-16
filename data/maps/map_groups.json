@@ -626,7 +626,10 @@
   ],
   "gMapGroup_JohtoTownsAndRoutes": [
     "NewBarkTown",
-    "Route29"
+    "Route29",
+    "CherrygroveCity",
+    "Route30",
+    "Route31"
   ],
   "gMapGroup_JohtoDungeons": [
 
