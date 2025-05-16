@@ -4420,6 +4420,16 @@
       "secondary_tileset": "gTileset_Newbark",
       "border_filepath": "data/layouts/NewBarkTown/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE29",
+      "name": "Route29_Layout",
+      "width": 76,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Newbark",
+      "border_filepath": "data/layouts/Route29/border.bin",
+      "blockdata_filepath": "data/layouts/Route29/map.bin"
     }
   ]
 }
