@@ -4460,6 +4460,176 @@
       "secondary_tileset": "gTileset_Cherrygrove",
       "border_filepath": "data/layouts/Route31/border.bin",
       "blockdata_filepath": "data/layouts/Route31/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_CITY",
+      "name": "VioletCity_Layout",
+      "width": 54,
+      "height": 42,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_VioletCity",
+      "border_filepath": "data/layouts/VioletCity/border.bin",
+      "blockdata_filepath": "data/layouts/VioletCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE32",
+      "name": "Route32_Layout",
+      "width": 38,
+      "height": 120,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Unused2",
+      "border_filepath": "data/layouts/Route32/border.bin",
+      "blockdata_filepath": "data/layouts/Route32/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE33",
+      "name": "Route33_Layout",
+      "width": 44,
+      "height": 30,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Unused2",
+      "border_filepath": "data/layouts/Route33/border.bin",
+      "blockdata_filepath": "data/layouts/Route33/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_TOWN",
+      "name": "AzaleaTown_Layout",
+      "width": 54,
+      "height": 26,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/AzaleaTown/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE34",
+      "name": "Route34_Layout",
+      "width": 54,
+      "height": 112,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route34",
+      "border_filepath": "data/layouts/Route34/border.bin",
+      "blockdata_filepath": "data/layouts/Route34/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY",
+      "name": "GoldenrodCity_Layout",
+      "width": 76,
+      "height": 54,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route34",
+      "border_filepath": "data/layouts/GoldenrodCity/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE35",
+      "name": "Route35_Layout",
+      "width": 28,
+      "height": 52,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route35",
+      "border_filepath": "data/layouts/Route35/border.bin",
+      "blockdata_filepath": "data/layouts/Route35/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE36",
+      "name": "Route36_Layout",
+      "width": 64,
+      "height": 26,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_VioletCity",
+      "border_filepath": "data/layouts/Route36/border.bin",
+      "blockdata_filepath": "data/layouts/Route36/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE37",
+      "name": "Route37_Layout",
+      "width": 28,
+      "height": 30,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route34",
+      "border_filepath": "data/layouts/Route37/border.bin",
+      "blockdata_filepath": "data/layouts/Route37/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_CITY",
+      "name": "EcruteakCity_Layout",
+      "width": 68,
+      "height": 46,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_VioletCity",
+      "border_filepath": "data/layouts/EcruteakCity/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_NATIONAL_PARK",
+      "name": "NationalPark_Layout",
+      "width": 52,
+      "height": 56,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_NationalPark",
+      "border_filepath": "data/layouts/NationalPark/border.bin",
+      "blockdata_filepath": "data/layouts/NationalPark/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH",
+      "name": "RuinsOfAlph_Layout",
+      "width": 30,
+      "height": 54,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_RuinsOfAlph",
+      "border_filepath": "data/layouts/RuinsOfAlph/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlph/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE_MAIN",
+      "name": "UnionCaveMain_Layout",
+      "width": 30,
+      "height": 48,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cave_Johto",
+      "border_filepath": "data/layouts/UnionCaveMain/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCaveMain/map.bin"
+    },
+    {
+      "id": "LAYOUT_ILEX_FOREST",
+      "name": "IlexForest_Layout",
+      "width": 70,
+      "height": 60,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_IlexForest",
+      "border_filepath": "data/layouts/IlexForest/border.bin",
+      "blockdata_filepath": "data/layouts/IlexForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE38",
+      "name": "Route38_Layout",
+      "width": 52,
+      "height": 30,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route34",
+      "border_filepath": "data/layouts/Route38/border.bin",
+      "blockdata_filepath": "data/layouts/Route38/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE39",
+      "name": "Route39_Layout",
+      "width": 28,
+      "height": 46,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route35",
+      "border_filepath": "data/layouts/Route39/border.bin",
+      "blockdata_filepath": "data/layouts/Route39/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_CITY",
+      "name": "OlivineCity_Layout",
+      "width": 56,
+      "height": 50,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Olivine",
+      "border_filepath": "data/layouts/OlivineCity/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineCity/map.bin"
     }
   ]
 }

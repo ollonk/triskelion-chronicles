@@ -629,10 +629,26 @@
     "Route29",
     "CherrygroveCity",
     "Route30",
-    "Route31"
+    "Route31",
+    "VioletCity",
+    "Route32",
+    "Route33",
+    "AzaleaTown",
+    "Route34",
+    "GoldenrodCity",
+    "Route35",
+    "Route36",
+    "Route37",
+    "EcruteakCity",
+    "NationalPark",
+    "RuinsOfAlph",
+    "Route38",
+    "Route39",
+    "OlivineCity"
   ],
   "gMapGroup_JohtoDungeons": [
-
+    "UnionCaveMain",
+    "IlexForest"
   ],
   "gMapGroup_IndoorNewBark": [
 

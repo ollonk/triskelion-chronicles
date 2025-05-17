@@ -1165,3 +1165,37 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Route30/scripts.inc"
 
 	.include "data/maps/Route31/scripts.inc"
+
+	.include "data/maps/VioletCity/scripts.inc"
+
+	.include "data/maps/Route32/scripts.inc"
+
+	.include "data/maps/Route33/scripts.inc"
+
+	.include "data/maps/AzaleaTown/scripts.inc"
+
+	.include "data/maps/Route34/scripts.inc"
+
+	.include "data/maps/GoldenrodCity/scripts.inc"
+
+	.include "data/maps/Route35/scripts.inc"
+
+	.include "data/maps/Route36/scripts.inc"
+
+	.include "data/maps/Route37/scripts.inc"
+
+	.include "data/maps/EcruteakCity/scripts.inc"
+
+	.include "data/maps/NationalPark/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph/scripts.inc"
+
+	.include "data/maps/UnionCaveMain/scripts.inc"
+
+	.include "data/maps/IlexForest/scripts.inc"
+
+	.include "data/maps/Route38/scripts.inc"
+
+	.include "data/maps/Route39/scripts.inc"
+
+	.include "data/maps/OlivineCity/scripts.inc"

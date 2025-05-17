@@ -1,0 +1,57 @@
+{
+  "id": "MAP_ROUTE36",
+  "name": "Route36",
+  "layout": "LAYOUT_ROUTE36",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_VIOLET_CITY",
+      "offset": -4,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_ROUTE35",
+      "offset": -20,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE37",
+      "offset": 10,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_NATIONAL_PARK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 48,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
