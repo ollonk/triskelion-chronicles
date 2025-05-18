@@ -214,11 +214,31 @@
 #define MAPSEC_ALTERING_CAVE                0xD2
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
-#define MAPSEC_NONE                         0xD5
-
+//Begin Johto
 #define MAPSEC_NEWBARK_TOWN                 0XD6
+#define MAPSEC_ROUTE_29                     0XD7
+#define MAPSEC_CHERRYGROVE_CITY             0XD8
+#define MAPSEC_ROUTE_30                     0XD9
+#define MAPSEC_ROUTE_31                     0XDA
+#define MAPSEC_VIOLET_CITY                  0XDB
+#define MAPSEC_ROUTE_32                     0XDC
+#define MAPSEC_ROUTE_33                     0XDD
+#define MAPSEC_AZALEA_TOWN                  0XDE
+#define MAPSEC_ROUTE_34                     0XDF
+#define MAPSEC_GOLDENROD_CITY               0XE0
+#define MAPSEC_ROUTE_35                     0XE1
+#define MAPSEC_ROUTE_36                     0XE2
+#define MAPSEC_ROUTE_37                     0XE3
+#define MAPSEC_ECRUTEAK_CITY                0XE4
+#define MAPSEC_NATIONAL_PARK                0XE5
+#define MAPSEC_RUINS_OF_ALPH                0XE6
+#define MAPSEC_ROUTE_38                     0XE7
+#define MAPSEC_ROUTE_39                     0XE8
+#define MAPSEC_OLIVINE_CITY                 0XE9
+#define MAPSEC_UNION_CAVE                   0XEA
+#define MAPSEC_ILEX_FOREST                  0XEB
 
-
+#define MAPSEC_NONE                         0xD5
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE
 #define METLOC_FATEFUL_ENCOUNTER            0xFF
