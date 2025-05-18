@@ -35,16 +35,26 @@ enum {
 
 typedef void (*TilesetCB)(void);
 
+// For the secondary tileset, this field is used for swapping where the game
+// loads palette 7 from (if TRUE, the palette is loaded from the primary)
+#define dontUsePal7 numTiles
+typedef void (*TilesetCB)(void);
+
 struct Tileset
 {
     /*0x00*/ bool8 isCompressed;
     /*0x01*/ bool8 isSecondary;
+    /*0x02*/ u16 numTiles;
     /*0x04*/ const u32 *tiles;
     /*0x08*/ const u16 (*palettes)[16];
     /*0x0C*/ const u16 *metatiles;
     /*0x10*/ const u16 *metatileAttributes;
     /*0x14*/ TilesetCB callback;
+    /*0x18*/ u8 swapPalettes; // Bitmask determining whether palette has an alternate, night-time palette
+    /*0x19*/ u8 lightPalettes; // Bitmask determining whether a palette should be time-blended as a light
+    /*0x1A*/ u8 customLightColor; // Bitmask determining which light palettes have custom light colors (color 15)
 };
+
 
 struct MapLayout
 {
@@ -153,7 +163,8 @@ struct MapHeader
     /* 0x15 */ u8 cave;
     /* 0x16 */ u8 weather;
     /* 0x17 */ u8 mapType;
-    /* 0x18 */ u8 filler_18[2];
+    /* 0x18 */ u8 filler_18;
+    /* 0x19 */ u8 region;
                // fields correspond to the arguments in the map_header_flags macro
     /* 0x1A */ bool8 allowCycling:1;
                bool8 allowEscaping:1; // Escape Rope and Dig

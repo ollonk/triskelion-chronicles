@@ -19,6 +19,7 @@ struct DoorGraphics
     u8 size;
     const void *tiles;
     const void *palettes;
+    const struct Tileset *tileset;
 };
 
 struct DoorAnimFrame
@@ -425,9 +426,11 @@ static const struct DoorAnimFrame *GetLastDoorFrame(const struct DoorAnimFrame *
 
 static const struct DoorGraphics *GetDoorGraphics(const struct DoorGraphics *gfx, u16 metatileNum)
 {
+    struct MapLayout const *mapLayout = gMapHeader.mapLayout;
     while (gfx->tiles != NULL)
     {
-        if (gfx->metatileNum == metatileNum)
+        if (gfx->metatileNum == metatileNum
+        && (gfx->tileset == mapLayout->primaryTileset || gfx->tileset == mapLayout->secondaryTileset))
             return gfx;
         gfx++;
     }

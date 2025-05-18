@@ -1,7 +1,10 @@
+#include "fieldmap.h"
+
 const struct Tileset gTileset_General =
 {
     .isCompressed = TRUE,
     .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_EMERALD,
     .tiles = gTilesetTiles_General,
     .palettes = gTilesetPalettes_General,
     .metatiles = gMetatiles_General,
@@ -178,6 +181,7 @@ const struct Tileset gTileset_Building =
 {
     .isCompressed = TRUE,
     .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_EMERALD,
     .tiles = gTilesetTiles_InsideBuilding,
     .palettes = gTilesetPalettes_InsideBuilding,
     .metatiles = gMetatiles_InsideBuilding,
@@ -629,6 +633,7 @@ const struct Tileset gTileset_SecretBase =
 {
     .isCompressed = FALSE,
     .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_EMERALD,
     .tiles = gTilesetTiles_SecretBase,
     .palettes = gTilesetPalettes_SecretBase,
     .metatiles = gMetatiles_SecretBasePrimary,
@@ -830,6 +835,7 @@ const struct Tileset gTileset_Johto =
 {
     .isCompressed = TRUE,
     .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_FRLG,
     .tiles = gTilesetTiles_Johto,
     .palettes = gTilesetPalettes_Johto,
     .metatiles = gMetatiles_Johto,
@@ -841,6 +847,7 @@ const struct Tileset gTileset_Newbark =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Newbark,
     .palettes = gTilesetPalettes_Newbark,
     .metatiles = gMetatiles_Newbark,
@@ -852,6 +859,7 @@ const struct Tileset gTileset_Cherrygrove =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Cherrygrove,
     .palettes = gTilesetPalettes_Cherrygrove,
     .metatiles = gMetatiles_Cherrygrove,
@@ -863,6 +871,7 @@ const struct Tileset gTileset_VioletCity =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_VioletCity,
     .palettes = gTilesetPalettes_VioletCity,
     .metatiles = gMetatiles_VioletCity,
@@ -874,6 +883,7 @@ const struct Tileset gTileset_AzaleaTown =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_AzaleaTown,
     .palettes = gTilesetPalettes_AzaleaTown,
     .metatiles = gMetatiles_AzaleaTown,
@@ -885,6 +895,7 @@ const struct Tileset gTileset_Route34 =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Route34,
     .palettes = gTilesetPalettes_Route34,
     .metatiles = gMetatiles_Route34,
@@ -896,6 +907,7 @@ const struct Tileset gTileset_Goldenrod =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Goldenrod,
     .palettes = gTilesetPalettes_Goldenrod,
     .metatiles = gMetatiles_Goldenrod,
@@ -907,6 +919,7 @@ const struct Tileset gTileset_Route35 =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Route35,
     .palettes = gTilesetPalettes_Route35,
     .metatiles = gMetatiles_Route35,
@@ -918,6 +931,7 @@ const struct Tileset gTileset_NationalPark =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_NationalPark,
     .palettes = gTilesetPalettes_NationalPark,
     .metatiles = gMetatiles_NationalPark,
@@ -929,6 +943,7 @@ const struct Tileset gTileset_RuinsOfAlph =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_RuinsOfAlph,
     .palettes = gTilesetPalettes_RuinsOfAlph,
     .metatiles = gMetatiles_RuinsOfAlph,
@@ -940,6 +955,7 @@ const struct Tileset gTileset_Cave_Johto =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Cave_Johto,
     .palettes = gTilesetPalettes_Cave_Johto,
     .metatiles = gMetatiles_Cave_Johto,
@@ -951,6 +967,7 @@ const struct Tileset gTileset_IlexForest =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_IlexForest,
     .palettes = gTilesetPalettes_IlexForest,
     .metatiles = gMetatiles_IlexForest,
@@ -962,6 +979,7 @@ const struct Tileset gTileset_Olivine =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_Olivine,
     .palettes = gTilesetPalettes_Olivine,
     .metatiles = gMetatiles_Olivine,

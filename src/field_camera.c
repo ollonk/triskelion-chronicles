@@ -29,7 +29,7 @@ static void RedrawMapSliceEast(struct FieldCameraOffset *, const struct MapLayou
 static void RedrawMapSliceWest(struct FieldCameraOffset *, const struct MapLayout *);
 static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *, s32, s32);
 static void DrawWholeMapViewInternal(int, int, const struct MapLayout *);
-static void DrawMetatileAt(const struct MapLayout *, u16, int, int);
+static void DrawMetatileAt(u16 offset, int x, int y);
 static void DrawMetatile(s32, const u16 *, u16);
 static void CameraPanningCB_PanAhead(void);
 
@@ -115,7 +115,7 @@ static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLa
             temp = sFieldCameraOffset.xTileOffset + j;
             if (temp >= 32)
                 temp -= 32;
-            DrawMetatileAt(mapLayout, r6 + temp, x + j / 2, y + i / 2);
+            DrawMetatileAt(r6 + temp, x + j / 2, y + i / 2);
         }
     }
 }
@@ -150,7 +150,7 @@ static void RedrawMapSliceNorth(struct FieldCameraOffset *cameraOffset, const st
         temp = cameraOffset->xTileOffset + i;
         if (temp >= 32)
             temp -= 32;
-        DrawMetatileAt(mapLayout, r7 + temp, gSaveBlock1Ptr->pos.x + i / 2, gSaveBlock1Ptr->pos.y + 14);
+        DrawMetatileAt(r7 + temp, gSaveBlock1Ptr->pos.x + i / 2, gSaveBlock1Ptr->pos.y + 14);
     }
 }
 
@@ -165,7 +165,7 @@ static void RedrawMapSliceSouth(struct FieldCameraOffset *cameraOffset, const st
         temp = cameraOffset->xTileOffset + i;
         if (temp >= 32)
             temp -= 32;
-        DrawMetatileAt(mapLayout, r7 + temp, gSaveBlock1Ptr->pos.x + i / 2, gSaveBlock1Ptr->pos.y);
+        DrawMetatileAt(r7 + temp, gSaveBlock1Ptr->pos.x + i / 2, gSaveBlock1Ptr->pos.y);
     }
 }
 
@@ -180,7 +180,7 @@ static void RedrawMapSliceEast(struct FieldCameraOffset *cameraOffset, const str
         temp = cameraOffset->yTileOffset + i;
         if (temp >= 32)
             temp -= 32;
-        DrawMetatileAt(mapLayout, temp * 32 + r6, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y + i / 2);
+        DrawMetatileAt(temp * 32 + r6, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y + i / 2);
     }
 }
 
@@ -197,7 +197,7 @@ static void RedrawMapSliceWest(struct FieldCameraOffset *cameraOffset, const str
         temp = cameraOffset->yTileOffset + i;
         if (temp >= 32)
             temp -= 32;
-        DrawMetatileAt(mapLayout, temp * 32 + r5, gSaveBlock1Ptr->pos.x + 14, gSaveBlock1Ptr->pos.y + i / 2);
+        DrawMetatileAt(temp * 32 + r5, gSaveBlock1Ptr->pos.x + 14, gSaveBlock1Ptr->pos.y + i / 2);
     }
 }
 
@@ -207,7 +207,7 @@ void CurrentMapDrawMetatileAt(int x, int y)
 
     if (offset >= 0)
     {
-        DrawMetatileAt(gMapHeader.mapLayout, offset, x, y);
+        DrawMetatileAt(offset, x, y);
         sFieldCameraOffset.copyBGToVRAM = TRUE;
     }
 }
@@ -223,21 +223,21 @@ void DrawDoorMetatileAt(int x, int y, u16 *tiles)
     }
 }
 
-static void DrawMetatileAt(const struct MapLayout *mapLayout, u16 offset, int x, int y)
+static void DrawMetatileAt(u16 offset, int x, int y)
 {
-    u16 metatileId = MapGridGetMetatileIdAt(x, y);
+    u32 metatileId = MapGridGetMetatileIdAt(x, y);
     const u16 *metatiles;
+    u32 numPrimaryMetatiles;
+    const struct MapLayout *mapLayout = gMapHeader.mapLayout;
 
     if (metatileId > NUM_METATILES_TOTAL)
         metatileId = 0;
-    if (metatileId < NUM_METATILES_IN_PRIMARY)
-    {
+    if (metatileId < (numPrimaryMetatiles = mapLayout->primaryTileset->numTiles))
         metatiles = mapLayout->primaryTileset->metatiles;
-    }
     else
     {
         metatiles = mapLayout->secondaryTileset->metatiles;
-        metatileId -= NUM_METATILES_IN_PRIMARY;
+        metatileId -= numPrimaryMetatiles;
     }
     DrawMetatile(MapGridGetMetatileLayerTypeAt(x, y), metatiles + metatileId * NUM_TILES_PER_METATILE, offset);
 }
