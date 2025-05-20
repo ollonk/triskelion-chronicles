@@ -1205,3 +1205,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/GoldsHouse2F/scripts.inc"
 
 	.include "data/maps/ElmsLab/scripts.inc"
+
+	.include "data/maps/PlayersHouse/scripts.inc"
+
+	.include "data/maps/PlayersHouseB1/scripts.inc"

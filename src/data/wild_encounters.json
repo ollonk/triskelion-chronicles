@@ -11496,7 +11496,7 @@
           "map": "MAP_ROUTE29",
           "base_label": "gRoute29_day",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 45,
             "mons": [
               {
                 "min_level": 2,

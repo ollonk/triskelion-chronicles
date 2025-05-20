@@ -4660,6 +4660,26 @@
       "secondary_tileset": "gTileset_Johto_Pkmnlab",
       "border_filepath": "data/layouts/ElmsLab/border.bin",
       "blockdata_filepath": "data/layouts/ElmsLab/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE",
+      "name": "PlayersHouse_Layout",
+      "width": 17,
+      "height": 14,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/PlayersHouse/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE_B1",
+      "name": "PlayersHouseB1_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/PlayersHouseB1/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouseB1/map.bin"
     }
   ]
 }
