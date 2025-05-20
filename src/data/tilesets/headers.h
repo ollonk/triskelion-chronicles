@@ -986,3 +986,39 @@ const struct Tileset gTileset_Olivine =
     .metatileAttributes = gMetatileAttributes_Olivine,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Johto_Indoor =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_FRLG,
+    .tiles = gTilesetTiles_Johto_Indoor,
+    .palettes = gTilesetPalettes_Johto_Indoor,
+    .metatiles = gMetatiles_Johto_Indoor,
+    .metatileAttributes = gMetatileAttributes_Johto_Indoor,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Johoto_Indoor_Secondary =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_Johoto_Indoor_Secondary,
+    .palettes = gTilesetPalettes_Johoto_Indoor_Secondary,
+    .metatiles = gMetatiles_Johoto_Indoor_Secondary,
+    .metatileAttributes = gMetatileAttributes_Johoto_Indoor_Secondary,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Johto_Pkmnlab =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_Johto_Pkmnlab,
+    .palettes = gTilesetPalettes_Johto_Pkmnlab,
+    .metatiles = gMetatiles_Johto_Pkmnlab,
+    .metatileAttributes = gMetatileAttributes_Johto_Pkmnlab,
+    .callback = NULL,
+};

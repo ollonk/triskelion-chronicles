@@ -1881,3 +1881,60 @@ const u16 gTilesetPalettes_Olivine[][16] =
 };
 
 const u32 gTilesetTiles_Olivine[] = INCBIN_U32("data/tilesets/secondary/olivine/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Johto_Indoor[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/johto_indoor/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Johto_Indoor[] = INCBIN_U32("data/tilesets/primary/johto_indoor/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Johoto_Indoor_Secondary[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Johoto_Indoor_Secondary[] = INCBIN_U32("data/tilesets/secondary/johoto_indoor_secondary/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Johto_Pkmnlab[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Johto_Pkmnlab[] = INCBIN_U32("data/tilesets/secondary/johto_pkmnlab/tiles.4bpp.lz");

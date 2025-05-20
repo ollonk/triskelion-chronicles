@@ -245,3 +245,12 @@ const u16 gMetatileAttributes_IlexForest[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_Olivine[] = INCBIN_U16("data/tilesets/secondary/olivine/metatiles.bin");
 const u16 gMetatileAttributes_Olivine[] = INCBIN_U16("data/tilesets/secondary/olivine/metatile_attributes.bin");
+
+const u16 gMetatiles_Johto_Indoor[] = INCBIN_U16("data/tilesets/primary/johto_indoor/metatiles.bin");
+const u16 gMetatileAttributes_Johto_Indoor[] = INCBIN_U16("data/tilesets/primary/johto_indoor/metatile_attributes.bin");
+
+const u16 gMetatiles_Johoto_Indoor_Secondary[] = INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/metatiles.bin");
+const u16 gMetatileAttributes_Johoto_Indoor_Secondary[] = INCBIN_U16("data/tilesets/secondary/johoto_indoor_secondary/metatile_attributes.bin");
+
+const u16 gMetatiles_Johto_Pkmnlab[] = INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/metatiles.bin");
+const u16 gMetatileAttributes_Johto_Pkmnlab[] = INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/metatile_attributes.bin");

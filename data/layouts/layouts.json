@@ -4630,6 +4630,36 @@
       "secondary_tileset": "gTileset_Olivine",
       "border_filepath": "data/layouts/OlivineCity/border.bin",
       "blockdata_filepath": "data/layouts/OlivineCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDS_HOUSE1F",
+      "name": "GoldsHouse1F_Layout",
+      "width": 17,
+      "height": 14,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/GoldsHouse1F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldsHouse1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDS_HOUSE2F",
+      "name": "GoldsHouse2F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/GoldsHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/GoldsHouse2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ELMS_LAB",
+      "name": "ElmsLab_Layout",
+      "width": 32,
+      "height": 28,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johto_Pkmnlab",
+      "border_filepath": "data/layouts/ElmsLab/border.bin",
+      "blockdata_filepath": "data/layouts/ElmsLab/map.bin"
     }
   ]
 }

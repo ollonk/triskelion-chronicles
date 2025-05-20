@@ -1199,3 +1199,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Route39/scripts.inc"
 
 	.include "data/maps/OlivineCity/scripts.inc"
+
+	.include "data/maps/GoldsHouse1F/scripts.inc"
+
+	.include "data/maps/GoldsHouse2F/scripts.inc"
+
+	.include "data/maps/ElmsLab/scripts.inc"
