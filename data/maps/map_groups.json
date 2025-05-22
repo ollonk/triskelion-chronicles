@@ -36,7 +36,8 @@
     "gMapGroup_IndoorRoute124",
     "gMapGroup_JohtoTownsAndRoutes",
     "gMapGroup_JohtoDungeons",
-    "gMapGroup_IndoorNewBark"
+    "gMapGroup_IndoorNewBark",
+    "gMapGroup_IndoorCherrygrove"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -656,5 +657,8 @@
     "ElmsLab",
     "PlayersHouse",
     "PlayersHouseB1"
+  ],
+  "gMapGroup_IndoorCherrygrove": [
+    "pokecenter_cherrygrove"
   ]
 }

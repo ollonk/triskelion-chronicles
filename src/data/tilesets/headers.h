@@ -1022,3 +1022,14 @@ const struct Tileset gTileset_Johto_Pkmnlab =
     .metatileAttributes = gMetatileAttributes_Johto_Pkmnlab,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_johto_pokecenter =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_pokecenter,
+    .palettes = gTilesetPalettes_johto_pokecenter,
+    .metatiles = gMetatiles_johto_pokecenter,
+    .metatileAttributes = gMetatileAttributes_johto_pokecenter,
+    .callback = NULL,
+};

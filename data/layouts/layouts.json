@@ -4680,6 +4680,16 @@
       "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
       "border_filepath": "data/layouts/PlayersHouseB1/border.bin",
       "blockdata_filepath": "data/layouts/PlayersHouseB1/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_CHERRYGROVE",
+      "name": "pokecenter_cherrygrove_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_cherrygrove/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_cherrygrove/map.bin"
     }
   ]
 }

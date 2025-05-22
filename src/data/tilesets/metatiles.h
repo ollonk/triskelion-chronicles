@@ -254,3 +254,6 @@ const u16 gMetatileAttributes_Johoto_Indoor_Secondary[] = INCBIN_U16("data/tiles
 
 const u16 gMetatiles_Johto_Pkmnlab[] = INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/metatiles.bin");
 const u16 gMetatileAttributes_Johto_Pkmnlab[] = INCBIN_U16("data/tilesets/secondary/johto_pkmnlab/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_pokecenter[] = INCBIN_U16("data/tilesets/secondary/johto_pokecenter/metatiles.bin");
+const u16 gMetatileAttributes_johto_pokecenter[] = INCBIN_U16("data/tilesets/secondary/johto_pokecenter/metatile_attributes.bin");
