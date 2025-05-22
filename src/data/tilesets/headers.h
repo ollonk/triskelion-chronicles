@@ -1033,3 +1033,27 @@ const struct Tileset gTileset_johto_pokecenter =
     .metatileAttributes = gMetatileAttributes_johto_pokecenter,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_johto_pokemart =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .numTiles = NUM_TILES_IN_PRIMARY_FRLG,
+    .tiles = gTilesetTiles_johto_pokemart,
+    .palettes = gTilesetPalettes_johto_pokemart,
+    .metatiles = gMetatiles_johto_pokemart,
+    .metatileAttributes = gMetatileAttributes_johto_pokemart,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_mart_secondary =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_johto_mart_secondary,
+    .palettes = gTilesetPalettes_johto_mart_secondary,
+    .metatiles = gMetatiles_johto_mart_secondary,
+    .metatileAttributes = gMetatileAttributes_johto_mart_secondary,
+    .callback = NULL,
+};

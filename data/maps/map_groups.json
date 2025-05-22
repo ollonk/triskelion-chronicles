@@ -659,6 +659,7 @@
     "PlayersHouseB1"
   ],
   "gMapGroup_IndoorCherrygrove": [
-    "pokecenter_cherrygrove"
+    "pokecenter_cherrygrove",
+    "mart_cherrygrove"
   ]
 }

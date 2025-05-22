@@ -1211,3 +1211,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/PlayersHouseB1/scripts.inc"
 
 	.include "data/maps/pokecenter_cherrygrove/scripts.inc"
+
+	.include "data/maps/mart_cherrygrove/scripts.inc"

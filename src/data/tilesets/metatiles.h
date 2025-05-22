@@ -257,3 +257,9 @@ const u16 gMetatileAttributes_Johto_Pkmnlab[] = INCBIN_U16("data/tilesets/second
 
 const u16 gMetatiles_johto_pokecenter[] = INCBIN_U16("data/tilesets/secondary/johto_pokecenter/metatiles.bin");
 const u16 gMetatileAttributes_johto_pokecenter[] = INCBIN_U16("data/tilesets/secondary/johto_pokecenter/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_pokemart[] = INCBIN_U16("data/tilesets/primary/johto_pokemart/metatiles.bin");
+const u16 gMetatileAttributes_johto_pokemart[] = INCBIN_U16("data/tilesets/primary/johto_pokemart/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_mart_secondary[] = INCBIN_U16("data/tilesets/secondary/johto_mart_secondary/metatiles.bin");
+const u16 gMetatileAttributes_johto_mart_secondary[] = INCBIN_U16("data/tilesets/secondary/johto_mart_secondary/metatile_attributes.bin");
