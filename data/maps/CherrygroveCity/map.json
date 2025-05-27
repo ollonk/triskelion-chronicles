@@ -41,6 +41,27 @@
       "elevation": 0,
       "dest_map": "MAP_MART_CHERRYGROVE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 28,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_CHERRYGROVE_HOUSE0",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_CHERRYGROVE_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 45,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_CHERRYGROVE_HOUSE2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

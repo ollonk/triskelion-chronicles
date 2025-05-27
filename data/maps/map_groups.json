@@ -660,6 +660,9 @@
   ],
   "gMapGroup_IndoorCherrygrove": [
     "pokecenter_cherrygrove",
-    "mart_cherrygrove"
+    "mart_cherrygrove",
+    "cherrygrove_house0",
+    "cherrygrove_house1",
+    "cherrygrove_house2"
   ]
 }

@@ -4700,6 +4700,36 @@
       "secondary_tileset": "gTileset_johto_mart_secondary",
       "border_filepath": "data/layouts/mart_cherrygrove/border.bin",
       "blockdata_filepath": "data/layouts/mart_cherrygrove/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_HOUSE0",
+      "name": "cherrygrove_house0_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/cherrygrove_house0/border.bin",
+      "blockdata_filepath": "data/layouts/cherrygrove_house0/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_HOUSE1",
+      "name": "cherrygrove_house1_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/cherrygrove_house1/border.bin",
+      "blockdata_filepath": "data/layouts/cherrygrove_house1/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_HOUSE2",
+      "name": "cherrygrove_house2_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/cherrygrove_house2/border.bin",
+      "blockdata_filepath": "data/layouts/cherrygrove_house2/map.bin"
     }
   ]
 }
