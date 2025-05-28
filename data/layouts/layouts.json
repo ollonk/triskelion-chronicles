@@ -4730,6 +4730,16 @@
       "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
       "border_filepath": "data/layouts/cherrygrove_house2/border.bin",
       "blockdata_filepath": "data/layouts/cherrygrove_house2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE46",
+      "name": "Route46_Layout",
+      "width": 28,
+      "height": 35,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "border_filepath": "data/layouts/Route46/border.bin",
+      "blockdata_filepath": "data/layouts/Route46/map.bin"
     }
   ]
 }

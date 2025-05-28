@@ -1219,3 +1219,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/cherrygrove_house1/scripts.inc"
 
 	.include "data/maps/cherrygrove_house2/scripts.inc"
+
+	.include "data/maps/Route46/scripts.inc"
