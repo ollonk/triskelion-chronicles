@@ -237,8 +237,9 @@
 #define MAPSEC_OLIVINE_CITY                 0XE9
 #define MAPSEC_UNION_CAVE                   0XEA
 #define MAPSEC_ILEX_FOREST                  0XEB
+#define MAPSEC_ROUTE_46                     0XEC
 
-#define MAPSEC_NONE                         0xD5
+#define MAPSEC_NONE                         0xFC
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE
 #define METLOC_FATEFUL_ENCOUNTER            0xFF

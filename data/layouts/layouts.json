@@ -4740,6 +4740,26 @@
       "secondary_tileset": "gTileset_johto_mart_secondary",
       "border_filepath": "data/layouts/Route46/border.bin",
       "blockdata_filepath": "data/layouts/Route46/map.bin"
+    },
+    {
+      "id": "LAYOUT_MR_POKEMONS_HOUSE",
+      "name": "mr_pokemons_house_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "border_filepath": "data/layouts/mr_pokemons_house/border.bin",
+      "blockdata_filepath": "data/layouts/mr_pokemons_house/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE30_HOUSE1",
+      "name": "route30_house1_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/route30_house1/border.bin",
+      "blockdata_filepath": "data/layouts/route30_house1/map.bin"
     }
   ]
 }

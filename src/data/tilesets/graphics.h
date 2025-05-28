@@ -1995,3 +1995,22 @@ const u16 gTilesetPalettes_johto_mart_secondary[][16] =
 };
 
 const u32 gTilesetTiles_johto_mart_secondary[] = INCBIN_U32("data/tilesets/secondary/johto_mart_secondary/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_mrpokemon[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mrpokemon/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_mrpokemon[] = INCBIN_U32("data/tilesets/secondary/mrpokemon/tiles.4bpp.lz");

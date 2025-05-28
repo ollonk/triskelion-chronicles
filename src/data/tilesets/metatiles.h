@@ -263,3 +263,6 @@ const u16 gMetatileAttributes_johto_pokemart[] = INCBIN_U16("data/tilesets/prima
 
 const u16 gMetatiles_johto_mart_secondary[] = INCBIN_U16("data/tilesets/secondary/johto_mart_secondary/metatiles.bin");
 const u16 gMetatileAttributes_johto_mart_secondary[] = INCBIN_U16("data/tilesets/secondary/johto_mart_secondary/metatile_attributes.bin");
+
+const u16 gMetatiles_mrpokemon[] = INCBIN_U16("data/tilesets/secondary/mrpokemon/metatiles.bin");
+const u16 gMetatileAttributes_mrpokemon[] = INCBIN_U16("data/tilesets/secondary/mrpokemon/metatile_attributes.bin");

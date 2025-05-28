@@ -3,7 +3,7 @@
   "name": "mart_cherrygrove",
   "layout": "LAYOUT_MART_CHERRYGROVE",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

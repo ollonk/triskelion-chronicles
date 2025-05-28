@@ -37,7 +37,8 @@
     "gMapGroup_JohtoTownsAndRoutes",
     "gMapGroup_JohtoDungeons",
     "gMapGroup_IndoorNewBark",
-    "gMapGroup_IndoorCherrygrove"
+    "gMapGroup_IndoorCherrygrove",
+    "gMapGroup_IndoorRoute30"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -96,8 +97,7 @@
     "Underwater_Route128",
     "Underwater_Route129",
     "Underwater_Route105",
-    "Underwater_Route125",
-    "Route46"
+    "Underwater_Route125"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -646,7 +646,8 @@
     "RuinsOfAlph",
     "Route38",
     "Route39",
-    "OlivineCity"
+    "OlivineCity",
+    "Route46"
   ],
   "gMapGroup_JohtoDungeons": [
     "UnionCaveMain",
@@ -665,5 +666,9 @@
     "cherrygrove_house0",
     "cherrygrove_house1",
     "cherrygrove_house2"
+  ],
+  "gMapGroup_IndoorRoute30": [
+    "mr_pokemons_house",
+    "route30_house1"
   ]
 }

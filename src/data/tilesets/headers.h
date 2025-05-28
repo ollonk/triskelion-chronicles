@@ -1057,3 +1057,14 @@ const struct Tileset gTileset_johto_mart_secondary =
     .metatileAttributes = gMetatileAttributes_johto_mart_secondary,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_mrpokemon =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_mrpokemon,
+    .palettes = gTilesetPalettes_mrpokemon,
+    .metatiles = gMetatiles_mrpokemon,
+    .metatileAttributes = gMetatileAttributes_mrpokemon,
+    .callback = NULL,
+};
