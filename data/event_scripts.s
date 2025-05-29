@@ -1225,3 +1225,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/mr_pokemons_house/scripts.inc"
 
 	.include "data/maps/route30_house1/scripts.inc"
+
+	.include "data/maps/DarkCave_route31/scripts.inc"

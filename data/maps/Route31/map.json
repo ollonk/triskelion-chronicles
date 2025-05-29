@@ -17,6 +17,11 @@
       "map": "MAP_ROUTE30",
       "offset": 18,
       "direction": "down"
+    },
+    {
+      "map": "MAP_VIOLET_CITY",
+      "offset": -22,
+      "direction": "left"
     }
   ],
   "object_events": [
@@ -28,6 +33,13 @@
       "y": 8,
       "elevation": 0,
       "dest_map": "MAP_VIOLET_CITY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 41,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_DARK_CAVE_ROUTE31",
       "dest_warp_id": "0"
     }
   ],

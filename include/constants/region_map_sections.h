@@ -238,6 +238,8 @@
 #define MAPSEC_UNION_CAVE                   0XEA
 #define MAPSEC_ILEX_FOREST                  0XEB
 #define MAPSEC_ROUTE_46                     0XEC
+#define MAPSEC_DARK_CAVE                    0XED
+
 
 #define MAPSEC_NONE                         0xFC
 #define METLOC_SPECIAL_EGG                  0xFD

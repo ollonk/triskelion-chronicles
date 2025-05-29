@@ -651,7 +651,8 @@
   ],
   "gMapGroup_JohtoDungeons": [
     "UnionCaveMain",
-    "IlexForest"
+    "IlexForest",
+    "DarkCave_route31"
   ],
   "gMapGroup_IndoorNewBark": [
     "GoldsHouse1F",
