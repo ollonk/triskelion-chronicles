@@ -1247,3 +1247,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/sprout_tower_2f/scripts.inc"
 
 	.include "data/maps/pokecenter_route32/scripts.inc"
+
+	.include "data/maps/UnionCave2/scripts.inc"
+
+	.include "data/maps/UnionCave3/scripts.inc"
+
+	.include "data/maps/UnionCave4/scripts.inc"

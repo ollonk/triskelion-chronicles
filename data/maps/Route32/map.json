@@ -17,6 +17,11 @@
       "map": "MAP_VIOLET_CITY",
       "offset": -2,
       "direction": "up"
+    },
+    {
+      "map": "MAP_VIOLET_CITY",
+      "offset": -2,
+      "direction": "up"
     }
   ],
   "object_events": [
@@ -35,6 +40,13 @@
       "y": 105,
       "elevation": 0,
       "dest_map": "MAP_UNION_CAVE_MAIN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 97,
+      "elevation": 0,
+      "dest_map": "MAP_POKECENTER_ROUTE32",
       "dest_warp_id": "0"
     }
   ],

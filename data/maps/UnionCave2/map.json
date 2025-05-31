@@ -1,7 +1,7 @@
 {
-  "id": "MAP_UNION_CAVE_MAIN",
-  "name": "UnionCaveMain",
-  "layout": "LAYOUT_UNION_CAVE_MAIN",
+  "id": "MAP_UNION_CAVE2",
+  "name": "UnionCave2",
+  "layout": "LAYOUT_UNION_CAVE2",
   "music": "MUS_DUMMY",
   "region_map_section": "MAPSEC_UNION_CAVE",
   "requires_flash": false,
@@ -9,8 +9,8 @@
   "map_type": "MAP_TYPE_UNDERGROUND",
   "allow_cycling": true,
   "allow_escaping": true,
-  "allow_running": true,
-  "show_map_name": true,
+  "allow_running": false,
+  "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
@@ -18,32 +18,25 @@
   ],
   "warp_events": [
     {
-      "x": 25,
-      "y": 9,
+      "x": 13,
+      "y": 23,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE32",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_UNION_CAVE_MAIN",
+      "dest_warp_id": "2"
     },
     {
-      "x": 25,
+      "x": 3,
       "y": 45,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE33",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_UNION_CAVE_MAIN",
+      "dest_warp_id": "3"
     },
     {
-      "x": 4,
-      "y": 31,
+      "x": 27,
+      "y": 43,
       "elevation": 0,
-      "dest_map": "MAP_UNION_CAVE2",
+      "dest_map": "MAP_UNION_CAVE3",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 2,
-      "y": 3,
-      "elevation": 0,
-      "dest_map": "MAP_UNION_CAVE2",
-      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

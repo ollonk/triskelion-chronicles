@@ -4870,6 +4870,36 @@
       "secondary_tileset": "gTileset_johto_pokecenter",
       "border_filepath": "data/layouts/pokecenter_route32/border.bin",
       "blockdata_filepath": "data/layouts/pokecenter_route32/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE2",
+      "name": "UnionCave2_Layout",
+      "width": 30,
+      "height": 48,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cave_Johto",
+      "border_filepath": "data/layouts/UnionCave2/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCave2/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE3",
+      "name": "UnionCave3_Layout",
+      "width": 30,
+      "height": 100,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cave_Johto",
+      "border_filepath": "data/layouts/UnionCave3/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCave3/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE4",
+      "name": "UnionCave4_Layout",
+      "width": 30,
+      "height": 48,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cave_Johto",
+      "border_filepath": "data/layouts/UnionCave4/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCave4/map.bin"
     }
   ]
 }
