@@ -39,7 +39,8 @@
     "gMapGroup_IndoorNewBark",
     "gMapGroup_IndoorCherrygrove",
     "gMapGroup_IndoorRoute30",
-    "gMapGroup_IndoorViolet"
+    "gMapGroup_IndoorViolet",
+    "gMapGroup_JohtoMisc"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -683,5 +684,8 @@
     "sprout_tower_entry",
     "sprout_tower_1f",
     "sprout_tower_2f"
+  ],
+  "gMapGroup_JohtoMisc": [
+    "pokecenter_route32"
   ]
 }

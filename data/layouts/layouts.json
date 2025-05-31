@@ -4860,6 +4860,16 @@
       "secondary_tileset": "gTileset_johto_sprouttower",
       "border_filepath": "data/layouts/sprout_tower_2f/border.bin",
       "blockdata_filepath": "data/layouts/sprout_tower_2f/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_ROUTE32",
+      "name": "pokecenter_route32_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_route32/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_route32/map.bin"
     }
   ]
 }
