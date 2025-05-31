@@ -266,3 +266,15 @@ const u16 gMetatileAttributes_johto_mart_secondary[] = INCBIN_U16("data/tilesets
 
 const u16 gMetatiles_mrpokemon[] = INCBIN_U16("data/tilesets/secondary/mrpokemon/metatiles.bin");
 const u16 gMetatileAttributes_mrpokemon[] = INCBIN_U16("data/tilesets/secondary/mrpokemon/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_gyms_violet[] = INCBIN_U16("data/tilesets/secondary/johto_gyms_violet/metatiles.bin");
+const u16 gMetatileAttributes_johto_gyms_violet[] = INCBIN_U16("data/tilesets/secondary/johto_gyms_violet/metatile_attributes.bin");
+
+const u16 gMetatiles_Johto_trainerschool[] = INCBIN_U16("data/tilesets/secondary/johto_trainerschool/metatiles.bin");
+const u16 gMetatileAttributes_Johto_trainerschool[] = INCBIN_U16("data/tilesets/secondary/johto_trainerschool/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_violetcity[] = INCBIN_U16("data/tilesets/secondary/johto_violetcity/metatiles.bin");
+const u16 gMetatileAttributes_johto_violetcity[] = INCBIN_U16("data/tilesets/secondary/johto_violetcity/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_sprouttower[] = INCBIN_U16("data/tilesets/secondary/johto_sprouttower/metatiles.bin");
+const u16 gMetatileAttributes_johto_sprouttower[] = INCBIN_U16("data/tilesets/secondary/johto_sprouttower/metatile_attributes.bin");

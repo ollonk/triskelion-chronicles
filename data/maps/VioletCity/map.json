@@ -39,6 +39,55 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE31",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 43,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_POKECENTER_VIOLET",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GYMS_VIOLET",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_MART_VIOLET",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_TRAINERSCHOOL",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_HOUSE0",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_VIOLET_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 33,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_SPROUT_TOWER_ENTRY",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

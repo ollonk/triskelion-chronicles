@@ -38,7 +38,8 @@
     "gMapGroup_JohtoDungeons",
     "gMapGroup_IndoorNewBark",
     "gMapGroup_IndoorCherrygrove",
-    "gMapGroup_IndoorRoute30"
+    "gMapGroup_IndoorRoute30",
+    "gMapGroup_IndoorViolet"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -671,5 +672,16 @@
   "gMapGroup_IndoorRoute30": [
     "mr_pokemons_house",
     "route30_house1"
+  ],
+  "gMapGroup_IndoorViolet": [
+    "pokecenter_violet",
+    "johto_gyms_violet",
+    "mart_violet",
+    "violet_trainerschool",
+    "violet_house0",
+    "violet_house1",
+    "sprout_tower_entry",
+    "sprout_tower_1f",
+    "sprout_tower_2f"
   ]
 }

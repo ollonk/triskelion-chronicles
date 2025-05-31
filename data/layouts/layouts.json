@@ -4770,6 +4770,96 @@
       "secondary_tileset": "gTileset_Cave_Johto",
       "border_filepath": "data/layouts/DarkCave_route31/border.bin",
       "blockdata_filepath": "data/layouts/DarkCave_route31/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_VIOLET",
+      "name": "pokecenter_violet_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_violet/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_violet/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_GYMS_VIOLET",
+      "name": "johto_gyms_violet_Layout",
+      "width": 13,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_violet",
+      "border_filepath": "data/layouts/johto_gyms_violet/border.bin",
+      "blockdata_filepath": "data/layouts/johto_gyms_violet/map.bin"
+    },
+    {
+      "id": "LAYOUT_MART_VIOLET",
+      "name": "mart_violet_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_johto_pokemart",
+      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "border_filepath": "data/layouts/mart_violet/border.bin",
+      "blockdata_filepath": "data/layouts/mart_violet/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_TRAINERSCHOOL",
+      "name": "violet_trainerschool_Layout",
+      "width": 10,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johto_trainerschool",
+      "border_filepath": "data/layouts/violet_trainerschool/border.bin",
+      "blockdata_filepath": "data/layouts/violet_trainerschool/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_HOUSE0",
+      "name": "violet_house0_Layout",
+      "width": 12,
+      "height": 11,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_violetcity",
+      "border_filepath": "data/layouts/violet_house0/border.bin",
+      "blockdata_filepath": "data/layouts/violet_house0/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_HOUSE1",
+      "name": "violet_house1_Layout",
+      "width": 12,
+      "height": 11,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_violetcity",
+      "border_filepath": "data/layouts/violet_house1/border.bin",
+      "blockdata_filepath": "data/layouts/violet_house1/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_ENTRY",
+      "name": "sprout_tower_entry_Layout",
+      "width": 19,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/sprout_tower_entry/border.bin",
+      "blockdata_filepath": "data/layouts/sprout_tower_entry/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_1F",
+      "name": "sprout_tower_1f_Layout",
+      "width": 19,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/sprout_tower_1f/border.bin",
+      "blockdata_filepath": "data/layouts/sprout_tower_1f/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_2F",
+      "name": "sprout_tower_2f_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/sprout_tower_2f/border.bin",
+      "blockdata_filepath": "data/layouts/sprout_tower_2f/map.bin"
     }
   ]
 }

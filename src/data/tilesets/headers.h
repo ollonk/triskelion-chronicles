@@ -1062,9 +1062,58 @@ const struct Tileset gTileset_mrpokemon =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
     .tiles = gTilesetTiles_mrpokemon,
     .palettes = gTilesetPalettes_mrpokemon,
     .metatiles = gMetatiles_mrpokemon,
     .metatileAttributes = gMetatileAttributes_mrpokemon,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_gyms_violet =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_johto_gyms_violet,
+    .palettes = gTilesetPalettes_johto_gyms_violet,
+    .metatiles = gMetatiles_johto_gyms_violet,
+    .metatileAttributes = gMetatileAttributes_johto_gyms_violet,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Johto_trainerschool =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_Johto_trainerschool,
+    .palettes = gTilesetPalettes_Johto_trainerschool,
+    .metatiles = gMetatiles_Johto_trainerschool,
+    .metatileAttributes = gMetatileAttributes_Johto_trainerschool,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_violetcity =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_johto_violetcity,
+    .palettes = gTilesetPalettes_johto_violetcity,
+    .metatiles = gMetatiles_johto_violetcity,
+    .metatileAttributes = gMetatileAttributes_johto_violetcity,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_sprouttower =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .dontUsePal7 = TRUE,
+    .tiles = gTilesetTiles_johto_sprouttower,
+    .palettes = gTilesetPalettes_johto_sprouttower,
+    .metatiles = gMetatiles_johto_sprouttower,
+    .metatileAttributes = gMetatileAttributes_johto_sprouttower,
     .callback = NULL,
 };

@@ -1227,3 +1227,21 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/route30_house1/scripts.inc"
 
 	.include "data/maps/DarkCave_route31/scripts.inc"
+
+	.include "data/maps/pokecenter_violet/scripts.inc"
+
+	.include "data/maps/johto_gyms_violet/scripts.inc"
+
+	.include "data/maps/mart_violet/scripts.inc"
+
+	.include "data/maps/violet_trainerschool/scripts.inc"
+
+	.include "data/maps/violet_house0/scripts.inc"
+
+	.include "data/maps/violet_house1/scripts.inc"
+
+	.include "data/maps/sprout_tower_entry/scripts.inc"
+
+	.include "data/maps/sprout_tower_1f/scripts.inc"
+
+	.include "data/maps/sprout_tower_2f/scripts.inc"
