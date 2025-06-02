@@ -32,4 +32,6 @@ void InitTilesetAnim_EliteFour(void);
 void InitTilesetAnim_BattleDome(void);
 void InitTilesetAnim_BattlePyramid(void);
 
+#include "tileset_anims_fr.h"
+
 #endif // GUARD_TILESET_ANIMS_H

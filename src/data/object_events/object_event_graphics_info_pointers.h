@@ -247,6 +247,142 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Storyteller
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giddy;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan1;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan2;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFishing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFieldMoveBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLittleBoy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLittleGirl;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGYoungster;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBoy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBugCatcher;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSittingBoy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLass;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman1;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBattleGirl;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMan;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocker;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFatMan;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman2;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBeauty;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBaldingMan;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman3;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldMan1;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldMan2;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldManLyingDown;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldWoman;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberMWater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberMLand;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCamper;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPicnicker;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCooltrainerM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCooltrainerF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerMWater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerFWater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerMLand;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerFLand;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWorkerM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWorkerF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocketM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocketF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGBAKid;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSuperNerd;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBiker;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlackbelt;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGScientist;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGHiker;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFisher;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChanneler;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChef;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPoliceman;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGentleman;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSailor;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCaptain;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNurse;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCableClubReceptionist;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGUnionRoomReceptionist;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGUnusedMaleReceptionist;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClerk;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMGDeliveryman;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTrainerTowerDude;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGProfOak;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlue;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBill;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLance;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGAgatha;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDaisy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLorelei;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMrFuji;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBruno;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBrock;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMisty;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLtSurge;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGErika;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKoga;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSabrina;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlaine;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGiovanni;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMom;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCelio;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTeachyTVHost;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGymGuy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTownMap;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPokedex;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRuby;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSapphire;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldAmber;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGymSign;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSign;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTrainerTips;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClipboard;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSeagallop;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSnorlax;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSpearow;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCubone;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPoliwrath;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClefairy;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPidgeot;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGJigglypuff;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPidgey;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChansey;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOmanyte;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKangaskhan;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPsyduck;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidoranF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidoranM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidorino;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMeowth;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSeel;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGVoltorb;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSlowpoke;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSlowbro;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMachop;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWigglytuff;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDoduo;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFearow;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMachoke;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLapras;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGZapdos;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMoltres;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGArticuno;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMewtwo;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGEntei;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSuicune;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRaikou;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCelebi;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKabuto;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysD;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysA;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysN;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSSAnne;
+
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -490,6 +626,142 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_HOOH] =                     &gObjectEventGraphicsInfo_HoOh,
     [OBJ_EVENT_GFX_POKE_BALL] =                &gObjectEventGraphicsInfo_PokeBall,
     [OBJ_EVENT_GFX_OW_MON] =                   &gObjectEventGraphicsInfo_Follower,
+    [OBJ_EVENT_GFX_FRLG_LEAF_BIKE] =           &gObjectEventGraphicsInfo_FRLGLeafBike,
+    [OBJ_EVENT_GFX_FRLG_LEAF_SURFING] =        &gObjectEventGraphicsInfo_FRLGLeafSurfing,
+    [OBJ_EVENT_GFX_FRLG_LEAF_FIELD_MOVE] =     &gObjectEventGraphicsInfo_FRLGLeafFieldMove,
+    [OBJ_EVENT_GFX_FRLG_LEAF_FISHING] =        &gObjectEventGraphicsInfo_FRLGLeafFishing,
+    [OBJ_EVENT_GFX_FRLG_LEAF_UNDERWATER] =     &gObjectEventGraphicsInfo_FRLGLeafUnderwater,
+    [OBJ_EVENT_GFX_FRLG_LEAF_FIELD_MOVE_BIKE] = &gObjectEventGraphicsInfo_FRLGLeafFieldMoveBike,
+    [OBJ_EVENT_GFX_FRLG_RED_WATERING] =        &gObjectEventGraphicsInfo_FRLGRedWatering,
+    [OBJ_EVENT_GFX_FRLG_LEAF_WATERING] =       &gObjectEventGraphicsInfo_FRLGLeafWatering,
+    [OBJ_EVENT_GFX_FRLG_RED_DECORATING] =      &gObjectEventGraphicsInfo_FRLGRedDecorating,
+    [OBJ_EVENT_GFX_FRLG_LEAF_DECORATING] =     &gObjectEventGraphicsInfo_FRLGLeafDecorating,
+    [OBJ_EVENT_GFX_FRLG_LITTLE_BOY] =          &gObjectEventGraphicsInfo_FRLGLittleBoy,
+    [OBJ_EVENT_GFX_FRLG_LITTLE_GIRL] =         &gObjectEventGraphicsInfo_FRLGLittleGirl,
+    [OBJ_EVENT_GFX_FRLG_YOUNGSTER] =           &gObjectEventGraphicsInfo_FRLGYoungster,
+    [OBJ_EVENT_GFX_FRLG_BOY] =                 &gObjectEventGraphicsInfo_FRLGBoy,
+    [OBJ_EVENT_GFX_FRLG_BUG_CATCHER] =         &gObjectEventGraphicsInfo_FRLGBugCatcher,
+    [OBJ_EVENT_GFX_FRLG_SITTING_BOY] =         &gObjectEventGraphicsInfo_FRLGSittingBoy,
+    [OBJ_EVENT_GFX_FRLG_LASS] =                &gObjectEventGraphicsInfo_FRLGLass,
+    [OBJ_EVENT_GFX_FRLG_WOMAN_1] =             &gObjectEventGraphicsInfo_FRLGWoman1,
+    [OBJ_EVENT_GFX_FRLG_BATTLE_GIRL] =         &gObjectEventGraphicsInfo_FRLGBattleGirl,
+    [OBJ_EVENT_GFX_FRLG_MAN] =                 &gObjectEventGraphicsInfo_FRLGMan,
+    [OBJ_EVENT_GFX_FRLG_ROCKER] =              &gObjectEventGraphicsInfo_FRLGRocker,
+    [OBJ_EVENT_GFX_FRLG_FAT_MAN] =             &gObjectEventGraphicsInfo_FRLGFatMan,
+    [OBJ_EVENT_GFX_FRLG_WOMAN_2] =             &gObjectEventGraphicsInfo_FRLGWoman2,
+    [OBJ_EVENT_GFX_FRLG_BEAUTY] =              &gObjectEventGraphicsInfo_FRLGBeauty,
+    [OBJ_EVENT_GFX_FRLG_BALDING_MAN] =         &gObjectEventGraphicsInfo_FRLGBaldingMan,
+    [OBJ_EVENT_GFX_FRLG_WOMAN_3] =             &gObjectEventGraphicsInfo_FRLGWoman3,
+    [OBJ_EVENT_GFX_FRLG_OLD_MAN_1] =           &gObjectEventGraphicsInfo_FRLGOldMan1,
+    [OBJ_EVENT_GFX_FRLG_OLD_MAN_2] =           &gObjectEventGraphicsInfo_FRLGOldMan2,
+    [OBJ_EVENT_GFX_FRLG_OLD_MAN_LYING_DOWN] =  &gObjectEventGraphicsInfo_FRLGOldManLyingDown,
+    [OBJ_EVENT_GFX_FRLG_OLD_WOMAN] =           &gObjectEventGraphicsInfo_FRLGOldWoman,
+    [OBJ_EVENT_GFX_FRLG_TUBER_M_WATER] =       &gObjectEventGraphicsInfo_FRLGTuberMWater,
+    [OBJ_EVENT_GFX_FRLG_TUBER_F] =             &gObjectEventGraphicsInfo_FRLGTuberF,
+    [OBJ_EVENT_GFX_FRLG_TUBER_M_LAND] =        &gObjectEventGraphicsInfo_FRLGTuberMLand,
+    [OBJ_EVENT_GFX_FRLG_CAMPER] =              &gObjectEventGraphicsInfo_FRLGCamper,
+    [OBJ_EVENT_GFX_FRLG_PICNICKER] =           &gObjectEventGraphicsInfo_FRLGPicnicker,
+    [OBJ_EVENT_GFX_FRLG_COOLTRAINER_M] =       &gObjectEventGraphicsInfo_FRLGCooltrainerM,
+    [OBJ_EVENT_GFX_FRLG_COOLTRAINER_F] =       &gObjectEventGraphicsInfo_FRLGCooltrainerF,
+    [OBJ_EVENT_GFX_FRLG_SWIMMER_M_WATER] =     &gObjectEventGraphicsInfo_FRLGSwimmerMWater,
+    [OBJ_EVENT_GFX_FRLG_SWIMMER_F_WATER] =     &gObjectEventGraphicsInfo_FRLGSwimmerFWater,
+    [OBJ_EVENT_GFX_FRLG_SWIMMER_M_LAND] =      &gObjectEventGraphicsInfo_FRLGSwimmerMLand,
+    [OBJ_EVENT_GFX_FRLG_SWIMMER_F_LAND] =      &gObjectEventGraphicsInfo_FRLGSwimmerFLand,
+    [OBJ_EVENT_GFX_FRLG_WORKER_M] =            &gObjectEventGraphicsInfo_FRLGWorkerM,
+    [OBJ_EVENT_GFX_FRLG_WORKER_F] =            &gObjectEventGraphicsInfo_FRLGWorkerF,
+    [OBJ_EVENT_GFX_FRLG_ROCKET_M] =            &gObjectEventGraphicsInfo_FRLGRocketM,
+    [OBJ_EVENT_GFX_FRLG_ROCKET_F] =            &gObjectEventGraphicsInfo_FRLGRocketF,
+    [OBJ_EVENT_GFX_FRLG_GBA_KID] =             &gObjectEventGraphicsInfo_FRLGGBAKid,
+    [OBJ_EVENT_GFX_FRLG_SUPER_NERD] =          &gObjectEventGraphicsInfo_FRLGSuperNerd,
+    [OBJ_EVENT_GFX_FRLG_BIKER] =               &gObjectEventGraphicsInfo_FRLGBiker,
+    [OBJ_EVENT_GFX_FRLG_BLACKBELT] =           &gObjectEventGraphicsInfo_FRLGBlackbelt,
+    [OBJ_EVENT_GFX_FRLG_SCIENTIST] =           &gObjectEventGraphicsInfo_FRLGScientist,
+    [OBJ_EVENT_GFX_FRLG_HIKER] =               &gObjectEventGraphicsInfo_FRLGHiker,
+    [OBJ_EVENT_GFX_FRLG_FISHER] =              &gObjectEventGraphicsInfo_FRLGFisher,
+    [OBJ_EVENT_GFX_FRLG_CHANNELER] =           &gObjectEventGraphicsInfo_FRLGChanneler,
+    [OBJ_EVENT_GFX_FRLG_CHEF] =                &gObjectEventGraphicsInfo_FRLGChef,
+    [OBJ_EVENT_GFX_FRLG_POLICEMAN] =           &gObjectEventGraphicsInfo_FRLGPoliceman,
+    [OBJ_EVENT_GFX_FRLG_GENTLEMAN] =           &gObjectEventGraphicsInfo_FRLGGentleman,
+    [OBJ_EVENT_GFX_FRLG_SAILOR] =              &gObjectEventGraphicsInfo_FRLGSailor,
+    [OBJ_EVENT_GFX_FRLG_CAPTAIN] =             &gObjectEventGraphicsInfo_FRLGCaptain,
+    [OBJ_EVENT_GFX_FRLG_NURSE] =               &gObjectEventGraphicsInfo_FRLGNurse,
+    [OBJ_EVENT_GFX_FRLG_CABLE_CLUB_RECEPTIONIST] = &gObjectEventGraphicsInfo_FRLGCableClubReceptionist,
+    [OBJ_EVENT_GFX_FRLG_UNION_ROOM_RECEPTIONIST] = &gObjectEventGraphicsInfo_FRLGUnionRoomReceptionist,
+    [OBJ_EVENT_GFX_FRLG_UNUSED_MALE_RECEPTIONIST] = &gObjectEventGraphicsInfo_FRLGUnusedMaleReceptionist,
+    [OBJ_EVENT_GFX_FRLG_CLERK] =               &gObjectEventGraphicsInfo_FRLGClerk,
+    [OBJ_EVENT_GFX_FRLG_MG_DELIVERYMAN] =      &gObjectEventGraphicsInfo_FRLGMGDeliveryman,
+    [OBJ_EVENT_GFX_FRLG_TRAINER_TOWER_DUDE] =  &gObjectEventGraphicsInfo_FRLGTrainerTowerDude,
+    [OBJ_EVENT_GFX_FRLG_PROF_OAK] =            &gObjectEventGraphicsInfo_FRLGProfOak,
+    [OBJ_EVENT_GFX_FRLG_BLUE] =                &gObjectEventGraphicsInfo_FRLGBlue,
+    [OBJ_EVENT_GFX_FRLG_BILL] =                &gObjectEventGraphicsInfo_FRLGBill,
+    [OBJ_EVENT_GFX_FRLG_LANCE] =               &gObjectEventGraphicsInfo_FRLGLance,
+    [OBJ_EVENT_GFX_FRLG_AGATHA] =              &gObjectEventGraphicsInfo_FRLGAgatha,
+    [OBJ_EVENT_GFX_FRLG_DAISY] =               &gObjectEventGraphicsInfo_FRLGDaisy,
+    [OBJ_EVENT_GFX_FRLG_LORELEI] =             &gObjectEventGraphicsInfo_FRLGLorelei,
+    [OBJ_EVENT_GFX_FRLG_MR_FUJI] =             &gObjectEventGraphicsInfo_FRLGMrFuji,
+    [OBJ_EVENT_GFX_FRLG_BRUNO] =               &gObjectEventGraphicsInfo_FRLGBruno,
+    [OBJ_EVENT_GFX_FRLG_BROCK] =               &gObjectEventGraphicsInfo_FRLGBrock,
+    [OBJ_EVENT_GFX_FRLG_MISTY] =               &gObjectEventGraphicsInfo_FRLGMisty,
+    [OBJ_EVENT_GFX_FRLG_LT_SURGE] =            &gObjectEventGraphicsInfo_FRLGLtSurge,
+    [OBJ_EVENT_GFX_FRLG_ERIKA] =               &gObjectEventGraphicsInfo_FRLGErika,
+    [OBJ_EVENT_GFX_FRLG_KOGA] =                &gObjectEventGraphicsInfo_FRLGKoga,
+    [OBJ_EVENT_GFX_FRLG_SABRINA] =             &gObjectEventGraphicsInfo_FRLGSabrina,
+    [OBJ_EVENT_GFX_FRLG_BLAINE] =              &gObjectEventGraphicsInfo_FRLGBlaine,
+    [OBJ_EVENT_GFX_FRLG_GIOVANNI] =            &gObjectEventGraphicsInfo_FRLGGiovanni,
+    [OBJ_EVENT_GFX_FRLG_MOM] =                 &gObjectEventGraphicsInfo_FRLGMom,
+    [OBJ_EVENT_GFX_FRLG_CELIO] =               &gObjectEventGraphicsInfo_FRLGCelio,
+    [OBJ_EVENT_GFX_FRLG_TEACHY_TV_HOST] =      &gObjectEventGraphicsInfo_FRLGTeachyTVHost,
+    [OBJ_EVENT_GFX_FRLG_GYM_GUY] =             &gObjectEventGraphicsInfo_FRLGGymGuy,
+    [OBJ_EVENT_GFX_FRLG_TOWN_MAP] =            &gObjectEventGraphicsInfo_FRLGTownMap,
+    [OBJ_EVENT_GFX_FRLG_POKEDEX] =             &gObjectEventGraphicsInfo_FRLGPokedex,
+    [OBJ_EVENT_GFX_FRLG_RUBY] =                &gObjectEventGraphicsInfo_FRLGRuby,
+    [OBJ_EVENT_GFX_FRLG_SAPPHIRE] =            &gObjectEventGraphicsInfo_FRLGSapphire,
+    [OBJ_EVENT_GFX_FRLG_OLD_AMBER] =           &gObjectEventGraphicsInfo_FRLGOldAmber,
+    [OBJ_EVENT_GFX_FRLG_GYM_SIGN] =            &gObjectEventGraphicsInfo_FRLGGymSign,
+    [OBJ_EVENT_GFX_FRLG_SIGN] =                &gObjectEventGraphicsInfo_FRLGSign,
+    [OBJ_EVENT_GFX_FRLG_TRAINER_TIPS] =        &gObjectEventGraphicsInfo_FRLGTrainerTips,
+    [OBJ_EVENT_GFX_FRLG_CLIPBOARD]  =          &gObjectEventGraphicsInfo_FRLGClipboard,
+    [OBJ_EVENT_GFX_FRLG_SEAGALLOP] =           &gObjectEventGraphicsInfo_FRLGSeagallop,
+    [OBJ_EVENT_GFX_FRLG_SNORLAX] =             &gObjectEventGraphicsInfo_FRLGSnorlax,
+    [OBJ_EVENT_GFX_FRLG_SPEAROW] =             &gObjectEventGraphicsInfo_FRLGSpearow,
+    [OBJ_EVENT_GFX_FRLG_CUBONE] =              &gObjectEventGraphicsInfo_FRLGCubone,
+    [OBJ_EVENT_GFX_FRLG_POLIWRATH] =           &gObjectEventGraphicsInfo_FRLGPoliwrath,
+    [OBJ_EVENT_GFX_FRLG_CLEFAIRY] =            &gObjectEventGraphicsInfo_FRLGClefairy,
+    [OBJ_EVENT_GFX_FRLG_PIDGEOT] =             &gObjectEventGraphicsInfo_FRLGPidgeot,
+    [OBJ_EVENT_GFX_FRLG_JIGGLYPUFF] =          &gObjectEventGraphicsInfo_FRLGJigglypuff,
+    [OBJ_EVENT_GFX_FRLG_PIDGEY] =              &gObjectEventGraphicsInfo_FRLGPidgey,
+    [OBJ_EVENT_GFX_FRLG_CHANSEY] =             &gObjectEventGraphicsInfo_FRLGChansey,
+    [OBJ_EVENT_GFX_FRLG_OMANYTE] =             &gObjectEventGraphicsInfo_FRLGOmanyte,
+    [OBJ_EVENT_GFX_FRLG_KANGASKHAN] =          &gObjectEventGraphicsInfo_FRLGKangaskhan,
+    [OBJ_EVENT_GFX_FRLG_PSYDUCK] =             &gObjectEventGraphicsInfo_FRLGPsyduck,
+    [OBJ_EVENT_GFX_FRLG_NIDORAN_F] =           &gObjectEventGraphicsInfo_FRLGNidoranF,
+    [OBJ_EVENT_GFX_FRLG_NIDORAN_M] =           &gObjectEventGraphicsInfo_FRLGNidoranM,
+    [OBJ_EVENT_GFX_FRLG_NIDORINO] =            &gObjectEventGraphicsInfo_FRLGNidorino,
+    [OBJ_EVENT_GFX_FRLG_MEOWTH] =              &gObjectEventGraphicsInfo_FRLGMeowth,
+    [OBJ_EVENT_GFX_FRLG_SEEL] =                &gObjectEventGraphicsInfo_FRLGSeel,
+    [OBJ_EVENT_GFX_FRLG_VOLTORB] =             &gObjectEventGraphicsInfo_FRLGVoltorb,
+    [OBJ_EVENT_GFX_FRLG_SLOWPOKE] =            &gObjectEventGraphicsInfo_FRLGSlowpoke,
+    [OBJ_EVENT_GFX_FRLG_SLOWBRO] =             &gObjectEventGraphicsInfo_FRLGSlowbro,
+    [OBJ_EVENT_GFX_FRLG_MACHOP] =              &gObjectEventGraphicsInfo_FRLGMachop,
+    [OBJ_EVENT_GFX_FRLG_WIGGLYTUFF] =          &gObjectEventGraphicsInfo_FRLGWigglytuff,
+    [OBJ_EVENT_GFX_FRLG_DODUO] =               &gObjectEventGraphicsInfo_FRLGDoduo,
+    [OBJ_EVENT_GFX_FRLG_FEAROW] =              &gObjectEventGraphicsInfo_FRLGFearow,
+    [OBJ_EVENT_GFX_FRLG_MACHOKE] =             &gObjectEventGraphicsInfo_FRLGMachoke,
+    [OBJ_EVENT_GFX_FRLG_LAPRAS] =              &gObjectEventGraphicsInfo_FRLGLapras,
+    [OBJ_EVENT_GFX_FRLG_ZAPDOS] =              &gObjectEventGraphicsInfo_FRLGZapdos,
+    [OBJ_EVENT_GFX_FRLG_MOLTRES] =             &gObjectEventGraphicsInfo_FRLGMoltres,
+    [OBJ_EVENT_GFX_FRLG_ARTICUNO] =            &gObjectEventGraphicsInfo_FRLGArticuno,
+    [OBJ_EVENT_GFX_FRLG_MEWTWO] =              &gObjectEventGraphicsInfo_FRLGMewtwo,
+    [OBJ_EVENT_GFX_FRLG_ENTEI] =               &gObjectEventGraphicsInfo_FRLGEntei,
+    [OBJ_EVENT_GFX_FRLG_SUICUNE] =             &gObjectEventGraphicsInfo_FRLGSuicune,
+    [OBJ_EVENT_GFX_FRLG_RAIKOU] =              &gObjectEventGraphicsInfo_FRLGRaikou,
+    [OBJ_EVENT_GFX_FRLG_CELEBI] =              &gObjectEventGraphicsInfo_FRLGCelebi,
+    [OBJ_EVENT_GFX_FRLG_KABUTO] =              &gObjectEventGraphicsInfo_FRLGKabuto,
+    [OBJ_EVENT_GFX_FRLG_DEOXYS_D] =            &gObjectEventGraphicsInfo_FRLGDeoxysD,
+    [OBJ_EVENT_GFX_FRLG_DEOXYS_A] =            &gObjectEventGraphicsInfo_FRLGDeoxysA,
+    [OBJ_EVENT_GFX_FRLG_DEOXYS_N] =            &gObjectEventGraphicsInfo_FRLGDeoxysN,
+    [OBJ_EVENT_GFX_FRLG_SS_ANNE] =             &gObjectEventGraphicsInfo_FRLGSSAnne,
+
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

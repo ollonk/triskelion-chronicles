@@ -1331,6 +1331,41 @@ static const union AnimCmd *const sAnimTable_Rayquaza[] = {
     [ANIM_STD_GO_FASTEST_EAST] = sAnim_RayquazaNormal,
 };
 
+static const union AnimCmd *const sAnimTable_Bike[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_StayStill,
+    [ANIM_STD_FACE_NORTH] = sAnim_QuintyPlumpFaceNorth,
+    [ANIM_STD_FACE_WEST] = sAnim_QuintyPlumpFaceWest,
+    [ANIM_STD_FACE_EAST] = sAnim_QuintyPlumpFaceEast,
+    [ANIM_STD_GO_SOUTH] = sAnim_GoSouth,
+    [ANIM_STD_GO_NORTH] = sAnim_GoNorth,
+    [ANIM_STD_GO_WEST] = sAnim_GoWest,
+    [ANIM_STD_GO_EAST] = sAnim_GoEast,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_GoFastSouth,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_GoFastNorth,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_GoFastWest,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_GoFastEast,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_GoFasterSouth,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_GoFasterNorth,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_GoFasterWest,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_GoFasterEast,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_GoFastestSouth,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_GoFastestNorth,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_GoFastestWest,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_GoFastestEast,
+    [ANIM_BUNNY_HOP_BACK_WHEEL_SOUTH] = sAnim_BunnyHopBackWheelSouth,
+    [ANIM_BUNNY_HOP_BACK_WHEEL_NORTH] = sAnim_BunnyHopBackWheelNorth,
+    [ANIM_BUNNY_HOP_BACK_WHEEL_WEST] = sAnim_BunnyHopBackWheelWest,
+    [ANIM_BUNNY_HOP_BACK_WHEEL_EAST] = sAnim_BunnyHopBackWheelEast,
+    [ANIM_STANDING_WHEELIE_BACK_WHEEL_SOUTH] = sAnim_StandingWheelieBackWheelSouth,
+    [ANIM_STANDING_WHEELIE_BACK_WHEEL_NORTH] = sAnim_StandingWheelieBackWheelNorth,
+    [ANIM_STANDING_WHEELIE_BACK_WHEEL_WEST] = sAnim_StandingWheelieBackWheelWest,
+    [ANIM_STANDING_WHEELIE_BACK_WHEEL_EAST] = sAnim_StandingWheelieBackWheelEast,
+    [ANIM_MOVING_WHEELIE_SOUTH] = sAnim_MovingWheelieSouth,
+    [ANIM_MOVING_WHEELIE_NORTH] = sAnim_MovingWheelieNorth,
+    [ANIM_MOVING_WHEELIE_WEST] = sAnim_MovingWheelieWest,
+    [ANIM_MOVING_WHEELIE_EAST] = sAnim_MovingWheelieEast,
+};
+
 static const union AnimCmd *const sAnimTable_BrendanMayNormal[] = {
     [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
     [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
@@ -1534,5 +1569,26 @@ static const struct StepAnimTable sStepAnimTables[] = {
         .anims = sAnimTable_Fishing,
         .animPos = {1, 3, 0, 2},
     },
-    {},
+    [OBJ_EVENT_ANIM_INANIMATE] = {
+        .anims = sAnimTable_Inanimate,
+    },
+    [OBJ_EVENT_ANIM_BIKE] = {
+        .anims = sAnimTable_Bike,
+        .animPos = {1, 3, 0, 2},
+    },
+    [OBJ_EVENT_ANIM_SURFING] = {
+        .anims = sAnimTable_Surfing,
+        .animPos = {1, 3, 0, 2},
+    },
+    [OBJ_EVENT_ANIM_NURSE] = {
+        .anims = sAnimTable_Nurse,
+        .animPos = {1, 3, 0, 2},
+    },
+    [OBJ_EVENT_ANIM_FIELD_MOVE] = {
+        .anims = sAnimTable_FieldMove,
+    },
+    [OBJ_EVENT_ANIM_FISHING] = {
+        .anims = sAnimTable_Fishing,
+        .animPos = {1, 3, 0, 2},
+    },
 };

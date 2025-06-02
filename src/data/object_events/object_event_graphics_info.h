@@ -4671,3 +4671,2183 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Follower = {
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafBike = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_BIKE_TIRE,
+    .anims = sAnimTable_Bike,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGLeafBike,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafSurfing = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLeafSurfing,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedBike = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_BIKE_TIRE,
+    .anims = sAnimTable_Bike,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGRedBike,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedUnderwater = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGRedUnderwater,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedFieldMoveBike = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_FieldMove,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRedFieldMoveBike,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedSurfing = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRedSurfing,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedFieldMove = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_FieldMove,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRedFieldMove,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedFishing = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Fishing,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGRedFishing,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedNormal = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRedNormal,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafNormal = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLeafNormal,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPoliceman = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGPoliceman,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedDecorating = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRedDecorating,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafDecorating = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLeafDecorating,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRedWatering = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGRedWatering,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafWatering = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGLeafWatering,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLittleBoy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGLittleBoy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLittleGirl = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGLittleGirl,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSittingBoy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSittingBoy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLass = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLass,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGYoungster = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGYoungster,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman1 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGWoman1,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman3 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGWoman3,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBoy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBoy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBattleGirl = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBattleGirl,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBugCatcher = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBugCatcher,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFatMan = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGFatMan,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBaldingMan = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBaldingMan,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWoman2 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGWoman2,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldMan1 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGOldMan1,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWorkerM = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGWorkerM,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWorkerF = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGWorkerF,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBeauty = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBeauty,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChef = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGChef,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldMan2 = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGOldMan2,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldWoman = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGOldWoman,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCamper = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCamper,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPicnicker = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGPicnicker,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCooltrainerM = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCooltrainerM,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCooltrainerF = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCooltrainerF,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSuperNerd = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSuperNerd,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChanneler = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGChanneler,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocketF = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRocketF,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerMWater = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSwimmerMWater,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerFWater = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSwimmerFWater,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerMLand = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSwimmerMLand,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSwimmerFLand = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSwimmerFLand,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlackbelt = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBlackbelt,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGScientist = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGScientist,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGentleman = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGGentleman,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSailor = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSailor,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCaptain = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCaptain,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFisher = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGFisher,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTeachyTVHost = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGTeachyTVHost,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberF = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGTuberF,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberMWater = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGTuberMWater,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTuberMLand = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGTuberMLand,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGHiker = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGHiker,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBiker = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_BIKE_TIRE,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGBiker,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGymGuy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGGymGuy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNurse = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Nurse,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGNurse,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGUnusedMaleReceptionist = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGUnusedMaleReceptionist,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGProfOak = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGProfOak,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMan = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGMan,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocker = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRocker,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMrFuji = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGMrFuji,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBruno = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBruno,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldManLyingDown = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGOldManLyingDown,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClerk = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGClerk,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMGDeliveryman = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGMGDeliveryman,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTrainerTowerDude = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGTrainerTowerDude,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCableClubReceptionist = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCableClubReceptionist,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGUnionRoomReceptionist = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGUnionRoomReceptionist,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFieldMove = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_FieldMove,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLeafFieldMove,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRocketM = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGRocketM,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCelio = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGCelio,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGAgatha = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGAgatha,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBrock = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBrock,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMisty = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGMisty,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLtSurge = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLtSurge,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGErika = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGErika,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKoga = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGKoga,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGiovanni = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGGiovanni,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlaine = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBlaine,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSabrina = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGSabrina,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBill = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBill,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDaisy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGDaisy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLorelei = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLorelei,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLance = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_QuintyPlump,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLance,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGBlue = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_CUSTOM_BLUE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGBlue,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFishing = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Fishing,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGLeafFishing,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafUnderwater = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGLeafUnderwater,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLeafFieldMoveBike = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_FieldMove,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGLeafFieldMoveBike,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTownMap = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGTownMap,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPokedex = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGPokedex,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGBAKid = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGGBAKid,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSnorlax = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGSnorlax,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRuby = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGRuby,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSapphire = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSapphire,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOldAmber = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGOldAmber,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGGymSign = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGGymSign,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSign = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSign,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGTrainerTips = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGWoodenSign,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClipboard = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_S,
+    .inanimate = TRUE,
+    .tracks = TRACKS_NONE,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGClipboard,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSpearow = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSpearow,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGOmanyte = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGOmanyte,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKangaskhan = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGKangaskhan,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPsyduck = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGPsyduck,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidoranF = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGNidoranF,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidoranM = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGNidoranM,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGNidorino = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGNidorino,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMeowth = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGMeowth,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSeel = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSeel,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGVoltorb = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .anims =  sAnimTable_Surfing,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGVoltorb,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSlowpoke = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSlowpoke,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSlowbro = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSlowbro,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMachop = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGMachop,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGWigglytuff = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGWigglytuff,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDoduo = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGDoduo,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGFearow = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGFearow,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGLapras = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGLapras,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGZapdos = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGZapdos,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMoltres = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_RED_LEAF,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGMoltres,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGArticuno = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGArticuno,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysD = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGDeoxysD,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysA = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGDeoxysA,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGDeoxysN = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .images = sPicTable_FRLGDeoxysN,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMewtwo = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGMewtwo,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGEntei = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGEntei,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGRaikou = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGRaikou,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSuicune = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGSuicune,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCelebi = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = TRUE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Inanimate,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGCelebi,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGCubone = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGCubone,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMachoke = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGMachoke,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGKabuto = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGKabuto,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPoliwrath = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGPoliwrath,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPidgeot = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGPidgeot,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGChansey = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGChansey,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGJigglypuff = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGJigglypuff,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGPidgey = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGPidgey,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGClefairy = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_LUGIA,
+    .size = 128,
+    .width = 16,
+    .height = 16,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x16,
+    .subspriteTables = sOamTables_16x16,
+    .images = sPicTable_FRLGClefairy,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGMom = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_HO_OH,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_FOOT,
+    .anims = sAnimTable_Standard,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .images = sPicTable_FRLGMom,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSeagallop = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
+    .size = 2048,
+    .width = 64,
+    .height = 64,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_NONE,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_64x64,
+    .subspriteTables = sOamTables_64x64,
+    .images = sPicTable_FRLGSeagallop,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FRLGSSAnne = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_SS_ANNE,
+    .size = 4096,
+    .width = 128,
+    .height = 64,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .tracks = TRACKS_NONE,
+    .anims =  sAnimTable_Surfing,
+    .oam = &gObjectEventBaseOam_8x8,
+    .subspriteTables = sOamTables_128x64,
+    .images = sPicTable_FRLGSSAnne,
+};
