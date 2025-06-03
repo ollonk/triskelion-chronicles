@@ -47,4 +47,7 @@ tools/trainerproc/trainerproc
 *.smolTM
 useful-information.txt
 todo.txt
-
+metatile_attributes_.bin_backup
+tile*.py
+convert_*.py
+*metatile*.py
