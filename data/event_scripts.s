@@ -1663,3 +1663,17 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/UnionCave3/scripts.inc"
 
 	.include "data/maps/UnionCave4/scripts.inc"
+
+	.include "data/maps/pokecenter_azalea/scripts.inc"
+
+	.include "data/maps/mart_azalea/scripts.inc"
+
+	.include "data/maps/gym_azalea/scripts.inc"
+
+	.include "data/maps/slowpokewell_0/scripts.inc"
+
+	.include "data/maps/slowpokewell_1/scripts.inc"
+
+	.include "data/maps/azale_cut_house/scripts.inc"
+
+	.include "data/maps/azalea_kurts_house/scripts.inc"

@@ -7920,6 +7920,76 @@
       "secondary_tileset": "gTileset_Cave_Johto",
       "border_filepath": "data/layouts/UnionCave4/border.bin",
       "blockdata_filepath": "data/layouts/UnionCave4/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_AZALEA",
+      "name": "pokecenter_azalea_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_azalea/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_azalea/map.bin"
+    },
+    {
+      "id": "LAYOUT_MART_AZALEA",
+      "name": "mart_azalea_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_johto_pokemart",
+      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "border_filepath": "data/layouts/mart_azalea/border.bin",
+      "blockdata_filepath": "data/layouts/mart_azalea/map.bin"
+    },
+    {
+      "id": "LAYOUT_GYM_AZALEA",
+      "name": "gym_azalea_Layout",
+      "width": 24,
+      "height": 32,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_azalea",
+      "border_filepath": "data/layouts/gym_azalea/border.bin",
+      "blockdata_filepath": "data/layouts/gym_azalea/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLOWPOKEWELL_0",
+      "name": "slowpokewell_0_Layout",
+      "width": 30,
+      "height": 26,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_johto_slowpoke_well",
+      "border_filepath": "data/layouts/slowpokewell_0/border.bin",
+      "blockdata_filepath": "data/layouts/slowpokewell_0/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLOWPOKEWELL_1",
+      "name": "slowpokewell_1_Layout",
+      "width": 30,
+      "height": 26,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_johto_slowpoke_well",
+      "border_filepath": "data/layouts/slowpokewell_1/border.bin",
+      "blockdata_filepath": "data/layouts/slowpokewell_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALE_CUT_HOUSE",
+      "name": "azale_cut_house_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/azale_cut_house/border.bin",
+      "blockdata_filepath": "data/layouts/azale_cut_house/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_KURTS_HOUSE",
+      "name": "azalea_kurts_house_Layout",
+      "width": 30,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_violetcity",
+      "border_filepath": "data/layouts/azalea_kurts_house/border.bin",
+      "blockdata_filepath": "data/layouts/azalea_kurts_house/map.bin"
     }
   ]
 }

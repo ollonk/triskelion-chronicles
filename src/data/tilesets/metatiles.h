@@ -455,3 +455,9 @@ const u16 gMetatileAttributes_johto_violetcity[] = INCBIN_U16("data/tilesets/sec
 
 const u16 gMetatiles_johto_sprouttower[] = INCBIN_U16("data/tilesets/secondary/johto_sprouttower/metatiles.bin");
 const u16 gMetatileAttributes_johto_sprouttower[] = INCBIN_U16("data/tilesets/secondary/johto_sprouttower/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_gyms_azalea[] = INCBIN_U16("data/tilesets/secondary/johto_gyms_azalea/metatiles.bin");
+const u16 gMetatileAttributes_johto_gyms_azalea[] = INCBIN_U16("data/tilesets/secondary/johto_gyms_azalea/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_slowpoke_well[] = INCBIN_U16("data/tilesets/secondary/johto_slowpoke_well/metatiles.bin");
+const u16 gMetatileAttributes_johto_slowpoke_well[] = INCBIN_U16("data/tilesets/secondary/johto_slowpoke_well/metatile_attributes.bin");

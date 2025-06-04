@@ -1825,3 +1825,25 @@ const struct Tileset gTileset_johto_sprouttower =
     .metatileAttributes = gMetatileAttributes_johto_sprouttower,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_johto_gyms_azalea =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_gyms_azalea,
+    .palettes = gTilesetPalettes_johto_gyms_azalea,
+    .metatiles = gMetatiles_johto_gyms_azalea,
+    .metatileAttributes = gMetatileAttributes_johto_gyms_azalea,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_slowpoke_well =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_slowpoke_well,
+    .palettes = gTilesetPalettes_johto_slowpoke_well,
+    .metatiles = gMetatiles_johto_slowpoke_well,
+    .metatileAttributes = gMetatileAttributes_johto_slowpoke_well,
+    .callback = NULL,
+};
