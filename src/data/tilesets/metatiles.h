@@ -461,3 +461,6 @@ const u16 gMetatileAttributes_johto_gyms_azalea[] = INCBIN_U16("data/tilesets/se
 
 const u16 gMetatiles_johto_slowpoke_well[] = INCBIN_U16("data/tilesets/secondary/johto_slowpoke_well/metatiles.bin");
 const u16 gMetatileAttributes_johto_slowpoke_well[] = INCBIN_U16("data/tilesets/secondary/johto_slowpoke_well/metatile_attributes.bin");
+
+const u16 gMetatiles_goldenrod_deptstore[] = INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/metatiles.bin");
+const u16 gMetatileAttributes_goldenrod_deptstore[] = INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/metatile_attributes.bin");

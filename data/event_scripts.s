@@ -1677,3 +1677,23 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/azale_cut_house/scripts.inc"
 
 	.include "data/maps/azalea_kurts_house/scripts.inc"
+
+	.include "data/maps/pokecenter_goldenrod/scripts.inc"
+
+	.include "data/maps/gym_goldenrod/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_1f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_2f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_3f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_4f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_5f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_6f/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_roof/scripts.inc"
+
+	.include "data/maps/goldenrod_deptstore_elev/scripts.inc"

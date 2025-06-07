@@ -81,6 +81,7 @@
     "gMapGroup_IndoorRoute30",
     "gMapGroup_IndoorViolet",
     "gMapGroup_IndoorAzalea",
+    "gMapGroup_IndoorGoldenrod",
     "gMapGroup_JohtoMisc"
   ],
   "gMapGroup_TownsAndRoutes": [
@@ -1226,6 +1227,18 @@
     "slowpokewell_1",
     "azale_cut_house",
     "azalea_kurts_house"
+  ],
+  "gMapGroup_IndoorGoldenrod": [
+    "pokecenter_goldenrod",
+    "gym_goldenrod",
+    "goldenrod_deptstore_1f",
+    "goldenrod_deptstore_2f",
+    "goldenrod_deptstore_3f",
+    "goldenrod_deptstore_4f",
+    "goldenrod_deptstore_5f",
+    "goldenrod_deptstore_6f",
+    "goldenrod_deptstore_roof",
+    "goldenrod_deptstore_elev"
   ],
   "gMapGroup_JohtoMisc": [
     "pokecenter_route32"

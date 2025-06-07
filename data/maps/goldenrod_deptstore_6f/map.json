@@ -1,0 +1,41 @@
+{
+  "id": "MAP_GOLDENROD_DEPTSTORE_6F",
+  "name": "goldenrod_deptstore_6f",
+  "layout": "LAYOUT_GOLDENROD_DEPTSTORE_6F",
+  "music": "MUS_POKE_MART",
+  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 24,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_DEPTSTORE_5F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 17,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_DEPTSTORE_ROOF",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

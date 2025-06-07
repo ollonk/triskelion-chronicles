@@ -3406,3 +3406,22 @@ const u16 gTilesetPalettes_johto_slowpoke_well[][16] =
 };
 
 const u32 gTilesetTiles_johto_slowpoke_well[] = INCBIN_U32("data/tilesets/secondary/johto_slowpoke_well/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_goldenrod_deptstore[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_goldenrod_deptstore[] = INCBIN_U32("data/tilesets/secondary/goldenrod_deptstore/tiles.4bpp.lz");

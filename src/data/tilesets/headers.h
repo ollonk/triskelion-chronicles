@@ -1847,3 +1847,14 @@ const struct Tileset gTileset_johto_slowpoke_well =
     .metatileAttributes = gMetatileAttributes_johto_slowpoke_well,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_goldenrod_deptstore =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_goldenrod_deptstore,
+    .palettes = gTilesetPalettes_goldenrod_deptstore,
+    .metatiles = gMetatiles_goldenrod_deptstore,
+    .metatileAttributes = gMetatileAttributes_goldenrod_deptstore,
+    .callback = NULL,
+};

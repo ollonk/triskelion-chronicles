@@ -7990,6 +7990,106 @@
       "secondary_tileset": "gTileset_johto_violetcity",
       "border_filepath": "data/layouts/azalea_kurts_house/border.bin",
       "blockdata_filepath": "data/layouts/azalea_kurts_house/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_GOLDENROD",
+      "name": "pokecenter_goldenrod_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_goldenrod/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_goldenrod/map.bin"
+    },
+    {
+      "id": "LAYOUT_GYM_GOLDENROD",
+      "name": "gym_goldenrod_Layout",
+      "width": 34,
+      "height": 27,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_azalea",
+      "border_filepath": "data/layouts/gym_goldenrod/border.bin",
+      "blockdata_filepath": "data/layouts/gym_goldenrod/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_1F",
+      "name": "goldenrod_deptstore_1f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_1f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_1f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_2F",
+      "name": "goldenrod_deptstore_2f_Layout",
+      "width": 32,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_2f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_2f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_3F",
+      "name": "goldenrod_deptstore_3f_Layout",
+      "width": 33,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_3f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_3f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_4F",
+      "name": "goldenrod_deptstore_4f_Layout",
+      "width": 32,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_4f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_4f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_5F",
+      "name": "goldenrod_deptstore_5f_Layout",
+      "width": 33,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_5f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_5f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_6F",
+      "name": "goldenrod_deptstore_6f_Layout",
+      "width": 32,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_6f/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_6f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_ROOF",
+      "name": "goldenrod_deptstore_roof_Layout",
+      "width": 32,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_roof/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_roof/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPTSTORE_ELEV",
+      "name": "goldenrod_deptstore_elev_Layout",
+      "width": 5,
+      "height": 7,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_deptstore",
+      "border_filepath": "data/layouts/goldenrod_deptstore_elev/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_deptstore_elev/map.bin"
     }
   ]
 }
