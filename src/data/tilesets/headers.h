@@ -1858,3 +1858,69 @@ const struct Tileset gTileset_goldenrod_deptstore =
     .metatileAttributes = gMetatileAttributes_goldenrod_deptstore,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_johto_radio_tower =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_radio_tower,
+    .palettes = gTilesetPalettes_johto_radio_tower,
+    .metatiles = gMetatiles_johto_radio_tower,
+    .metatileAttributes = gMetatileAttributes_johto_radio_tower,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_goldenrod_gathouse =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_goldenrod_gathouse,
+    .palettes = gTilesetPalettes_goldenrod_gathouse,
+    .metatiles = gMetatiles_goldenrod_gathouse,
+    .metatileAttributes = gMetatileAttributes_goldenrod_gathouse,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_goldenrod_dungeon =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_goldenrod_dungeon,
+    .palettes = gTilesetPalettes_goldenrod_dungeon,
+    .metatiles = gMetatiles_goldenrod_dungeon,
+    .metatileAttributes = gMetatileAttributes_goldenrod_dungeon,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_johto_gamecorner =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_johto_gamecorner,
+    .palettes = gTilesetPalettes_johto_gamecorner,
+    .metatiles = gMetatiles_johto_gamecorner,
+    .metatileAttributes = gMetatileAttributes_johto_gamecorner,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_goldenrod_bike_shop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_goldenrod_bike_shop,
+    .palettes = gTilesetPalettes_goldenrod_bike_shop,
+    .metatiles = gMetatiles_goldenrod_bike_shop,
+    .metatileAttributes = gMetatileAttributes_goldenrod_bike_shop,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_train_station =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_train_station,
+    .palettes = gTilesetPalettes_train_station,
+    .metatiles = gMetatiles_train_station,
+    .metatileAttributes = gMetatileAttributes_train_station,
+    .callback = NULL,
+};

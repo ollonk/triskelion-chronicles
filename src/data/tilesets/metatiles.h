@@ -464,3 +464,21 @@ const u16 gMetatileAttributes_johto_slowpoke_well[] = INCBIN_U16("data/tilesets/
 
 const u16 gMetatiles_goldenrod_deptstore[] = INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/metatiles.bin");
 const u16 gMetatileAttributes_goldenrod_deptstore[] = INCBIN_U16("data/tilesets/secondary/goldenrod_deptstore/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_radio_tower[] = INCBIN_U16("data/tilesets/secondary/johto_radio_tower/metatiles.bin");
+const u16 gMetatileAttributes_johto_radio_tower[] = INCBIN_U16("data/tilesets/secondary/johto_radio_tower/metatile_attributes.bin");
+
+const u16 gMetatiles_goldenrod_gathouse[] = INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/metatiles.bin");
+const u16 gMetatileAttributes_goldenrod_gathouse[] = INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/metatile_attributes.bin");
+
+const u16 gMetatiles_goldenrod_dungeon[] = INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/metatiles.bin");
+const u16 gMetatileAttributes_goldenrod_dungeon[] = INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/metatile_attributes.bin");
+
+const u16 gMetatiles_johto_gamecorner[] = INCBIN_U16("data/tilesets/secondary/johto_gamecorner/metatiles.bin");
+const u16 gMetatileAttributes_johto_gamecorner[] = INCBIN_U16("data/tilesets/secondary/johto_gamecorner/metatile_attributes.bin");
+
+const u16 gMetatiles_goldenrod_bike_shop[] = INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/metatiles.bin");
+const u16 gMetatileAttributes_goldenrod_bike_shop[] = INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_train_station[] = INCBIN_U16("data/tilesets/secondary/train_station/metatiles.bin");
+const u16 gMetatileAttributes_train_station[] = INCBIN_U16("data/tilesets/secondary/train_station/metatile_attributes.bin");

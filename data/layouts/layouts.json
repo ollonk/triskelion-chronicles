@@ -7767,7 +7767,7 @@
       "width": 13,
       "height": 10,
       "primary_tileset": "gTileset_Johto_Indoor",
-      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "secondary_tileset": "gTileset_johto_radio_tower",
       "border_filepath": "data/layouts/mr_pokemons_house/border.bin",
       "blockdata_filepath": "data/layouts/mr_pokemons_house/map.bin"
     },
@@ -8090,6 +8090,206 @@
       "secondary_tileset": "gTileset_goldenrod_deptstore",
       "border_filepath": "data/layouts/goldenrod_deptstore_elev/border.bin",
       "blockdata_filepath": "data/layouts/goldenrod_deptstore_elev/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_1F",
+      "name": "radio_tower_1f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/radio_tower_1f/border.bin",
+      "blockdata_filepath": "data/layouts/radio_tower_1f/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_2F",
+      "name": "radio_tower_2f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/radio_tower_2f/border.bin",
+      "blockdata_filepath": "data/layouts/radio_tower_2f/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_3F",
+      "name": "radio_tower_3f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/radio_tower_3f/border.bin",
+      "blockdata_filepath": "data/layouts/radio_tower_3f/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_4F",
+      "name": "radio_tower_4f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/radio_tower_4f/border.bin",
+      "blockdata_filepath": "data/layouts/radio_tower_4f/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_5F",
+      "name": "radio_tower_5f_Layout",
+      "width": 32,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/radio_tower_5f/border.bin",
+      "blockdata_filepath": "data/layouts/radio_tower_5f/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_ENTRY_N",
+      "name": "goldenrod_underground_entry_n_Layout",
+      "width": 27,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_gathouse",
+      "border_filepath": "data/layouts/goldenrod_underground_entry_n/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_entry_n/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_CORRIDOR",
+      "name": "goldenrod_underground_corridor_Layout",
+      "width": 16,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_dungeon",
+      "border_filepath": "data/layouts/goldenrod_underground_corridor/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_corridor/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_ENTRY_S",
+      "name": "goldenrod_underground_entry_s_Layout",
+      "width": 27,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_gathouse",
+      "border_filepath": "data/layouts/goldenrod_underground_entry_s/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_entry_s/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_SWITCH_MAZE",
+      "name": "goldenrod_underground_switch_maze_Layout",
+      "width": 60,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/goldenrod_underground_switch_maze/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_switch_maze/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_HOSTAGE_ROOM",
+      "name": "goldenrod_underground_hostage_room_Layout",
+      "width": 30,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/goldenrod_underground_hostage_room/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_hostage_room/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_DEPTSTORE_BASEMENT",
+      "name": "goldenrod_underground_deptstore_basement_Layout",
+      "width": 30,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_radio_tower",
+      "border_filepath": "data/layouts/goldenrod_underground_deptstore_basement/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_underground_deptstore_basement/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_NAME_RATER",
+      "name": "johto_name_rater_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/johto_name_rater/border.bin",
+      "blockdata_filepath": "data/layouts/johto_name_rater/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_GAME_CORNER",
+      "name": "goldenrod_game_corner_Layout",
+      "width": 23,
+      "height": 15,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gamecorner",
+      "border_filepath": "data/layouts/goldenrod_game_corner/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_game_corner/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_BIKE_SHOP",
+      "name": "goldenrod_bike_shop_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_goldenrod_bike_shop",
+      "border_filepath": "data/layouts/goldenrod_bike_shop/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_bike_shop/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_TRAIN_STATION",
+      "name": "goldenrod_train_station_Layout",
+      "width": 27,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_train_station",
+      "border_filepath": "data/layouts/goldenrod_train_station/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_train_station/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_FLOWER_SHOP",
+      "name": "goldenrod_flower_shop_Layout",
+      "width": 27,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_azalea",
+      "border_filepath": "data/layouts/goldenrod_flower_shop/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_flower_shop/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_HOUSE0",
+      "name": "goldenrod_house0_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/goldenrod_house0/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_house0/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_HOUSE1",
+      "name": "goldenrod_house1_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/goldenrod_house1/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_house1/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_HOUSE2",
+      "name": "goldenrod_house2_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Johoto_Indoor_Secondary",
+      "border_filepath": "data/layouts/goldenrod_house2/border.bin",
+      "blockdata_filepath": "data/layouts/goldenrod_house2/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_DAYCARE",
+      "name": "johto_daycare_Layout",
+      "width": 13,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_azalea",
+      "border_filepath": "data/layouts/johto_daycare/border.bin",
+      "blockdata_filepath": "data/layouts/johto_daycare/map.bin"
     }
   ]
 }

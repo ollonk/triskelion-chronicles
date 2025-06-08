@@ -3425,3 +3425,117 @@ const u16 gTilesetPalettes_goldenrod_deptstore[][16] =
 };
 
 const u32 gTilesetTiles_goldenrod_deptstore[] = INCBIN_U32("data/tilesets/secondary/goldenrod_deptstore/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_johto_radio_tower[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_radio_tower/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_johto_radio_tower[] = INCBIN_U32("data/tilesets/secondary/johto_radio_tower/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_goldenrod_gathouse[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_gathouse/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_goldenrod_gathouse[] = INCBIN_U32("data/tilesets/secondary/goldenrod_gathouse/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_goldenrod_dungeon[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_dungeon/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_goldenrod_dungeon[] = INCBIN_U32("data/tilesets/secondary/goldenrod_dungeon/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_johto_gamecorner[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_gamecorner/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_johto_gamecorner[] = INCBIN_U32("data/tilesets/secondary/johto_gamecorner/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_goldenrod_bike_shop[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/goldenrod_bike_shop/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_goldenrod_bike_shop[] = INCBIN_U32("data/tilesets/secondary/goldenrod_bike_shop/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_train_station[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/train_station/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_train_station[] = INCBIN_U32("data/tilesets/secondary/train_station/tiles.4bpp.lz");

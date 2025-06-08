@@ -1697,3 +1697,43 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/goldenrod_deptstore_roof/scripts.inc"
 
 	.include "data/maps/goldenrod_deptstore_elev/scripts.inc"
+
+	.include "data/maps/radio_tower_1f/scripts.inc"
+
+	.include "data/maps/radio_tower_2f/scripts.inc"
+
+	.include "data/maps/radio_tower_3f/scripts.inc"
+
+	.include "data/maps/radio_tower_4f/scripts.inc"
+
+	.include "data/maps/radio_tower_5f/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_entry_n/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_corridor/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_entry_s/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_switch_maze/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_hostage_room/scripts.inc"
+
+	.include "data/maps/goldenrod_underground_deptstore_basement/scripts.inc"
+
+	.include "data/maps/johto_name_rater/scripts.inc"
+
+	.include "data/maps/goldenrod_game_corner/scripts.inc"
+
+	.include "data/maps/goldenrod_bike_shop/scripts.inc"
+
+	.include "data/maps/goldenrod_train_station/scripts.inc"
+
+	.include "data/maps/goldenrod_flower_shop/scripts.inc"
+
+	.include "data/maps/goldenrod_house0/scripts.inc"
+
+	.include "data/maps/goldenrod_house1/scripts.inc"
+
+	.include "data/maps/goldenrod_house2/scripts.inc"
+
+	.include "data/maps/johto_daycare/scripts.inc"

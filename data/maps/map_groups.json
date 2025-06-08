@@ -1238,9 +1238,29 @@
     "goldenrod_deptstore_5f",
     "goldenrod_deptstore_6f",
     "goldenrod_deptstore_roof",
-    "goldenrod_deptstore_elev"
+    "goldenrod_deptstore_elev",
+    "radio_tower_1f",
+    "radio_tower_2f",
+    "radio_tower_3f",
+    "radio_tower_4f",
+    "radio_tower_5f",
+    "goldenrod_underground_entry_n",
+    "goldenrod_underground_corridor",
+    "goldenrod_underground_entry_s",
+    "goldenrod_underground_switch_maze",
+    "goldenrod_underground_hostage_room",
+    "goldenrod_underground_deptstore_basement",
+    "johto_name_rater",
+    "goldenrod_game_corner",
+    "goldenrod_bike_shop",
+    "goldenrod_train_station",
+    "goldenrod_flower_shop",
+    "goldenrod_house0",
+    "goldenrod_house1",
+    "goldenrod_house2"
   ],
   "gMapGroup_JohtoMisc": [
-    "pokecenter_route32"
+    "pokecenter_route32",
+    "johto_daycare"
   ]
 }

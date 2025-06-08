@@ -50,6 +50,83 @@
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_DEPTSTORE_1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 12,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_RADIO_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND_ENTRY_S",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 18,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND_ENTRY_N",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 25,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_NAME_RATER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_GAME_CORNER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 49,
+      "y": 38,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_BIKE_SHOP",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_TRAIN_STATION",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 50,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_FLOWER_SHOP",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 12,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_HOUSE0",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 50,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 50,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_HOUSE2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

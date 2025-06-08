@@ -12,7 +12,13 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_GOLDENROD_CITY",
+      "offset": 0,
+      "direction": "up"
+    }
+  ],
   "object_events": [
 
   ],
@@ -22,6 +28,20 @@
       "y": 49,
       "elevation": 0,
       "dest_map": "MAP_AZALEA_TOWN",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 35,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_DAYCARE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_DAYCARE",
       "dest_warp_id": "1"
     }
   ],
