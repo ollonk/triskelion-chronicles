@@ -29,6 +29,90 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE38",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 24,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_ENTRY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 43,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_ENTRY_2",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 42,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_ENTRY_2",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 16,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_GYM_ECRUTEAK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_BURNT_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_HOUSE0",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_ERUTEAK_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_POKECENTER_ECRUTEAK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 47,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_MART_ECRUTEAK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_STUDIO",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 65,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE42",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 57,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_1F",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

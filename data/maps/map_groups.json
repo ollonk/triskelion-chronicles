@@ -82,6 +82,8 @@
     "gMapGroup_IndoorViolet",
     "gMapGroup_IndoorAzalea",
     "gMapGroup_IndoorGoldenrod",
+    "gMapGroup_IndoorEcruteak",
+    "gMapGroup_IndoorOlivine",
     "gMapGroup_JohtoMisc"
   ],
   "gMapGroup_TownsAndRoutes": [
@@ -1180,7 +1182,8 @@
     "Route38",
     "Route39",
     "OlivineCity",
-    "Route46"
+    "Route46",
+    "Route42"
   ],
   "gMapGroup_JohtoDungeons": [
     "UnionCaveMain",
@@ -1258,6 +1261,30 @@
     "goldenrod_house0",
     "goldenrod_house1",
     "goldenrod_house2"
+  ],
+  "gMapGroup_IndoorEcruteak": [
+    "TinTower_Entry",
+    "TinTower_Entry_2",
+    "gym_ecruteak",
+    "Burnt_Tower_1F",
+    "Burnt_Tower_B1",
+    "ecruteak_house0",
+    "eruteak_house1",
+    "pokecenter_ecruteak",
+    "mart_ecruteak",
+    "ecruteak_studio",
+    "Tin_Tower_1F",
+    "Tin_Tower_2F",
+    "Tin_Tower_3F",
+    "Tin_Tower_4F",
+    "Tin_Tower_5F",
+    "Tin_Tower_6F",
+    "Tin_Tower_7F",
+    "Tin_Tower_8F",
+    "Tin_Tower_9F"
+  ],
+  "gMapGroup_IndoorOlivine": [
+
   ],
   "gMapGroup_JohtoMisc": [
     "pokecenter_route32",

@@ -8290,6 +8290,206 @@
       "secondary_tileset": "gTileset_johto_gyms_azalea",
       "border_filepath": "data/layouts/johto_daycare/border.bin",
       "blockdata_filepath": "data/layouts/johto_daycare/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_ENTRY",
+      "name": "TinTower_Entry_Layout",
+      "width": 26,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/TinTower_Entry/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower_Entry/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_ENTRY_2",
+      "name": "TinTower_Entry_2_Layout",
+      "width": 9,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/TinTower_Entry_2/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower_Entry_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_GYM_ECRUTEAK",
+      "name": "gym_ecruteak_Layout",
+      "width": 12,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/gym_ecruteak/border.bin",
+      "blockdata_filepath": "data/layouts/gym_ecruteak/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNT_TOWER_1F",
+      "name": "Burnt_Tower_1F_Layout",
+      "width": 16,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_gyms_violet",
+      "border_filepath": "data/layouts/Burnt_Tower_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Burnt_Tower_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNT_TOWER_B1",
+      "name": "Burnt_Tower_B1_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Cave_Johto",
+      "border_filepath": "data/layouts/Burnt_Tower_B1/border.bin",
+      "blockdata_filepath": "data/layouts/Burnt_Tower_B1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_HOUSE0",
+      "name": "ecruteak_house0_Layout",
+      "width": 12,
+      "height": 11,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_violetcity",
+      "border_filepath": "data/layouts/ecruteak_house0/border.bin",
+      "blockdata_filepath": "data/layouts/ecruteak_house0/map.bin"
+    },
+    {
+      "id": "LAYOUT_ERUTEAK_HOUSE1",
+      "name": "eruteak_house1_Layout",
+      "width": 12,
+      "height": 11,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_violetcity",
+      "border_filepath": "data/layouts/eruteak_house1/border.bin",
+      "blockdata_filepath": "data/layouts/eruteak_house1/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKECENTER_ECRUTEAK",
+      "name": "pokecenter_ecruteak_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_pokecenter",
+      "border_filepath": "data/layouts/pokecenter_ecruteak/border.bin",
+      "blockdata_filepath": "data/layouts/pokecenter_ecruteak/map.bin"
+    },
+    {
+      "id": "LAYOUT_MART_ECRUTEAK",
+      "name": "mart_ecruteak_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_johto_pokemart",
+      "secondary_tileset": "gTileset_johto_mart_secondary",
+      "border_filepath": "data/layouts/mart_ecruteak/border.bin",
+      "blockdata_filepath": "data/layouts/mart_ecruteak/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_STUDIO",
+      "name": "ecruteak_studio_Layout",
+      "width": 12,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_Ecruteak_Studio",
+      "border_filepath": "data/layouts/ecruteak_studio/border.bin",
+      "blockdata_filepath": "data/layouts/ecruteak_studio/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE42",
+      "name": "Route42_Layout",
+      "width": 90,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto",
+      "secondary_tileset": "gTileset_Route34",
+      "border_filepath": "data/layouts/Route42/border.bin",
+      "blockdata_filepath": "data/layouts/Route42/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_1F",
+      "name": "Tin_Tower_1F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_2F",
+      "name": "Tin_Tower_2F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_2F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_3F",
+      "name": "Tin_Tower_3F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_3F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_4F",
+      "name": "Tin_Tower_4F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_4F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_4F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_5F",
+      "name": "Tin_Tower_5F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_5F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_5F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_6F",
+      "name": "Tin_Tower_6F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_6F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_6F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_7F",
+      "name": "Tin_Tower_7F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_7F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_7F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_8F",
+      "name": "Tin_Tower_8F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_8F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_8F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_9F",
+      "name": "Tin_Tower_9F_Layout",
+      "width": 21,
+      "height": 21,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_9F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_9F/map.bin"
     }
   ]
 }

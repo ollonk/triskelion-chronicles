@@ -1737,3 +1737,43 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/goldenrod_house2/scripts.inc"
 
 	.include "data/maps/johto_daycare/scripts.inc"
+
+	.include "data/maps/TinTower_Entry/scripts.inc"
+
+	.include "data/maps/TinTower_Entry_2/scripts.inc"
+
+	.include "data/maps/gym_ecruteak/scripts.inc"
+
+	.include "data/maps/Burnt_Tower_1F/scripts.inc"
+
+	.include "data/maps/Burnt_Tower_B1/scripts.inc"
+
+	.include "data/maps/ecruteak_house0/scripts.inc"
+
+	.include "data/maps/eruteak_house1/scripts.inc"
+
+	.include "data/maps/pokecenter_ecruteak/scripts.inc"
+
+	.include "data/maps/mart_ecruteak/scripts.inc"
+
+	.include "data/maps/ecruteak_studio/scripts.inc"
+
+	.include "data/maps/Route42/scripts.inc"
+
+	.include "data/maps/Tin_Tower_1F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_2F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_3F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_4F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_5F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_6F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_7F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_8F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_9F/scripts.inc"

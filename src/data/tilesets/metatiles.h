@@ -482,3 +482,6 @@ const u16 gMetatileAttributes_goldenrod_bike_shop[] = INCBIN_U16("data/tilesets/
 
 const u16 gMetatiles_train_station[] = INCBIN_U16("data/tilesets/secondary/train_station/metatiles.bin");
 const u16 gMetatileAttributes_train_station[] = INCBIN_U16("data/tilesets/secondary/train_station/metatile_attributes.bin");
+
+const u16 gMetatiles_Ecruteak_Studio[] = INCBIN_U16("data/tilesets/secondary/ecruteak_studio/metatiles.bin");
+const u16 gMetatileAttributes_Ecruteak_Studio[] = INCBIN_U16("data/tilesets/secondary/ecruteak_studio/metatile_attributes.bin");

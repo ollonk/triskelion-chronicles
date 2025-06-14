@@ -1924,3 +1924,14 @@ const struct Tileset gTileset_train_station =
     .metatileAttributes = gMetatileAttributes_train_station,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Ecruteak_Studio =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Ecruteak_Studio,
+    .palettes = gTilesetPalettes_Ecruteak_Studio,
+    .metatiles = gMetatiles_Ecruteak_Studio,
+    .metatileAttributes = gMetatileAttributes_Ecruteak_Studio,
+    .callback = NULL,
+};
