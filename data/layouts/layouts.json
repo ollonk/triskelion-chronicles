@@ -8490,6 +8490,16 @@
       "secondary_tileset": "gTileset_johto_sprouttower",
       "border_filepath": "data/layouts/Tin_Tower_9F/border.bin",
       "blockdata_filepath": "data/layouts/Tin_Tower_9F/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_85F",
+      "name": "Tin_Tower_85F_Layout",
+      "width": 21,
+      "height": 17,
+      "primary_tileset": "gTileset_Johto_Indoor",
+      "secondary_tileset": "gTileset_johto_sprouttower",
+      "border_filepath": "data/layouts/Tin_Tower_85F/border.bin",
+      "blockdata_filepath": "data/layouts/Tin_Tower_85F/map.bin"
     }
   ]
 }

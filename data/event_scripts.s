@@ -1777,3 +1777,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Tin_Tower_8F/scripts.inc"
 
 	.include "data/maps/Tin_Tower_9F/scripts.inc"
+
+	.include "data/maps/Tin_Tower_85F/scripts.inc"

@@ -1,13 +1,13 @@
 {
-  "id": "MAP_TIN_TOWER_7F",
-  "name": "Tin_Tower_7F",
-  "layout": "LAYOUT_TIN_TOWER_7F",
+  "id": "MAP_TIN_TOWER_85F",
+  "name": "Tin_Tower_85F",
+  "layout": "LAYOUT_TIN_TOWER_85F",
   "music": "MUS_DUMMY",
   "region_map_section": "MAPSEC_ECRUTEAK_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_cycling": false,
+  "allow_cycling": true,
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": false,
@@ -18,39 +18,46 @@
   ],
   "warp_events": [
     {
-      "x": 1,
-      "y": 10,
+      "x": 0,
+      "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_TIN_TOWER_6F",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_TIN_TOWER_7F",
+      "dest_warp_id": "2"
     },
     {
-      "x": 4,
-      "y": 10,
+      "x": 14,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_TIN_TOWER_8F",
-      "dest_warp_id": "6"
+      "dest_warp_id": "2"
     },
     {
       "x": 8,
-      "y": 16,
+      "y": 3,
       "elevation": 0,
-      "dest_map": "MAP_TIN_TOWER_85F",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_TIN_TOWER_8F",
+      "dest_warp_id": "3"
     },
     {
-      "x": 10,
-      "y": 8,
+      "x": 4,
+      "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_TIN_TOWER_7F",
+      "dest_map": "MAP_TIN_TOWER_8F",
       "dest_warp_id": "4"
     },
     {
-      "x": 6,
-      "y": 4,
+      "x": 12,
+      "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_TIN_TOWER_7F",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_TIN_TOWER_8F",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 0,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_TIN_TOWER_8F",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
