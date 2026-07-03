@@ -29,6 +29,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "pokelink.h"
 #include "pokenav.h"
 #include "safari_zone.h"
 #include "save.h"
@@ -94,6 +95,14 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
 EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
+EWRAM_DATA static u8 sPokeLinkShortcutWindowId = 0;
+EWRAM_DATA static bool8 sPokeLinkShortcutWindowOpen = FALSE;
+EWRAM_DATA static u8 sPokeLinkShortcutCursorPos = 0;
+EWRAM_DATA static u8 sPokeLinkShortcutAppId = 0;
+EWRAM_DATA static u8 sBagPouchShortcutWindowId = 0;
+EWRAM_DATA static bool8 sBagPouchShortcutWindowOpen = FALSE;
+EWRAM_DATA static u8 sBagPouchShortcutCursorPos = 0;
+EWRAM_DATA static u8 sBagPouchShortcutPocket = ITEMS_POCKET;
 
 // Menu action callbacks
 static bool8 StartMenuPokedexCallback(void);
@@ -118,6 +127,10 @@ static bool8 BattlePyramidRetireStartCallback(void);
 static bool8 BattlePyramidRetireReturnCallback(void);
 static bool8 BattlePyramidRetireCallback(void);
 static bool8 HandleStartMenuInput(void);
+static bool8 StartMenuPokeLinkShortcutCallback(void);
+static bool8 StartMenuPokeLinkShortcutLaunchCallback(void);
+static bool8 StartMenuBagPouchShortcutCallback(void);
+static bool8 StartMenuBagPouchShortcutLaunchCallback(void);
 
 // Save dialog callbacks
 static u8 SaveConfirmSaveCallback(void);
@@ -187,13 +200,40 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
 };
 
 static const u8 sText_MenuDebug[] = _("DEBUG");
+static const u8 sText_MenuPokeLink[] = _("POKéLINK");
+static const u8 sText_PokeLinkShortcuts[] = _("Shortcuts");
+static const u8 sText_BagPouches[] = _("Pouches");
+
+#define START_MENU_SHORTCUT_BASE_BLOCK (STD_WINDOW_BASE_TILE_NUM + 0xC)
+
+static const struct WindowTemplate sWindowTemplate_PokeLinkShortcuts =
+{
+    .bg = 0,
+    .tilemapLeft = 6,
+    .tilemapTop = 4,
+    .width = 14,
+    .height = 8,
+    .paletteNum = 15,
+    .baseBlock = START_MENU_SHORTCUT_BASE_BLOCK
+};
+
+static const struct WindowTemplate sWindowTemplate_BagPouchShortcuts =
+{
+    .bg = 0,
+    .tilemapLeft = 6,
+    .tilemapTop = 1,
+    .width = 14,
+    .height = 12,
+    .paletteNum = 15,
+    .baseBlock = START_MENU_SHORTCUT_BASE_BLOCK
+};
 
 static const struct MenuAction sStartMenuItems[] =
 {
     [MENU_ACTION_POKEDEX]         = {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
     [MENU_ACTION_POKEMON]         = {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
     [MENU_ACTION_BAG]             = {gText_MenuBag,     {.u8_void = StartMenuBagCallback}},
-    [MENU_ACTION_POKENAV]         = {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
+    [MENU_ACTION_POKENAV]         = {sText_MenuPokeLink,{.u8_void = StartMenuPokeNavCallback}},
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
@@ -278,6 +318,11 @@ static void ShowSaveInfoWindow(void);
 static void RemoveSaveInfoWindow(void);
 static void HideStartMenuWindow(void);
 static void HideStartMenuDebug(void);
+static void ShowPokeLinkShortcutWindow(void);
+static void RemovePokeLinkShortcutWindow(void);
+static void ShowBagPouchShortcutWindow(void);
+static void RemoveBagPouchShortcutWindow(void);
+static void RestoreStartMenuCursor(void);
 
 void SetDexPokemonPokenavFlags(void) // unused
 {
@@ -340,9 +385,7 @@ static void BuildNormalStartMenu(void)
         AddStartMenuAction(MENU_ACTION_POKEMON);
 
     AddStartMenuAction(MENU_ACTION_BAG);
-
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+    AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
@@ -358,8 +401,7 @@ static void BuildDebugStartMenu(void)
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
+    AddStartMenuAction(MENU_ACTION_POKENAV);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -380,11 +422,7 @@ static void BuildLinkModeStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-    {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
-    }
+    AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -395,11 +433,7 @@ static void BuildUnionRoomStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-    {
-        AddStartMenuAction(MENU_ACTION_POKENAV);
-    }
+    AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -462,6 +496,9 @@ static void ShowPyramidFloorWindow(void)
 
 static void RemoveExtraStartMenuWindows(void)
 {
+    RemovePokeLinkShortcutWindow();
+    RemoveBagPouchShortcutWindow();
+
     if (GetSafariZoneFlag())
     {
         ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
@@ -621,6 +658,22 @@ void ShowStartMenu(void)
 
 static bool8 HandleStartMenuInput(void)
 {
+    if (JOY_NEW(DPAD_LEFT) && sCurrentStartMenuActions[sStartMenuCursorPos] == MENU_ACTION_BAG)
+    {
+        PlaySE(SE_SELECT);
+        ShowBagPouchShortcutWindow();
+        gMenuCallback = StartMenuBagPouchShortcutCallback;
+        return FALSE;
+    }
+
+    if (JOY_NEW(DPAD_LEFT) && sCurrentStartMenuActions[sStartMenuCursorPos] == MENU_ACTION_POKENAV)
+    {
+        PlaySE(SE_SELECT);
+        ShowPokeLinkShortcutWindow();
+        gMenuCallback = StartMenuPokeLinkShortcutCallback;
+        return FALSE;
+    }
+
     if (JOY_NEW(DPAD_UP))
     {
         PlaySE(SE_SELECT);
@@ -722,7 +775,7 @@ static bool8 StartMenuPokeNavCallback(void)
         PlayRainStoppingSoundEffect();
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
-        SetMainCallback2(CB2_InitPokeNav);  // Display PokéNav
+        SetMainCallback2(CB2_InitPokeLink);
 
         return TRUE;
     }
@@ -1490,6 +1543,183 @@ void AppendToList(u8 *list, u8 *pos, u8 newEntry)
 {
     list[*pos] = newEntry;
     (*pos)++;
+}
+
+static void ShowPokeLinkShortcutWindow(void)
+{
+    u8 i;
+
+    if (sPokeLinkShortcutWindowOpen)
+        RemovePokeLinkShortcutWindow();
+
+    sPokeLinkShortcutCursorPos = 0;
+    sPokeLinkShortcutWindowId = AddWindow(&sWindowTemplate_PokeLinkShortcuts);
+    sPokeLinkShortcutWindowOpen = TRUE;
+    DrawStdWindowFrame(sPokeLinkShortcutWindowId, FALSE);
+    FillWindowPixelBuffer(sPokeLinkShortcutWindowId, PIXEL_FILL(1));
+    AddTextPrinterParameterized(sPokeLinkShortcutWindowId, FONT_NORMAL, sText_PokeLinkShortcuts, 8, 1, TEXT_SKIP_DRAW, NULL);
+
+    for (i = 0; i < POKELINK_FAVORITE_COUNT; i++)
+        AddTextPrinterParameterized(sPokeLinkShortcutWindowId, FONT_NORMAL, PokeLink_GetShortcutName(i), 16, 17 + i * 16, TEXT_SKIP_DRAW, NULL);
+
+    InitMenuNormal(sPokeLinkShortcutWindowId, FONT_NORMAL, 2, 17, 16, POKELINK_FAVORITE_COUNT, sPokeLinkShortcutCursorPos);
+    PutWindowTilemap(sPokeLinkShortcutWindowId);
+    CopyWindowToVram(sPokeLinkShortcutWindowId, COPYWIN_FULL);
+}
+
+static void RemovePokeLinkShortcutWindow(void)
+{
+    if (sPokeLinkShortcutWindowOpen)
+    {
+        ClearStdWindowAndFrame(sPokeLinkShortcutWindowId, TRUE);
+        RemoveWindow(sPokeLinkShortcutWindowId);
+        sPokeLinkShortcutWindowId = 0;
+        sPokeLinkShortcutWindowOpen = FALSE;
+    }
+}
+
+static void ShowBagPouchShortcutWindow(void)
+{
+    u8 i;
+
+    if (sBagPouchShortcutWindowOpen)
+        RemoveBagPouchShortcutWindow();
+
+    sBagPouchShortcutCursorPos = 0;
+    sBagPouchShortcutWindowId = AddWindow(&sWindowTemplate_BagPouchShortcuts);
+    sBagPouchShortcutWindowOpen = TRUE;
+    DrawStdWindowFrame(sBagPouchShortcutWindowId, FALSE);
+    FillWindowPixelBuffer(sBagPouchShortcutWindowId, PIXEL_FILL(1));
+    AddTextPrinterParameterized(sBagPouchShortcutWindowId, FONT_NORMAL, sText_BagPouches, 8, 1, TEXT_SKIP_DRAW, NULL);
+
+    for (i = 0; i < POCKETS_COUNT; i++)
+        AddTextPrinterParameterized(sBagPouchShortcutWindowId, FONT_NORMAL, gPocketNamesStringsTable[i], 16, 17 + i * 16, TEXT_SKIP_DRAW, NULL);
+
+    InitMenuNormal(sBagPouchShortcutWindowId, FONT_NORMAL, 2, 17, 16, POCKETS_COUNT, sBagPouchShortcutCursorPos);
+    PutWindowTilemap(sBagPouchShortcutWindowId);
+    CopyWindowToVram(sBagPouchShortcutWindowId, COPYWIN_FULL);
+}
+
+static void RemoveBagPouchShortcutWindow(void)
+{
+    if (sBagPouchShortcutWindowOpen)
+    {
+        ClearStdWindowAndFrame(sBagPouchShortcutWindowId, TRUE);
+        RemoveWindow(sBagPouchShortcutWindowId);
+        sBagPouchShortcutWindowId = 0;
+        sBagPouchShortcutWindowOpen = FALSE;
+    }
+}
+
+static void RestoreStartMenuCursor(void)
+{
+    sStartMenuCursorPos = InitMenuNormal(GetStartMenuWindowId(), FONT_NORMAL, 0, 9, 16, sNumStartMenuActions, sStartMenuCursorPos);
+}
+
+static bool8 StartMenuBagPouchShortcutCallback(void)
+{
+    if (JOY_NEW(DPAD_UP))
+    {
+        PlaySE(SE_SELECT);
+        sBagPouchShortcutCursorPos = Menu_MoveCursor(-1);
+    }
+
+    if (JOY_NEW(DPAD_DOWN))
+    {
+        PlaySE(SE_SELECT);
+        sBagPouchShortcutCursorPos = Menu_MoveCursor(1);
+    }
+
+    if (JOY_NEW(DPAD_RIGHT | B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        RemoveBagPouchShortcutWindow();
+        RestoreStartMenuCursor();
+        gMenuCallback = HandleStartMenuInput;
+        return FALSE;
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        sBagPouchShortcutPocket = sBagPouchShortcutCursorPos;
+        RemoveBagPouchShortcutWindow();
+        FadeScreen(FADE_TO_BLACK, 0);
+        gMenuCallback = StartMenuBagPouchShortcutLaunchCallback;
+    }
+
+    return FALSE;
+}
+
+static bool8 StartMenuBagPouchShortcutLaunchCallback(void)
+{
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        RemoveExtraStartMenuWindows();
+        CleanupOverworldWindowsAndTilemaps();
+        GoToBagMenu(ITEMMENULOCATION_FIELD, sBagPouchShortcutPocket, CB2_ReturnToFieldWithOpenMenu);
+        sBagPouchShortcutPocket = ITEMS_POCKET;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static bool8 StartMenuPokeLinkShortcutCallback(void)
+{
+    if (JOY_NEW(DPAD_UP))
+    {
+        PlaySE(SE_SELECT);
+        sPokeLinkShortcutCursorPos = Menu_MoveCursor(-1);
+    }
+
+    if (JOY_NEW(DPAD_DOWN))
+    {
+        PlaySE(SE_SELECT);
+        sPokeLinkShortcutCursorPos = Menu_MoveCursor(1);
+    }
+
+    if (JOY_NEW(DPAD_RIGHT | B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        RemovePokeLinkShortcutWindow();
+        RestoreStartMenuCursor();
+        gMenuCallback = HandleStartMenuInput;
+        return FALSE;
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        sPokeLinkShortcutAppId = PokeLink_GetShortcutAppId(sPokeLinkShortcutCursorPos);
+        if (sPokeLinkShortcutAppId == POKELINK_SHORTCUT_NONE)
+        {
+            PlaySE(SE_FAILURE);
+            return FALSE;
+        }
+
+        PlaySE(SE_SELECT);
+        RemovePokeLinkShortcutWindow();
+        FadeScreen(FADE_TO_BLACK, 0);
+        gMenuCallback = StartMenuPokeLinkShortcutLaunchCallback;
+    }
+
+    return FALSE;
+}
+
+static bool8 StartMenuPokeLinkShortcutLaunchCallback(void)
+{
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        RemoveExtraStartMenuWindows();
+        CleanupOverworldWindowsAndTilemaps();
+        PokeLink_OpenAppFromField(sPokeLinkShortcutAppId);
+        sPokeLinkShortcutAppId = 0;
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 static bool8 StartMenuDexNavCallback(void)

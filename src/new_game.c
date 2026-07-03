@@ -45,13 +45,15 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/heal_locations.h"
 #include "constants/items.h"
+#include "constants/vars.h"
 #include "difficulty.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
 static void ClearFrontierRecord(void);
-static void WarpToTruck(void);
+static void SetNewGameStartWarp(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
@@ -128,9 +130,12 @@ static void ClearFrontierRecord(void)
     gSaveBlock2Ptr->frontier.opponentNames[1][0] = EOS;
 }
 
-static void WarpToTruck(void)
+static void SetNewGameStartWarp(void)
 {
     SetWarpDestination(MAP_GROUP(PLAYERS_HOUSE_B1), MAP_NUM(PLAYERS_HOUSE_B1), WARP_ID_NONE, 6, 4);
+    SetLastHealLocationWarp(HEAL_LOCATION_NEW_BARK_TOWN);
+    SetDynamicWarpWithCoords(0, MAP_GROUP(PLAYERS_HOUSE_B1), MAP_NUM(PLAYERS_HOUSE_B1), WARP_ID_NONE, 6, 4);
+    VarSet(VAR_LITTLEROOT_INTRO_STATE, 7);
     WarpIntoMap();
 }
 
@@ -196,7 +201,7 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    SetNewGameStartWarp();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();

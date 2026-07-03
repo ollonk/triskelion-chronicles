@@ -11,6 +11,7 @@
 #include "pokeblock.h"
 #include "battle_setup.h"
 #include "roamer.h"
+#include "rtc.h"
 #include "tv.h"
 #include "link.h"
 #include "script.h"
@@ -357,6 +358,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
 u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
+    u8 timeOfDayMask = 1 << GetTimeOfDay();
 
     for (i = 0; ; i++)
     {
@@ -367,6 +369,9 @@ u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            if ((gWildMonHeaders[i].timeOfDayMask & timeOfDayMask) == 0)
+                continue;
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
             {

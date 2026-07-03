@@ -1,6 +1,7 @@
 #include "global.h"
 #include "bike.h"
 #include "clock.h"
+#include "day_night.h"
 #include "event_data.h"
 #include "field_camera.h"
 #include "field_effect_helpers.h"
@@ -155,6 +156,7 @@ static void RunTimeBasedEvents(s16 *data)
         if (gMain.vblankCounter1 & TIME_UPDATE_INTERVAL)
         {
             DoTimeBasedEvents();
+            DayNight_UpdateOverworldPaletteTint(FALSE);
             tState++;
         }
         break;

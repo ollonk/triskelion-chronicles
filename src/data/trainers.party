@@ -16872,4 +16872,555 @@ Double Battle: No
 
 Kyogre
 Level: 5
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Rattata
+Level: 4
+
+=== TRAINER_JOHTO_YOUNGSTER_MIKEY ===
+Name: MIKEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Pidgey
+Level: 2
+
+Rattata
+Level: 4
+
+=== TRAINER_JOHTO_BUG_CATCHER_DON ===
+Name: DON
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+
+Caterpie
+Level: 3
+
+Caterpie
+Level: 3
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+
+Caterpie
+Level: 2
+
+Caterpie
+Level: 2
+
+Weedle
+Level: 3
+
+Caterpie
+Level: 2
+
+=== TRAINER_JOHTO_FISHERMAN_JUSTIN ===
+Name: JUSTIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+
+Magikarp
+Level: 5
+
+Magikarp
+Level: 5
+
+Magikarp
+Level: 15
+
+Magikarp
+Level: 5
+
+=== TRAINER_JOHTO_FISHERMAN_RALPH ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+
+Goldeen
+Level: 10
+
+=== TRAINER_JOHTO_FISHERMAN_HENRY ===
+Name: HENRY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+
+Poliwag
+Level: 8
+
+Poliwag
+Level: 8
+
+=== TRAINER_JOHTO_YOUNGSTER_ALBERT ===
+Name: ALBERT
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Rattata
+Level: 6
+
+Zubat
+Level: 8
+
+=== TRAINER_JOHTO_YOUNGSTER_GORDON ===
+Name: GORDON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Wooper
+Level: 10
+
+=== TRAINER_JOHTO_CAMPER_ROLAND ===
+Name: ROLAND
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+
+SPECIES_NIDORAN_M
+Level: 9
+
+=== TRAINER_JOHTO_PICNICKER_LIZ ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Girl
+Double Battle: No
+
+SPECIES_NIDORAN_F
+Level: 9
+
+=== TRAINER_JOHTO_BIRD_KEEPER_PETER ===
+Name: PETER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Cool
+Double Battle: No
+
+Pidgey
+Level: 6
+
+Pidgey
+Level: 6
+
+Spearow
+Level: 8
+
+=== TRAINER_JOHTO_HIKER_ANTHONY ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Hiker
+Double Battle: No
+
+Geodude
+Level: 11
+
+Machop
+Level: 11
+
+=== TRAINER_JOHTO_CAMPER_TODD ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+
+Psyduck
+Level: 14
+
+=== TRAINER_JOHTO_YOUNGSTER_SAMUEL ===
+Name: SAMUEL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Rattata
+Level: 7
+
+Sandshrew
+Level: 10
+
+Spearow
+Level: 8
+
+Spearow
+Level: 8
+
+=== TRAINER_JOHTO_YOUNGSTER_IAN ===
+Name: IAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Mankey
+Level: 10
+
+Diglett
+Level: 12
+
+=== TRAINER_JOHTO_PICNICKER_GINA ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Girl
+Double Battle: No
+
+Hoppip
+Level: 9
+
+Hoppip
+Level: 9
+
+Bulbasaur
+Level: 12
+
+=== TRAINER_JOHTO_POKEFAN_BRANDON ===
+Name: BRANDON
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Twins
+Double Battle: No
+
+Snubbull @ Oran Berry
+Level: 13
+
+=== TRAINER_JOHTO_COOLTRAINER_IRENE ===
+Name: IRENE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+Double Battle: No
+
+Goldeen
+Level: 22
+
+Seaking
+Level: 24
+
+=== TRAINER_JOHTO_COOLTRAINER_JENN ===
+Name: JENN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+Double Battle: No
+
+Staryu
+Level: 24
+
+Starmie
+Level: 26
+
+=== TRAINER_JOHTO_COOLTRAINER_KATE ===
+Name: KATE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+Double Battle: No
+
+Shellder
+Level: 26
+
+Cloyster
+Level: 28
+
+=== TRAINER_JOHTO_GENTLEMAN_KEITH ===
+Name: KEITH
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Rich
+Double Battle: No
+
+Growlithe
+Level: 17
+
+=== TRAINER_JOHTO_CAMPER_IVAN ===
+Name: IVAN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+
+Diglett
+Level: 10
+
+Zubat
+Level: 10
+
+Diglett
+Level: 14
+
+=== TRAINER_JOHTO_CAMPER_ELLIOT ===
+Name: ELLIOT
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+
+Sandshrew
+Level: 13
+
+Marill
+Level: 15
+
+=== TRAINER_JOHTO_PICNICKER_BROOKE ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Girl
+Double Battle: No
+
+Pikachu
+Level: 16
+
+=== TRAINER_JOHTO_PICNICKER_KIM ===
+Name: KIM
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Girl
+Double Battle: No
+
+Vulpix
+Level: 15
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BRYAN ===
+Name: BRYAN
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Cool
+Double Battle: No
+
+Pidgey
+Level: 12
+
+Pidgeotto
+Level: 14
+
+=== TRAINER_JOHTO_KINDLER_WALT ===
+Name: WALT
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Hiker
+Double Battle: No
+
+Magmar
+Level: 11
+
+Magmar
+Level: 13
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+
+Venonat
+Level: 15
+
+=== TRAINER_JOHTO_PSYCHIC_IRWIN ===
+Name: IRWIN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Intense
+Double Battle: No
+
+Voltorb
+Level: 6
+
+Voltorb
+Level: 10
+
+Voltorb
+Level: 14
+
+Voltorb
+Level: 18
+
+=== TRAINER_JOHTO_GENTLEMAN_DIRK ===
+Name: DIRK
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Rich
+Double Battle: No
+
+Growlithe
+Level: 14
+
+Growlithe
+Level: 14
+
+=== TRAINER_JOHTO_SCHOOL_KID_JACK ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+
+Oddish
+Level: 12
+
+Voltorb
+Level: 15
+
+=== TRAINER_JOHTO_POKEFAN_BEVERLY ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Twins
+Double Battle: No
+
+Snubbull @ Oran Berry
+Level: 14
+
+=== TRAINER_JOHTO_POKEFAN_WILLIAM ===
+Name: WILLIAM
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Twins
+Double Battle: No
+
+Raichu @ Oran Berry
+Level: 14
+
+=== TRAINER_JOHTO_LASS_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+
+Oddish
+Level: 12
+
+Cubone
+Level: 15
+
+=== TRAINER_JOHTO_PSYCHIC_MARK ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Intense
+Double Battle: No
+
+Abra
+Level: 13
+
+Abra
+Level: 13
+
+Kadabra
+Level: 15
+
+=== TRAINER_JOHTO_SCHOOL_KID_ALAN ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+
+Tangela
+Level: 16
+
+=== TRAINER_JOHTO_TWINS_ANN ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Twins
+Double Battle: No
+
+Clefairy
+Level: 16
+
+Jigglypuff
+Level: 16
+
+=== TRAINER_JOHTO_TWINS_ANNE ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Twins
+Double Battle: No
+
+Jigglypuff
+Level: 16
+
+Clefairy
+Level: 16
+
+=== TRAINER_JOHTO_PSYCHIC_GREG ===
+Name: GREG
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Intense
+Double Battle: No
+
+Drowzee
+Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe

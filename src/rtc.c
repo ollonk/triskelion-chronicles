@@ -34,6 +34,32 @@ static const s32 sNumDaysInMonths[MONTH_COUNT] =
     [MONTH_DEC - 1] = 31,
 };
 
+static u8 ConvertBinaryToBcd(u8 value)
+{
+    return ((value / 10) << 4) | (value % 10);
+}
+
+static bool8 RtcShouldUsePlayTime(void)
+{
+    return !OW_USE_FAKE_RTC && (sErrorStatus & (RTC_INIT_ERROR | RTC_ERR_FLAG_MASK));
+}
+
+static void RtcGetPlayTimeInfo(struct SiiRtcInfo *rtc)
+{
+    u32 seconds = gSaveBlock2Ptr->playTimeSeconds;
+    u32 minutes = gSaveBlock2Ptr->playTimeMinutes;
+    u32 hours = gSaveBlock2Ptr->playTimeHours % HOURS_PER_DAY;
+
+    memset(rtc, 0, sizeof(*rtc));
+    rtc->status = SIIRTCINFO_24HOUR;
+    rtc->year = ConvertBinaryToBcd(1);
+    rtc->month = ConvertBinaryToBcd(MONTH_JAN);
+    rtc->day = ConvertBinaryToBcd(1);
+    rtc->hour = ConvertBinaryToBcd(hours);
+    rtc->minute = ConvertBinaryToBcd(minutes);
+    rtc->second = ConvertBinaryToBcd(seconds);
+}
+
 void RtcDisableInterrupts(void)
 {
     sSavedIme = REG_IME;
@@ -98,6 +124,9 @@ u16 RtcGetDayCount(struct SiiRtcInfo *rtc)
     if (OW_USE_FAKE_RTC)
         return rtc->day;
 
+    if (RtcShouldUsePlayTime())
+        return gSaveBlock2Ptr->playTimeHours / HOURS_PER_DAY + 1;
+
     year = ConvertBcdToBinary(rtc->year);
     month = ConvertBcdToBinary(rtc->month);
     day = ConvertBcdToBinary(rtc->day);
@@ -140,6 +169,8 @@ void RtcGetInfo(struct SiiRtcInfo *rtc)
 {
     if (OW_USE_FAKE_RTC)
         FakeRtc_GetRawInfo(rtc);
+    else if (RtcShouldUsePlayTime())
+        RtcGetPlayTimeInfo(rtc);
     else if (sErrorStatus & RTC_ERR_FLAG_MASK)
         *rtc = sRtcDummy;
     else
@@ -352,6 +383,43 @@ void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds)
     RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
 }
 
+void RtcAdvanceTimeBy(s32 days, s32 hours, s32 minutes, s32 seconds)
+{
+    if (OW_USE_FAKE_RTC)
+    {
+        FakeRtc_AdvanceTimeBy(days * HOURS_PER_DAY + hours, minutes, seconds);
+        RtcCalcLocalTime();
+        return;
+    }
+
+    RtcCalcLocalTime();
+
+    gLocalTime.seconds += seconds;
+    gLocalTime.minutes += minutes;
+    gLocalTime.hours += hours;
+    gLocalTime.days += days;
+
+    while (gLocalTime.seconds >= SECONDS_PER_MINUTE)
+    {
+        gLocalTime.seconds -= SECONDS_PER_MINUTE;
+        gLocalTime.minutes++;
+    }
+
+    while (gLocalTime.minutes >= MINUTES_PER_HOUR)
+    {
+        gLocalTime.minutes -= MINUTES_PER_HOUR;
+        gLocalTime.hours++;
+    }
+
+    while (gLocalTime.hours >= HOURS_PER_DAY)
+    {
+        gLocalTime.hours -= HOURS_PER_DAY;
+        gLocalTime.days++;
+    }
+
+    RtcCalcLocalTimeOffset(gLocalTime.days, gLocalTime.hours, gLocalTime.minutes, gLocalTime.seconds);
+}
+
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
 {
     result->seconds = t2->seconds - t1->seconds;
@@ -381,12 +449,15 @@ void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2)
 u32 RtcGetMinuteCount(void)
 {
     RtcGetInfo(&sRtc);
-    return (HOURS_PER_DAY * MINUTES_PER_HOUR) * RtcGetDayCount(&sRtc) + MINUTES_PER_HOUR * sRtc.hour + sRtc.minute;
+    return (HOURS_PER_DAY * MINUTES_PER_HOUR) * RtcGetDayCount(&sRtc)
+         + MINUTES_PER_HOUR * ConvertBcdToBinary(sRtc.hour)
+         + ConvertBcdToBinary(sRtc.minute);
 }
 
 u32 RtcGetLocalDayCount(void)
 {
-    return RtcGetDayCount(&sRtc);
+    RtcCalcLocalTime();
+    return gLocalTime.days;
 }
 
 void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24Hour)

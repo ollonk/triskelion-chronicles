@@ -778,6 +778,22 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_ElmsLabStarterRegion[] =
+{
+    {COMPOUND_STRING("KANTO")},
+    {COMPOUND_STRING("JOHTO")},
+    {COMPOUND_STRING("HOENN")},
+    {gText_Cancel2},
+};
+
+static const struct MenuAction MultichoiceList_ElmsLabStarterTrio[] =
+{
+    {COMPOUND_STRING("GRASS")},
+    {COMPOUND_STRING("FIRE")},
+    {COMPOUND_STRING("WATER")},
+    {gText_Cancel2},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -906,6 +922,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+    [MULTI_ELMS_LAB_STARTER_REGION]    = MULTICHOICE(MultichoiceList_ElmsLabStarterRegion),
+    [MULTI_ELMS_LAB_STARTER_TRIO]      = MULTICHOICE(MultichoiceList_ElmsLabStarterTrio),
 };
 
 const u8 *const gStdStrings[] =

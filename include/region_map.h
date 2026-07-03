@@ -14,7 +14,8 @@ enum
     MAP_INPUT_MOVE_END,
     MAP_INPUT_A_BUTTON,
     MAP_INPUT_B_BUTTON,
-    MAP_INPUT_R_BUTTON
+    MAP_INPUT_R_BUTTON,
+    MAP_INPUT_L_BUTTON
 };
 
 enum {
@@ -76,7 +77,9 @@ struct RegionMap {
     /*0x081*/ u8 charBaseIdx;
     /*0x082*/ u8 mapBaseIdx;
     /*0x083*/ bool8 bgManaged;
-    /*0x084*/ u8 filler_084[0x100];
+    /*0x084*/ u8 mapPage;
+    /*0x085*/ u8 playerIconMapPage;
+    /*0x086*/ u8 filler_086[0xfe];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
 }; // size = 0x884
@@ -109,6 +112,7 @@ u8 *GetMapName(u8 *, u16, u16);
 u8 *GetMapNameGeneric(u8 *dest, u16 mapSecId);
 u8 *GetMapNameHandleAquaHideout(u8 *dest, u16 mapSecId);
 u16 CorrectSpecialMapSecId(u16 mapSecId);
+const u8 *GetRegionMapPageName(const struct RegionMap *regionMap);
 void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void CB2_OpenFlyMap(void);

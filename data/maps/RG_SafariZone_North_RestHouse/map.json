@@ -18,7 +18,21 @@
   ],
   "warp_events": [
     {
+      "x": 3,
+      "y": 9,
+      "elevation": 3,
+      "dest_map": "MAP_RG_SAFARI_ZONE_NORTH",
+      "dest_warp_id": "8"
+    },
+    {
       "x": 4,
+      "y": 9,
+      "elevation": 3,
+      "dest_map": "MAP_RG_SAFARI_ZONE_NORTH",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 5,
       "y": 9,
       "elevation": 3,
       "dest_map": "MAP_RG_SAFARI_ZONE_NORTH",

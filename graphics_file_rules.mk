@@ -287,6 +287,42 @@ graphics/pokemon_jump/bg.4bpp: %.4bpp: %.png
 graphics/pokenav/region_map/map.8bpp: %.8bpp: %.png
 	$(GFX) $< $@ -num_tiles 233 -Wnum_tiles
 
+graphics/pokelink/pokelink_icons_32x32.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+graphics/pokelink/sightings_icon_32x32.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+graphics/pokelink/sightings_icon_sherlock.gbapal: graphics/pokelink/sightings_icon_32x32.png
+	$(GFX) $< $@ -num_colors 16
+
+graphics/pokelink/collection_log_icon_32x32.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+graphics/pokelink/collection_log_icon.gbapal: graphics/pokelink/collection_log_icon_32x32.png
+	$(GFX) $< $@ -num_colors 16
+
+graphics/pokelink/pokelink_bg.4bpp graphics/pokelink/pokelink_bg.bin: graphics/pokelink/pokelink_bg.png
+	python3 tools/build_pokelink_bg.py $< graphics/pokelink/pokelink_bg.4bpp graphics/pokelink/pokelink_bg.bin
+
+graphics/pokelink/pokelink_bg.gbapal: %.gbapal: %.png
+	$(GFX) $< $@ -num_colors 16
+
+graphics/pokelink_maps/kanto.8bpp graphics/pokelink_maps/kanto.bin: graphics/pokelink_maps/kanto.png
+	python3 tools/build_affine_8bpp_bg.py $< graphics/pokelink_maps/kanto.8bpp graphics/pokelink_maps/kanto.bin
+
+graphics/pokelink_maps/sevii.8bpp graphics/pokelink_maps/sevii.bin: graphics/pokelink_maps/sevii.png
+	python3 tools/build_affine_8bpp_bg.py $< graphics/pokelink_maps/sevii.8bpp graphics/pokelink_maps/sevii.bin
+
+graphics/pokelink_maps/johto.8bpp graphics/pokelink_maps/johto.bin: graphics/pokelink_maps/johto.png
+	python3 tools/build_affine_8bpp_bg.py $< graphics/pokelink_maps/johto.8bpp graphics/pokelink_maps/johto.bin
+
+graphics/pokelink_maps/%.8bpp: graphics/pokelink_maps/%.png
+	$(GFX) $< $@ -num_tiles 240 -Wnum_tiles
+
+graphics/pokelink_maps/%.gbapal: graphics/pokelink_maps/%.png
+	$(GFX) $< $@ -num_colors 48
+
 $(MISCGFXDIR)/japanese_hof.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 29 -Wnum_tiles
 

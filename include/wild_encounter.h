@@ -16,10 +16,17 @@ struct WildPokemonInfo
     const struct WildPokemon *wildPokemon;
 };
 
+#define WILD_TIME_MORNING  (1 << 0)
+#define WILD_TIME_DAY      (1 << 1)
+#define WILD_TIME_EVENING  (1 << 2)
+#define WILD_TIME_NIGHT    (1 << 3)
+#define WILD_TIME_ANY      0xFF
+
 struct WildPokemonHeader
 {
     u8 mapGroup;
     u8 mapNum;
+    u8 timeOfDayMask;
     const struct WildPokemonInfo *landMonsInfo;
     const struct WildPokemonInfo *waterMonsInfo;
     const struct WildPokemonInfo *rockSmashMonsInfo;

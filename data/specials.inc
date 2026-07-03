@@ -16,6 +16,7 @@
 		.align 2
 gSpecials::
 	def_special HealPlayerParty
+	def_special Script_AdvanceTimeForRest, requests_effects=1
 	def_special SetCableClubWarp
 	def_special DoCableClubWarp
 	def_special ReturnFromLinkRoom

@@ -200,14 +200,5 @@
       "script": "MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene"
     }
   ],
-  "bg_events": [
-    {
-      "type": "sign",
-      "x": 9,
-      "y": 58,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "0x0"
-    }
-  ]
+  "bg_events": []
 }

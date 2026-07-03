@@ -43,17 +43,17 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
+#define FLAG_GOT_ELMS_LAB_STARTER 0x20
+#define FLAG_HIDE_ELMS_LAB_ELM    0x21
+#define FLAG_RECEIVED_ELMS_LAB_POKE_BALLS 0x22
+#define FLAG_POKELINK_APP_MAP        0x23
+#define FLAG_POKELINK_APP_DEXNAV     0x24
+#define FLAG_POKELINK_APP_RADIO      0x25
+#define FLAG_POKELINK_APP_VS_SEEKER  0x26
+#define FLAG_POKELINK_APP_FLASHLIGHT 0x27
+#define FLAG_POKELINK_APP_DELIVERY   0x28
+#define FLAG_POKELINK_APP_ABRACAB    0x29
+#define FLAG_POKELINK_APP_NOTES      0x2A
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
@@ -1336,9 +1336,13 @@
 
 #define FLAG_UNUSED_0x4FF                                           0x4FF // Unused Flag
 
+// Johto route trainer flags use unused item-ball flag space so adding them does
+// not shift system flags derived from TRAINER_FLAGS_END.
+#define JOHTO_TRAINER_FLAGS_START                                  0x493
+
 // Trainer Flags
-// Trainer flags occupy 0x500 - 0x85F, the last 9 of which are unused
-// See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
+// Legacy trainer flags occupy 0x500 - 0x85F, the last 9 of which are unused.
+// See constants/opponents.h. The values there + TRAINER_FLAGS_START are the flag IDs.
 
 #define TRAINER_FLAGS_START                                         0x500
 #define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F

@@ -858,13 +858,54 @@
 #define TRAINER_LEAF                        852
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
+#define TRAINER_JOHTO_YOUNGSTER_JOEY        855
+#define TRAINER_JOHTO_YOUNGSTER_MIKEY       856
+#define TRAINER_JOHTO_BUG_CATCHER_DON       857
+#define TRAINER_JOHTO_BUG_CATCHER_WADE      858
+#define TRAINER_JOHTO_FISHERMAN_JUSTIN      859
+#define TRAINER_JOHTO_FISHERMAN_RALPH       860
+#define TRAINER_JOHTO_FISHERMAN_HENRY       861
+#define TRAINER_JOHTO_YOUNGSTER_ALBERT      862
+#define TRAINER_JOHTO_YOUNGSTER_GORDON      863
+#define TRAINER_JOHTO_CAMPER_ROLAND         864
+#define TRAINER_JOHTO_PICNICKER_LIZ         865
+#define TRAINER_JOHTO_BIRD_KEEPER_PETER     866
+#define TRAINER_JOHTO_HIKER_ANTHONY         867
+#define TRAINER_JOHTO_CAMPER_TODD           868
+#define TRAINER_JOHTO_YOUNGSTER_SAMUEL      869
+#define TRAINER_JOHTO_YOUNGSTER_IAN         870
+#define TRAINER_JOHTO_PICNICKER_GINA        871
+#define TRAINER_JOHTO_POKEFAN_BRANDON       872
+#define TRAINER_JOHTO_COOLTRAINER_IRENE     873
+#define TRAINER_JOHTO_COOLTRAINER_JENN      874
+#define TRAINER_JOHTO_COOLTRAINER_KATE      875
+#define TRAINER_JOHTO_GENTLEMAN_KEITH       876
+#define TRAINER_JOHTO_CAMPER_IVAN           877
+#define TRAINER_JOHTO_CAMPER_ELLIOT         878
+#define TRAINER_JOHTO_PICNICKER_BROOKE      879
+#define TRAINER_JOHTO_PICNICKER_KIM         880
+#define TRAINER_JOHTO_BIRD_KEEPER_BRYAN     881
+#define TRAINER_JOHTO_KINDLER_WALT          882
+#define TRAINER_JOHTO_BUG_CATCHER_ARNIE     883
+#define TRAINER_JOHTO_PSYCHIC_IRWIN         884
+#define TRAINER_JOHTO_GENTLEMAN_DIRK        885
+#define TRAINER_JOHTO_SCHOOL_KID_JACK       886
+#define TRAINER_JOHTO_POKEFAN_BEVERLY       887
+#define TRAINER_JOHTO_POKEFAN_WILLIAM       888
+#define TRAINER_JOHTO_LASS_KRISE            889
+#define TRAINER_JOHTO_PSYCHIC_MARK          890
+#define TRAINER_JOHTO_SCHOOL_KID_ALAN       891
+#define TRAINER_JOHTO_TWINS_ANN             892
+#define TRAINER_JOHTO_TWINS_ANNE            893
+#define TRAINER_JOHTO_PSYCHIC_GREG          894
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+// NOTE: Legacy trainer defeated flags still occupy TRAINER_FLAGS_START through
+//       TRAINER_FLAGS_END. Johto route trainers above use a separate unused flag
+//       block to avoid shifting system flags.
 
-#define TRAINERS_COUNT                      855
+#define TRAINERS_COUNT                      895
 #define MAX_TRAINERS_COUNT                  864
-#define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
+#define TRAINER_PARTNER_START               1024
+#define TRAINER_PARTNER(partner)           (TRAINER_PARTNER_START + partner)
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

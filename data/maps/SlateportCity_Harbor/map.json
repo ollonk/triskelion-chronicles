@@ -136,14 +136,14 @@
     },
     {
       "x": 19,
-      "y": 15,
+      "y": 14,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY",
       "dest_warp_id": "9"
     },
     {
       "x": 20,
-      "y": 15,
+      "y": 14,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY",
       "dest_warp_id": "9"

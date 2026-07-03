@@ -1,31 +1,18 @@
-**Current Todo List
--Establish tilesets from Liquid Crystal and FireRed
--Get a fully functional New Bark Town going
--Make the player's family occupy one of the houses in newbark (leave Gold's house in its location)
--Create indoor maps for new bark Town
--Change spawn location to player's room (it's a basement!)
--Script events in New Bark Town
--Get starter selection working
--Work on the first routes and Cherrygrove City
+-Maps+Fly/teleport menus
+  -Johto
+  -Hoenn
+  -Kanto
+-Trainer Sprite
+-Replace notes app - Where Am I?
 
-
-
-*******Triskelion project plan
-Phases:
-    1. Implement 3 working regions
-        -Implement basic Johto and New Bark tilesets
-        -Working beta of New Bark Town
-        -Start player in New Bark Town
-        -Add multiple regional maps
-        -Working beta of Vermilion city (first Kanto location)
-        -Demonstrate travel between regions
-    2. Implement basic gameplay and menus
-        -Verify all desired features from pokeemerald-expansion
-        -Add any desired new features
-    3. Implement story act 1 (johto 4 badges)
-    Checkpoint: art and music review -- If we love the project, retool the graphics and get better music assets
-    4. Implement story act 2 (hoenn 4 badges)
-    5. Implement story act 3 (kanto 4 badges)
-    6. Implement story act 4 (defeat the enemy)
-    7. Impement new elite 4
-    8. Impement post-game content
+***DONE
+-the pokelink favorites popup breaks the start menu graphically
+-Add the ability to go straight to one bag pouch by pressing left on the start menu
+-Missing sprites for Oak and Elm
+-Implement a mobile game on the pokelink lol
+-Day/night system driven by Gloomscroll app
+-It's possible to walk around with the Delibird Delivery menu onscreen, need to prevent this (kinda looks like the menu stays up when we try to cancel out)
+-Build radio app alpha
+-Default character names should be Tristan and Trinity
+-Replace condition app - Encounters
+-Replace ribbon app - Collection Log

@@ -377,10 +377,12 @@
 #define OBJ_EVENT_GFX_FRLG_DEOXYS_A	373
 #define OBJ_EVENT_GFX_FRLG_DEOXYS_N	374
 #define OBJ_EVENT_GFX_FRLG_SS_ANNE	375
+#define OBJ_EVENT_GFX_PROF_ELM                 376
+#define OBJ_EVENT_GFX_PROF_OAK                 377
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        376
+#define NUM_OBJ_EVENT_GFX                        378
 
 
 // These are dynamic object gfx ids.

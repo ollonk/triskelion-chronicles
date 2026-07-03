@@ -64,5 +64,6 @@ void MapGridSetMetatileImpassabilityAt(int x, int y, bool32 impassable);
 
 // field_region_map.c
 void FieldInitRegionMap(MainCallback callback);
+void FieldInitAbraCabMap(MainCallback callback);
 
 #endif //GUARD_FIELDMAP_H

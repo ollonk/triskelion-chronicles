@@ -214,6 +214,7 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
     switch (DoRegionMapInputCallback())
     {
     case MAP_INPUT_MOVE_END:
+    case MAP_INPUT_L_BUTTON:
         return POKENAV_MAP_FUNC_CURSOR_MOVED;
     case MAP_INPUT_A_BUTTON:
         if (!IsRegionMapZoomed())

@@ -90,6 +90,7 @@ struct MartInfo
     u16 itemCount;
     u8 windowId;
     u8 martType;
+    bool8 deliveryMode;
 };
 
 struct ShopData
@@ -156,6 +157,8 @@ static void Task_HandleShopMenuBuy(u8 taskId);
 static void Task_HandleShopMenuSell(u8 taskId);
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list);
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y);
+static u32 GetShopItemPrice(u32 itemId);
+static void ExitBuyMenuAfterDeliveryOrder(u8 taskId);
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
@@ -174,6 +177,14 @@ static const struct MenuAction sShopMenuActions_BuyQuit[] =
 {
     { gText_ShopBuy, {.void_u8=Task_HandleShopMenuBuy} },
     { gText_ShopQuit, {.void_u8=Task_HandleShopMenuQuit} }
+};
+
+static const u8 sText_DelibirdDeliveryOrder[] = _("ORDER");
+static const u8 sText_DelibirdDeliveryClose[] = _("CLOSE");
+static const struct MenuAction sShopMenuActions_Delivery[] =
+{
+    { sText_DelibirdDeliveryOrder, {.void_u8=Task_HandleShopMenuBuy} },
+    { sText_DelibirdDeliveryClose, {.void_u8=Task_HandleShopMenuQuit} }
 };
 
 static const struct WindowTemplate sShopMenuWindowTemplates[] =
@@ -338,6 +349,10 @@ static const u8 sShopBuyMenuTextColors[][3] =
     [COLORID_ITEM_LIST]   = {0, 2, 3},
     [COLORID_GRAY_CURSOR] = {0, 3, 2},
 };
+static const u8 sText_DelibirdDeliveryAskQuantity[] = _("Add {STR_VAR_1} to your cart?\nChoose a quantity.");
+static const u8 sText_DelibirdDeliveryConfirmOne[] = _("Order {STR_VAR_1}?\nTotal: ¥{STR_VAR_2}.");
+static const u8 sText_DelibirdDeliveryConfirmMany[] = _("Order {STR_VAR_2} {STR_VAR_1}?\nTotal: ¥{STR_VAR_3}.");
+static const u8 sText_DelibirdDeliveryOrderReceived[] = _("Order placed.\nDispatching courier.");
 
 static u8 CreateShopMenu(u8 martType)
 {
@@ -346,13 +361,21 @@ static u8 CreateShopMenu(u8 martType)
     LockPlayerFieldControls();
     sMartInfo.martType = martType;
 
-    if (martType == MART_TYPE_NORMAL)
+    if (martType == MART_TYPE_NORMAL && !sMartInfo.deliveryMode)
     {
         struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_SELL_QUIT];
         winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
         sMartInfo.windowId = AddWindow(&winTemplate);
         sMartInfo.menuActions = sShopMenuActions_BuySellQuit;
         numMenuItems = ARRAY_COUNT(sShopMenuActions_BuySellQuit);
+    }
+    else if (sMartInfo.deliveryMode)
+    {
+        struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_QUIT];
+        winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_Delivery, ARRAY_COUNT(sShopMenuActions_Delivery));
+        sMartInfo.windowId = AddWindow(&winTemplate);
+        sMartInfo.menuActions = sShopMenuActions_Delivery;
+        numMenuItems = ARRAY_COUNT(sShopMenuActions_Delivery);
     }
     else
     {
@@ -441,12 +464,24 @@ void CB2_ExitSellMenu(void)
 
 static void Task_HandleShopMenuQuit(u8 taskId)
 {
-    ClearStdWindowAndFrameToTransparent(sMartInfo.windowId, 2); // Incorrect use, making it not copy it to vram.
+    bool8 isDelivery = sMartInfo.deliveryMode;
+
+    ClearStdWindowAndFrameToTransparent(sMartInfo.windowId, TRUE);
     RemoveWindow(sMartInfo.windowId);
     TryPutSmartShopperOnAir();
-    UnlockPlayerFieldControls();
     DestroyTask(taskId);
 
+    if (isDelivery)
+    {
+        sMartInfo.deliveryMode = FALSE;
+        if (sMartInfo.callback)
+            sMartInfo.callback();
+        else
+            UnlockPlayerFieldControls();
+        return;
+    }
+
+    UnlockPlayerFieldControls();
     if (sMartInfo.callback)
         sMartInfo.callback();
 }
@@ -471,7 +506,9 @@ static void Task_ReturnToShopMenu(u8 taskId)
 {
     if (IsWeatherNotFadingIn() == TRUE)
     {
-        if (sMartInfo.martType == MART_TYPE_DECOR2)
+        if (sMartInfo.deliveryMode)
+            ShowShopMenuAfterExitingBuyOrSellMenu(taskId);
+        else if (sMartInfo.martType == MART_TYPE_DECOR2)
             DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
         else
             DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
@@ -629,7 +666,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
         {
             ConvertIntToDecimalStringN(
                 gStringVar1,
-                ItemId_GetPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT),
+                GetShopItemPrice(itemId),
                 STR_CONV_MODE_LEFT_ALIGN,
                 6);
         }
@@ -649,6 +686,16 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
         x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 120);
         AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
     }
+}
+
+static u32 GetShopItemPrice(u32 itemId)
+{
+    u32 price = ItemId_GetPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT);
+
+    if (sMartInfo.deliveryMode)
+        price *= 2;
+
+    return price;
 }
 
 static void BuyMenuAddScrollIndicatorArrows(void)
@@ -1000,7 +1047,7 @@ static void Task_BuyMenu(u8 taskId)
             BuyMenuPrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
 
             if (sMartInfo.martType == MART_TYPE_NORMAL)
-                sShopData->totalCost = (ItemId_GetPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT));
+                sShopData->totalCost = GetShopItemPrice(itemId);
             else
                 sShopData->totalCost = gDecorations[itemId].price;
 
@@ -1018,19 +1065,19 @@ static void Task_BuyMenu(u8 taskId)
                     if (ItemId_GetImportance(itemId))
                     {
                         ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
-                        StringExpandPlaceholders(gStringVar4, gText_YouWantedVar1ThatllBeVar2);
+                        StringExpandPlaceholders(gStringVar4, sMartInfo.deliveryMode ? sText_DelibirdDeliveryConfirmOne : gText_YouWantedVar1ThatllBeVar2);
                         tItemCount = 1;
-                        sShopData->totalCost = (ItemId_GetPrice(tItemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT)) * tItemCount;
+                        sShopData->totalCost = GetShopItemPrice(tItemId) * tItemCount;
                         BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
                     }
                     else if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
                     {
                         StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
-                        BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany2, Task_BuyHowManyDialogueInit);
+                        BuyMenuDisplayMessage(taskId, sMartInfo.deliveryMode ? sText_DelibirdDeliveryAskQuantity : gText_Var1CertainlyHowMany2, Task_BuyHowManyDialogueInit);
                     }
                     else
                     {
-                        BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                        BuyMenuDisplayMessage(taskId, sMartInfo.deliveryMode ? sText_DelibirdDeliveryAskQuantity : gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
                     }
                 }
                 else
@@ -1087,7 +1134,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
 
     if (AdjustQuantityAccordingToDPadInput(&tItemCount, sShopData->maxQuantity) == TRUE)
     {
-        sShopData->totalCost = (ItemId_GetPrice(tItemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT)) * tItemCount;
+        sShopData->totalCost = GetShopItemPrice(tItemId) * tItemCount;
         BuyMenuPrintItemQuantityAndPrice(taskId);
     }
     else
@@ -1103,7 +1150,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             CopyItemName(tItemId, gStringVar1);
             ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
             ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
-            BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, BuyMenuConfirmPurchase);
+            BuyMenuDisplayMessage(taskId, sMartInfo.deliveryMode ? sText_DelibirdDeliveryConfirmMany : gText_Var1AndYouWantedVar2, BuyMenuConfirmPurchase);
         }
         else if (JOY_NEW(B_BUTTON))
         {
@@ -1130,7 +1177,19 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 
     if (sMartInfo.martType == MART_TYPE_NORMAL)
     {
-        if (AddBagItem(tItemId, tItemCount) == TRUE)
+        if (sMartInfo.deliveryMode)
+        {
+            if (CheckBagHasSpace(tItemId, tItemCount) == TRUE)
+            {
+                RecordItemPurchase(taskId);
+                BuyMenuDisplayMessage(taskId, sText_DelibirdDeliveryOrderReceived, BuyMenuSubtractMoney);
+            }
+            else
+            {
+                BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, BuyMenuReturnToItemList);
+            }
+        }
+        else if (AddBagItem(tItemId, tItemCount) == TRUE)
         {
             GetSetItemObtained(tItemId, FLAG_SET_ITEM_OBTAINED);
             RecordItemPurchase(taskId);
@@ -1164,10 +1223,22 @@ static void BuyMenuSubtractMoney(u8 taskId)
     PlaySE(SE_SHOP);
     PrintMoneyAmountInMoneyBox(WIN_MONEY, GetMoney(&gSaveBlock1Ptr->money), 0);
 
-    if (sMartInfo.martType == MART_TYPE_NORMAL)
+    if (sMartInfo.deliveryMode)
+        gTasks[taskId].func = ExitBuyMenuAfterDeliveryOrder;
+    else if (sMartInfo.martType == MART_TYPE_NORMAL)
         gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
     else
         gTasks[taskId].func = Task_ReturnToItemListAfterDecorationPurchase;
+}
+
+static void ExitBuyMenuAfterDeliveryOrder(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    LockPlayerFieldControls();
+    gFieldCallback = sMartInfo.callback;
+    sMartInfo.deliveryMode = FALSE;
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_ExitBuyMenu;
 }
 
 static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
@@ -1176,7 +1247,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        u16 premierBallsToAdd = tItemCount / 10;
+        u16 premierBallsToAdd = sMartInfo.deliveryMode ? 0 : tItemCount / 10;
         if (premierBallsToAdd >= 1
          && ((I_PREMIER_BALL_BONUS <= GEN_7 && tItemId == ITEM_POKE_BALL)
           || (I_PREMIER_BALL_BONUS >= GEN_8 && (ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS))))
@@ -1240,7 +1311,17 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 
 static void ExitBuyMenu(u8 taskId)
 {
-    gFieldCallback = MapPostLoadHook_ReturnToShopMenu;
+    if (sMartInfo.deliveryMode)
+    {
+        LockPlayerFieldControls();
+        gFieldCallback = sMartInfo.callback;
+        sMartInfo.deliveryMode = FALSE;
+    }
+    else
+    {
+        gFieldCallback = MapPostLoadHook_ReturnToShopMenu;
+    }
+
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_ExitBuyMenu;
 }
@@ -1296,14 +1377,25 @@ static void RecordItemPurchase(u8 taskId)
 
 void CreatePokemartMenu(const u16 *itemsForSale)
 {
+    sMartInfo.deliveryMode = FALSE;
     CreateShopMenu(MART_TYPE_NORMAL);
     SetShopItemsForSale(itemsForSale);
     ClearItemPurchases();
     SetShopMenuCallback(ScriptContext_Enable);
 }
 
+void CreateDelibirdDeliveryMenu(const u16 *itemsForSale, void (*callback)(void))
+{
+    sMartInfo.deliveryMode = TRUE;
+    CreateShopMenu(MART_TYPE_NORMAL);
+    SetShopItemsForSale(itemsForSale);
+    ClearItemPurchases();
+    SetShopMenuCallback(callback);
+}
+
 void CreateDecorationShop1Menu(const u16 *itemsForSale)
 {
+    sMartInfo.deliveryMode = FALSE;
     CreateShopMenu(MART_TYPE_DECOR);
     SetShopItemsForSale(itemsForSale);
     SetShopMenuCallback(ScriptContext_Enable);
@@ -1311,6 +1403,7 @@ void CreateDecorationShop1Menu(const u16 *itemsForSale)
 
 void CreateDecorationShop2Menu(const u16 *itemsForSale)
 {
+    sMartInfo.deliveryMode = FALSE;
     CreateShopMenu(MART_TYPE_DECOR2);
     SetShopItemsForSale(itemsForSale);
     SetShopMenuCallback(ScriptContext_Enable);

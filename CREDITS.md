@@ -2,3 +2,4 @@
 - [princess-phoenix](https://www.deviantart.com/princess-phoenix)
 - [larryturbo](https://www.deviantart.com/larryturbo)
 - [kidkatt](https://www.deviantart.com/kidkatt)
+- Professor Elm overworld sprite by aveontrainer. Source art converted and palette-limited for Pokémon Emerald compatibility.

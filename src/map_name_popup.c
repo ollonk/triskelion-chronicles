@@ -623,7 +623,11 @@ static void LoadMapNamePopUpWindowBg(void)
 
     if (OW_POPUP_GENERATION == GEN_5)
     {
-        popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping_BW[regionMapSectionId];
+        if (regionMapSectionId < ARRAY_COUNT(sRegionMapSectionId_To_PopUpThemeIdMapping_BW))
+            popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping_BW[regionMapSectionId];
+        else
+            popUpThemeId = MAPPOPUP_THEME_BW_DEFAULT;
+
         switch (popUpThemeId)
         {
             // add additional gen 5-style pop-up themes as cases here
@@ -643,7 +647,14 @@ static void LoadMapNamePopUpWindowBg(void)
     }
     else
     {
-        popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping[regionMapSectionId];
+        if (regionMapSectionId < ARRAY_COUNT(sRegionMapSectionId_To_PopUpThemeIdMapping))
+            popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping[regionMapSectionId];
+        else
+            popUpThemeId = MAPPOPUP_THEME_WOOD;
+
+        if (popUpThemeId >= ARRAY_COUNT(sMapPopUp_Table))
+            popUpThemeId = MAPPOPUP_THEME_WOOD;
+
         LoadBgTiles(GetWindowAttribute(popupWindowId, WINDOW_BG), sMapPopUp_OutlineTable[popUpThemeId], 0x400, 0x21D);
         CallWindowFunction(popupWindowId, DrawMapNamePopUpFrame);
         PutWindowTilemap(popupWindowId);
