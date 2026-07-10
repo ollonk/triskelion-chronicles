@@ -227,6 +227,7 @@ GoldenrodCity_EventScript_LeagueOfficeSign::
 	msgbox GoldenrodCity_Text_LeagueOfficeSign, MSGBOX_SIGN
 	end
 
+@ @dialogue id=GOLDENROD_LEAGUE_OFFICE_SIGN map=GoldenrodCity speaker=Sign context=LeagueOffice tags=Goldenrod,League
 GoldenrodCity_Text_LeagueOfficeSign::
 	.string "GOLDENROD LEAGUE OFFICE\p"
 	.string "Badges checked here!$"
@@ -237,6 +238,7 @@ GoldenrodCity_Text_DeptStoreShopper::
 	.string "That is apparently my\n"
 	.string "problem to bring.$"
 
+@ @dialogue id=GOLDENROD_GAME_CORNER_REGULAR map=GoldenrodCity speaker=Regular context=GameCorner tags=Goldenrod,GameCorner
 GoldenrodCity_Text_GameCornerRegular::
 	.string "The GAME CORNER is loud,\n"
 	.string "but nobody misses a payout.$"

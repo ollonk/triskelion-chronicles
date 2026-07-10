@@ -20,6 +20,7 @@ goldenrod_underground_corridor_EventScript_AbraCabAfter::
 	release
 	end
 
+@ @dialogue id=POKELINK_ABRACAB_UNLOCK_INTRO map=goldenrod_underground_corridor speaker=AbraCabDispatcher context=Intro tags=Goldenrod,PokeLink,AbraCab
 goldenrod_underground_corridor_Text_AbraCabIntro::
 	.string "Need a ride without touching\n"
 	.string "traffic?\p"

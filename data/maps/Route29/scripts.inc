@@ -168,6 +168,7 @@ Route29_Text_FieldGuide::
 	.string "If your team gets worn down,\n"
 	.string "head back and heal.$"
 
+@ @dialogue id=MARA_ROUTE29_INTRO map=Route29 speaker=Mara context=Intro tags=Act1,Rival
 Route29_Text_MaraIntro::
 	.string "Hey! You're from NEW BARK too,\n"
 	.string "right?\p"
@@ -184,6 +185,7 @@ Route29_Text_MaraDefeat::
 	.string "Okay, I have some training\n"
 	.string "to do.$"
 
+@ @dialogue id=MARA_ROUTE29_AFTER_WIN map=Route29 speaker=Mara context=AfterWin tags=Act1,Rival
 Route29_Text_MaraAfterWin::
 	.string "You're already getting the\n"
 	.string "hang of this.\p"

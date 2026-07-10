@@ -20,6 +20,7 @@ goldenrod_deptstore_1f_EventScript_DeliveryClerkAfter::
 	release
 	end
 
+@ @dialogue id=POKELINK_DELIBIRD_DELIVERY_UNLOCK_INTRO map=goldenrod_deptstore_1f speaker=DeliveryClerk context=Intro tags=Goldenrod,PokeLink,DeptStore
 goldenrod_deptstore_1f_Text_DeliveryClerkIntro::
 	.string "Welcome to GOLDENROD\n"
 	.string "DEPT. STORE!\p"
@@ -28,6 +29,7 @@ goldenrod_deptstore_1f_Text_DeliveryClerkIntro::
 	.string "I'll add the order app to\n"
 	.string "your POKéLINK.$"
 
+@ @dialogue id=POKELINK_DELIBIRD_DELIVERY_UNLOCKED map=goldenrod_deptstore_1f speaker=System context=Unlocked tags=Goldenrod,PokeLink,DeptStore
 goldenrod_deptstore_1f_Text_DeliveryUnlocked::
 	.string "POKéLINK Delibird Delivery\n"
 	.string "app unlocked!$"

@@ -1,0 +1,10 @@
+Dialogue export report
+======================
+Files scanned: 4142
+Dialogue entries exported: 7858
+Annotated entries: 20
+Entries missing annotations: 7838
+Warnings: 0
+
+Columns:
+dialogue_id	source_file	label	map	speaker	context	tags	text	notes	original_hash

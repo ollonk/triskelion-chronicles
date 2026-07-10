@@ -328,6 +328,7 @@ johto_name_rater_Text_AideNeedsBadge::
 	.string "Not yet.\p"
 	.string "Win the PLAIN BADGE first.$"
 
+@ @dialogue id=LEAGUE_PROSPECT_TRIAL_AIDE_OFFER map=johto_name_rater speaker=LeagueAide context=OfferTrial tags=Goldenrod,League,Trial
 johto_name_rater_Text_AideOfferTrial::
 	.string "PLAIN BADGE?\n"
 	.string "Good.\p"
@@ -403,6 +404,7 @@ johto_name_rater_Text_EvaluatorNeedsStations::
 	.string "Finish the stations.\p"
 	.string "Then come back.$"
 
+@ @dialogue id=LEAGUE_PROSPECT_TRIAL_EVALUATOR_INTRO map=johto_name_rater speaker=Evaluator context=Intro tags=Goldenrod,League,Trial
 johto_name_rater_Text_EvaluatorIntro::
 	.string "Last test.\n"
 	.string "No speech.\p"
@@ -460,6 +462,7 @@ johto_name_rater_Text_PseudoAlreadyReceived::
 	.string "Good.\p"
 	.string "Rare does not mean easy.$"
 
+@ @dialogue id=GIFT_EEVEE_OFFER map=johto_name_rater speaker=GiftNPC context=Offer tags=Goldenrod,Gift,Eevee
 johto_name_rater_Text_EeveeOffer::
 	.string "That EEVEE likes you.\p"
 	.string "It changes easy.\n"

@@ -578,6 +578,7 @@ goldenrod_game_corner_EventScript_TiredGambler::
 	msgbox goldenrod_game_corner_Text_TiredGambler, MSGBOX_NPC
 	end
 
+@ @dialogue id=GOLDENROD_GAME_CORNER_COIN_CASE_INTRO map=goldenrod_game_corner speaker=CoinCaseGiver context=Intro tags=Goldenrod,GameCorner
 goldenrod_game_corner_Text_CoinCaseGiverIntro::
 	.string "You came to the GAME CORNER\n"
 	.string "without a COIN CASE?\p"
@@ -700,6 +701,7 @@ goldenrod_game_corner_Text_VoltorbFlipNoCoins::
 	.string "No coins banked.\n"
 	.string "You stepped away.$"
 
+@ @dialogue id=POKELINK_ARCADE_UNLOCK_AFTER map=goldenrod_game_corner speaker=ArcadeAttendant context=AfterUnlock tags=Goldenrod,PokeLink,GameCorner
 goldenrod_game_corner_Text_ArcadeAttendantAfter::
 	.string "POKELINK games are good\n"
 	.string "between battles.\p"

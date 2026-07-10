@@ -216,6 +216,7 @@ Route117_EventScript_Aisha::
 	msgbox Route117_Text_AishaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ @dialogue id=DAY_CARE_NEW_MOVE_COMMENT map=Route117 speaker=DayCareCustomer context=NewMove tags=DayCare
 Route117_Text_DayCarePokemonHadNewMove:
 	.string "I left my POKéMON at the DAY CARE.\p"
 	.string "When I got it back, it had a new move\n"
@@ -238,6 +239,7 @@ Route117_Text_RouteSignMauville:
 	.string "ROUTE 117\n"
 	.string "{RIGHT_ARROW} MAUVILLE CITY$"
 
+@ @dialogue id=DAY_CARE_SIGN map=Route117 speaker=Sign context=DayCare tags=DayCare
 Route117_Text_DayCareSign:
 	.string "POKéMON DAY CARE\n"
 	.string "“Let us raise your POKéMON.”$"

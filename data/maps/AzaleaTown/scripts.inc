@@ -201,6 +201,7 @@ AzaleaTown_Text_GymFan::
 	.string "Then somehow those tiny\n"
 	.string "things beat you.$"
 
+@ @dialogue id=DORIAN_AZALEA_INTRO map=AzaleaTown speaker=Dorian context=Intro tags=Act1,Rival
 AzaleaTown_Text_DorianIntro::
 	.string "You're the NEW BARK kid.\p"
 	.string "I expected taller.\p"
@@ -217,6 +218,7 @@ AzaleaTown_Text_DorianDefeat::
 	.string "Hmph.\n"
 	.string "Bad read.$"
 
+@ @dialogue id=DORIAN_AZALEA_AFTER_WIN map=AzaleaTown speaker=Dorian context=AfterWin tags=Act1,Rival
 AzaleaTown_Text_DorianAfterWin::
 	.string "You're not polished.\p"
 	.string "That's the annoying part.\p"

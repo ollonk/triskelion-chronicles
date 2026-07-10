@@ -79,6 +79,7 @@ goldenrod_bike_shop_Text_NeedsPlainBadge::
 	.string "Come back after earning\n"
 	.string "GOLDENROD's PLAIN BADGE.$"
 
+@ @dialogue id=GOLDENROD_BIKE_SHOP_OFFER map=goldenrod_bike_shop speaker=Owner context=OfferBike tags=Goldenrod,BikeShop
 goldenrod_bike_shop_Text_OfferBike::
 	.string "I used to hear shops gave\n"
 	.string "BIKES away for advertising.\p"

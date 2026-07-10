@@ -118,6 +118,7 @@ IlexForest_Text_RangerBeforeBadge::
 	.string "Earn VIOLET's BADGE before\n"
 	.string "you test the deeper trail.$"
 
+@ @dialogue id=RANGER_ELIAN_ILEX_DURING_ROCKET map=IlexForest speaker=RangerElian context=DuringRocket tags=Act1,Ranger,Rocket
 IlexForest_Text_RangerDuringRocket::
 	.string "I'm RANGER ELIAN.\p"
 	.string "Those red-uniformed thugs\n"
@@ -160,6 +161,7 @@ IlexForest_Text_GruntRetreat::
 	.string "The ROCKET GRUNT slips\n"
 	.string "back through the trees.$"
 
+@ @dialogue id=ILEX_ROCKET_COMMANDER_INTRO map=IlexForest speaker=RocketCommander context=Intro tags=Act1,Rocket,Celebi
 IlexForest_Text_CommanderIntro::
 	.string "Enough.\p"
 	.string "A shrine that bends time\n"
@@ -176,6 +178,7 @@ IlexForest_Text_CommanderRetreat::
 	.string "Retreat. This forest is\n"
 	.string "listening too closely.$"
 
+@ @dialogue id=ILEX_CELEBI_PULSE map=IlexForest speaker=Narration context=CelebiPulse tags=Act1,Celebi
 IlexForest_Text_CelebiPulse::
 	.string "A green light ripples from\n"
 	.string "the shrine.\p"
