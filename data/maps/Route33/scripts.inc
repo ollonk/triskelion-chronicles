@@ -5,9 +5,19 @@ Route33_EventScript_RouteSign::
 	msgbox Route33_Text_RouteSign, MSGBOX_SIGN
 	end
 
+Route33_EventScript_RainWatcher::
+	msgbox Route33_Text_RainWatcher, MSGBOX_NPC
+	end
+
 Route33_Text_RouteSign::
 	.string "ROUTE 33\n"
 	.string "UNION CAVE - AZALEA TOWN$"
+
+Route33_Text_RainWatcher::
+	.string "The rain hides footsteps\n"
+	.string "coming out of UNION CAVE.\p"
+	.string "It also hides how tired\n"
+	.string "everyone looks.$"
 
 Route33_EventScript_Anthony::
 	trainerbattle_single TRAINER_JOHTO_HIKER_ANTHONY, Route33_Text_AnthonyIntro, Route33_Text_AnthonyDefeat

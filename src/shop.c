@@ -351,7 +351,7 @@ static const u8 sShopBuyMenuTextColors[][3] =
 };
 static const u8 sText_DelibirdDeliveryAskQuantity[] = _("Add {STR_VAR_1} to your cart?\nChoose a quantity.");
 static const u8 sText_DelibirdDeliveryConfirmOne[] = _("Order {STR_VAR_1}?\nTotal: ¥{STR_VAR_2}.");
-static const u8 sText_DelibirdDeliveryConfirmMany[] = _("Order {STR_VAR_2} {STR_VAR_1}?\nTotal: ¥{STR_VAR_3}.");
+static const u8 sText_DelibirdDeliveryConfirmMany[] = _("Order {STR_VAR_1} x{STR_VAR_2}?\nTotal: ¥{STR_VAR_3}.");
 static const u8 sText_DelibirdDeliveryOrderReceived[] = _("Order placed.\nDispatching courier.");
 
 static u8 CreateShopMenu(u8 martType)

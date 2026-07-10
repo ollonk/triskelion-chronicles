@@ -1,9 +1,14 @@
+****BUG list
+-first mara encounter is skippable
+-debug menu mewtwo should be obedient
+-????s in delibird delivery
+
+
 -Maps+Fly/teleport menus
   -Johto
   -Hoenn
   -Kanto
 -Trainer Sprite
--Replace notes app - Where Am I?
 
 ***DONE
 -the pokelink favorites popup breaks the start menu graphically
@@ -16,3 +21,43 @@
 -Default character names should be Tristan and Trinity
 -Replace condition app - Encounters
 -Replace ribbon app - Collection Log
+-Replace notes app - Text Messages
+Oak can be bypassed
+Aide should walk over
+Pokelink not quite on table
+Berry trees way misplaced on route 29, 30, 31
+No pokeballs at cherrygrove mart
+Signs no good in Cherrygrove
+Old man map should walk you around town
+Npc text is bizarre needs to be humanized
+Sign no-good on route 30
+Bonsly on wrong route, level too high (route 36 please)
+Collection log lady can be bypassed by going around/above
+Bug catcher near clog lady needs to be moved and levels increased slightly 
+Violet city NPC stuck behind mart
+Escape ropes are free?
+Violtet gym trainers slightly misplaced
+Sprout tower 2nd floor npc placement is messed up
+Sprout tower no wild encounters 
+Close off mahogany with a gatekeeping npc for now
+Day night cycle way too short
+Prof. walks through the player during the opening sequence in the lab
+Gold's house is a mess -- tiles are wonky and coming down the stairs puts you in surf mode
+All the houses in cherrygrove have a message on the drawers that say "This door is closed"
+There's an invisible Pokemon Center sign to the left of the mart in cherrygrove
+Bubbles on stairs in east violet city
+Make TVs, radios, bookeshelves, etc in houses interactable region-wide
+Populate the Pokemon Trainer school chalkboard with info about what's changed in the ROM (expansion features, pokelink, special apps)
+Trainer stuck in trees on route 36
+radio tower exit is to the wrong wordwrap
+stairs in radio tower make you surf
+npcs walking on tables and clipping through houseplants in radio tower
+goldenrod dept store top floor has can't be left -- no warp on the stairs
+goldenrod dept store has surf glitch stairs too
+the clerk at the dept store bottom floor isn't behind the counter
+pokelink app delibird delivery should have a mart of some kind unlocked -- it's blank when unlocked at the dept store
+union cave's violet city-side exit sends you to the wrong warp
+Route 32's trainer placement is way off (fishers not at the water, and more)
+Route 32 berry trees should be on the dirt patch
+random encounters missing in tin tower
+route 36 has a trainer that spawns over a tree

@@ -27,15 +27,80 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
-      "x": 21,
-      "y": 13,
+      "x": 18,
+      "y": 11,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "5",
+      "trainer_sight_or_berry_tree_id": "3",
       "script": "Route31_EventScript_Wade",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+      "x": 28,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route31_EventScript_CollectionLogCollector",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 38,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route31_EventScript_CaveWatcher",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 33,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_GREAT_BALL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_ROUTE_31_GREAT_BALL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 8,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_31_ORAN",
+      "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 9,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_31_PECHA",
+      "script": "BerryTreeScript",
       "flag": "0"
     }
   ],
@@ -55,7 +120,152 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerAbove"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 12,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerWest"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 12,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerEastSide"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 12,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerEastSide"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 12,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerEastSide"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 13,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 13,
+      "elevation": 3,
+      "var": "VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_CollectionLogCollectorTriggerEast"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -64,6 +274,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route31_EventScript_RouteSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 27,
+      "y": 16,
+      "elevation": 3,
+      "item": "ITEM_TINY_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_31_TINY_MUSHROOM"
     }
   ]
 }

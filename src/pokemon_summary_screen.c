@@ -7,6 +7,7 @@
 #include "battle_tent.h"
 #include "battle_factory.h"
 #include "bg.h"
+#include "caps.h"
 #include "contest.h"
 #include "contest_effect.h"
 #include "data.h"
@@ -62,7 +63,7 @@
 #define PSS_LABEL_WINDOW_PROMPT_UTILITY 4 // Handles "Switch", "Info", and "Cancel" prompts. Also handles the "Rename" and "IVs"/"EVs"/"STATS" prompts if P_SUMMARY_SCREEN_RENAME and P_SUMMARY_SCREEN_IV_EV_INFO are true, respectively
 #define PSS_LABEL_WINDOW_PROMPT_INFO 5 // unused
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 6 // unused
-#define PSS_LABEL_WINDOW_UNUSED1 7
+#define PSS_LABEL_WINDOW_GROWTH_INFO_TITLE 7
 
 // Info screen
 #define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 8
@@ -102,6 +103,9 @@
 #define PSS_DATA_WINDOW_MOVE_NAMES 0
 #define PSS_DATA_WINDOW_MOVE_PP 1
 #define PSS_DATA_WINDOW_MOVE_DESCRIPTION 2
+
+// Dynamic fields for the Growth Info page.
+#define PSS_DATA_WINDOW_GROWTH_INFO 0
 
 #define MOVE_SELECTOR_SPRITES_COUNT 10
 #define TYPE_ICON_SPRITE_COUNT (MAX_MON_MOVES + 1)
@@ -281,6 +285,11 @@ static void PrintLeftColumnStats(void);
 static void BufferRightColumnStats(void);
 static void PrintRightColumnStats(void);
 static void PrintExpPointsNextLevel(void);
+static void PrintGrowthInfoPageText(void);
+static void Task_PrintGrowthInfoPage(u8);
+static void PrintGrowthInfoRow(u8, const u8 *, u8, u16, u8);
+static u16 GetMonEVTotal(struct Pokemon *);
+static u16 GetMonEVCap(void);
 static void PrintBattleMoves(void);
 static void Task_PrintBattleMoves(u8);
 static void PrintMoveNameAndPP(u8);
@@ -468,11 +477,11 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 7,
         .baseBlock = 121,
     },
-    [PSS_LABEL_WINDOW_UNUSED1] = {
+    [PSS_LABEL_WINDOW_GROWTH_INFO_TITLE] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 4,
-        .width = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 11,
         .height = 2,
         .paletteNum = 6,
         .baseBlock = 137,
@@ -484,7 +493,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 18,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 137,
+        .baseBlock = 159,
     },
     [PSS_LABEL_WINDOW_POKEMON_INFO_TYPE] = {
         .bg = 0,
@@ -493,7 +502,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 18,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 173,
+        .baseBlock = 195,
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT] = {
         .bg = 0,
@@ -502,7 +511,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 6,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 209,
+        .baseBlock = 231,
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT] = {
         .bg = 0,
@@ -511,7 +520,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 5,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 245,
+        .baseBlock = 267,
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP] = {
         .bg = 0,
@@ -520,7 +529,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 11,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 275,
+        .baseBlock = 297,
     },
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS] = {
         .bg = 0,
@@ -529,7 +538,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 6,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 319,
+        .baseBlock = 341,
     },
     [PSS_LABEL_WINDOW_MOVES_POWER_ACC] = {
         .bg = 0,
@@ -538,7 +547,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 9,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 331,
+        .baseBlock = 353,
     },
     [PSS_LABEL_WINDOW_MOVES_APPEAL_JAM] = {
         .bg = 0,
@@ -547,7 +556,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 5,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 367,
+        .baseBlock = 389,
     },
     [PSS_LABEL_WINDOW_PROMPT_RELEARN] = {
         .bg = 0,
@@ -556,7 +565,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 8,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 387,
+        .baseBlock = 409,
     },
     [PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER] = {
         .bg = 0,
@@ -565,7 +574,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 5,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 403,
+        .baseBlock = 425,
     },
     [PSS_LABEL_WINDOW_PORTRAIT_NICKNAME] = {
         .bg = 0,
@@ -574,7 +583,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 9,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 413,
+        .baseBlock = 435,
     },
     [PSS_LABEL_WINDOW_PORTRAIT_SPECIES] = {
         .bg = 0,
@@ -583,7 +592,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 9,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 431,
+        .baseBlock = 453,
     },
     [PSS_LABEL_WINDOW_END] = DUMMY_WIN_TEMPLATE
 };
@@ -596,7 +605,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 11,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 467,
+        .baseBlock = 489,
     },
     [PSS_DATA_WINDOW_INFO_ID] = {
         .bg = 0,
@@ -605,7 +614,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 7,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 489,
+        .baseBlock = 511,
     },
     [PSS_DATA_WINDOW_INFO_ABILITY] = {
         .bg = 0,
@@ -614,7 +623,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 503,
+        .baseBlock = 525,
     },
     [PSS_DATA_WINDOW_INFO_MEMO] = {
         .bg = 0,
@@ -623,7 +632,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 575,
+        .baseBlock = 597,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -635,7 +644,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 10,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 467,
+        .baseBlock = 489,
     },
     [PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT] = {
         .bg = 0,
@@ -644,7 +653,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 10,
         .height = 2,
         .paletteNum = 6,
-        .baseBlock = 487,
+        .baseBlock = 509,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_LEFT] = {
         .bg = 0,
@@ -653,7 +662,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 507,
+        .baseBlock = 529,
     },
     [PSS_DATA_WINDOW_SKILLS_STATS_RIGHT] = {
         .bg = 0,
@@ -662,7 +671,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 3,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 543,
+        .baseBlock = 565,
     },
     [PSS_DATA_WINDOW_EXP] = {
         .bg = 0,
@@ -671,7 +680,19 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
         .width = 6,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 561,
+        .baseBlock = 583,
+    },
+};
+static const struct WindowTemplate sPageGrowthInfoTemplate[] =
+{
+    [PSS_DATA_WINDOW_GROWTH_INFO] = {
+        .bg = 0,
+        .tilemapLeft = 10,
+        .tilemapTop = 4,
+        .width = 20,
+        .height = 16,
+        .paletteNum = 2,
+        .baseBlock = 489,
     },
 };
 static const struct WindowTemplate sPageMovesTemplate[] = // This is used for both battle and contest moves
@@ -683,7 +704,7 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .width = 9,
         .height = 10,
         .paletteNum = 6,
-        .baseBlock = 467,
+        .baseBlock = 489,
     },
     [PSS_DATA_WINDOW_MOVE_PP] = {
         .bg = 0,
@@ -692,7 +713,7 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .width = 6,
         .height = 10,
         .paletteNum = 8,
-        .baseBlock = 557,
+        .baseBlock = 579,
     },
     [PSS_DATA_WINDOW_MOVE_DESCRIPTION] = {
         .bg = 0,
@@ -701,7 +722,7 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .width = 20,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 617,
+        .baseBlock = 639,
     },
 };
 static const u8 sTextColors[][3] =
@@ -730,6 +751,7 @@ static void (*const sTextPrinterFunctions[])(void) =
 {
     [PSS_PAGE_INFO] = PrintInfoPageText,
     [PSS_PAGE_SKILLS] = PrintSkillsPageText,
+    [PSS_PAGE_GROWTH_INFO] = PrintGrowthInfoPageText,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
     [PSS_PAGE_CONTEST_MOVES] = PrintContestMoves
 };
@@ -738,6 +760,7 @@ static void (*const sTextPrinterTasks[])(u8 taskId) =
 {
     [PSS_PAGE_INFO] = Task_PrintInfoPage,
     [PSS_PAGE_SKILLS] = Task_PrintSkillsPage,
+    [PSS_PAGE_GROWTH_INFO] = Task_PrintGrowthInfoPage,
     [PSS_PAGE_BATTLE_MOVES] = Task_PrintBattleMoves,
     [PSS_PAGE_CONTEST_MOVES] = Task_PrintContestMoves
 };
@@ -748,6 +771,48 @@ static const u8 sStatsLeftColumnLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}\n{DYNAMIC 
 static const u8 sStatsLeftIVEVColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sStatsRightColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
+static const u8 sText_GrowthInfo[] = _("GROWTH INFO");
+static const u8 sText_Stat[] = _("STAT");
+static const u8 sText_Ev[] = _("EV");
+static const u8 sText_Iv[] = _("IV");
+static const u8 sText_EvTotal[] = _("EV TOTAL");
+static const u8 sText_Remain[] = _("REMAIN");
+static const u8 sText_StatHp[] = _("HP");
+static const u8 sText_StatAttack[] = _("ATTACK");
+static const u8 sText_StatDefense[] = _("DEFENSE");
+static const u8 sText_StatSpAtk[] = _("SP. ATK");
+static const u8 sText_StatSpDef[] = _("SP. DEF");
+static const u8 sText_StatSpeed[] = _("SPEED");
+
+static const u8 *const sGrowthInfoStatLabels[NUM_STATS] =
+{
+    sText_StatHp,
+    sText_StatAttack,
+    sText_StatDefense,
+    sText_StatSpAtk,
+    sText_StatSpDef,
+    sText_StatSpeed,
+};
+
+static const u8 sGrowthInfoEvData[NUM_STATS] =
+{
+    MON_DATA_HP_EV,
+    MON_DATA_ATK_EV,
+    MON_DATA_DEF_EV,
+    MON_DATA_SPATK_EV,
+    MON_DATA_SPDEF_EV,
+    MON_DATA_SPEED_EV,
+};
+
+static const u8 sGrowthInfoIvData[NUM_STATS] =
+{
+    MON_DATA_HP_IV,
+    MON_DATA_ATK_IV,
+    MON_DATA_DEF_IV,
+    MON_DATA_SPATK_IV,
+    MON_DATA_SPDEF_IV,
+    MON_DATA_SPEED_IV,
+};
 
 #define TAG_MOVE_SELECTOR 30000
 #define TAG_MON_STATUS 30001
@@ -1431,39 +1496,43 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 4:
-        LZDecompressWram(gSummaryPage_BattleMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][1]);
+        LZDecompressWram(gSummaryPage_Skills_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_GROWTH_INFO][1]);
         sMonSummaryScreen->switchCounter++;
         break;
     case 5:
-        LZDecompressWram(gSummaryPage_ContestMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][1]);
+        LZDecompressWram(gSummaryPage_BattleMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][1]);
         sMonSummaryScreen->switchCounter++;
         break;
     case 6:
+        LZDecompressWram(gSummaryPage_ContestMoves_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][1]);
+        sMonSummaryScreen->switchCounter++;
+        break;
+    case 7:
         LoadCompressedPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         sMonSummaryScreen->switchCounter++;
         break;
-    case 7:
+    case 8:
         LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 8:
+    case 9:
         LoadCompressedSpriteSheet(&sMoveSelectorSpriteSheet);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 9:
+    case 10:
         LoadCompressedSpriteSheet(&sStatusIconsSpriteSheet);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 10:
+    case 11:
         LoadCompressedSpritePalette(&sStatusIconsSpritePalette);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 11:
+    case 12:
         LoadCompressedSpritePalette(&sMoveSelectorSpritePal);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 12:
+    case 13:
         LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
@@ -1567,7 +1636,7 @@ static void SetDefaultTilemaps(void)
     // these blocks handle preparing the gfx to return straight to the respective move info screens
     if (sMonSummaryScreen->mode == SUMMARY_MODE_RELEARNER_BATTLE)
     {
-        SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0]);
+        SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_GROWTH_INFO][0]);
         SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
         SetBgAttribute(1, BG_ATTR_PRIORITY, 2);
         SetBgAttribute(2, BG_ATTR_PRIORITY, 1);
@@ -3205,6 +3274,7 @@ static void PrintPageNamesAndStats(void)
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_GROWTH_INFO_TITLE, sText_GrowthInfo, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
@@ -3240,6 +3310,7 @@ static void PutPageWindowTilemaps(u8 page)
 
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
+    ClearWindowTilemap(PSS_LABEL_WINDOW_GROWTH_INFO_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
 
@@ -3259,6 +3330,9 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
         if (ShouldShowIvEvPrompt())
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+        break;
+    case PSS_PAGE_GROWTH_INFO:
+        PutWindowTilemap(PSS_LABEL_WINDOW_GROWTH_INFO_TITLE);
         break;
     case PSS_PAGE_BATTLE_MOVES:
         PutWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
@@ -3313,7 +3387,9 @@ static void ClearPageWindowTilemaps(u8 page)
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
         if (ShouldShowIvEvPrompt())
-            ClearPageWindowTilemaps(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_UTILITY);
+        break;
+    case PSS_PAGE_GROWTH_INFO:
         break;
     case PSS_PAGE_BATTLE_MOVES:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
@@ -3902,6 +3978,112 @@ static void PrintExpPointsNextLevel(void)
     x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 42) + 2;
     PrintTextOnWindow(windowId, gStringVar1, x, 17, 0, 0);
 }
+
+#define GROWTH_INFO_FONT         FONT_SMALL
+#define GROWTH_INFO_BG_COLOR     12
+#define GROWTH_INFO_TEXT_COLOR   0
+#define GROWTH_INFO_LABEL_X      6
+#define GROWTH_INFO_HEADER_Y     4
+#define GROWTH_INFO_ROW_START_Y  20
+#define GROWTH_INFO_ROW_HEIGHT   12
+#define GROWTH_INFO_EV_X         88
+#define GROWTH_INFO_EV_WIDTH     28
+#define GROWTH_INFO_IV_X         130
+#define GROWTH_INFO_IV_WIDTH     18
+#define GROWTH_INFO_FOOTER_Y     104
+
+static void PrintGrowthInfoPageText(void)
+{
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+    u8 windowId = AddWindowFromTemplateList(sPageGrowthInfoTemplate, PSS_DATA_WINDOW_GROWTH_INFO);
+    u16 evTotal = GetMonEVTotal(mon);
+    u16 evCap = GetMonEVCap();
+    u16 remaining = (evTotal < evCap) ? evCap - evTotal : 0;
+    u32 i;
+    s32 x;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(GROWTH_INFO_BG_COLOR));
+
+    PrintTextOnWindowWithFont(windowId, sText_Stat, GROWTH_INFO_LABEL_X, GROWTH_INFO_HEADER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    PrintTextOnWindowWithFont(windowId, sText_Ev, GROWTH_INFO_EV_X, GROWTH_INFO_HEADER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    PrintTextOnWindowWithFont(windowId, sText_Iv, GROWTH_INFO_IV_X, GROWTH_INFO_HEADER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        u16 ev = GetMonData(mon, sGrowthInfoEvData[i]);
+        u8 iv = GetMonData(mon, sGrowthInfoIvData[i]);
+        PrintGrowthInfoRow(windowId, sGrowthInfoStatLabels[i], i, ev, iv);
+    }
+
+    PrintTextOnWindowWithFont(windowId, sText_EvTotal, GROWTH_INFO_LABEL_X, GROWTH_INFO_FOOTER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    ConvertIntToDecimalStringN(gStringVar1, evTotal, STR_CONV_MODE_LEADING_ZEROS, 3);
+    x = GROWTH_INFO_EV_X + GetStringRightAlignXOffset(GROWTH_INFO_FONT, gStringVar1, GROWTH_INFO_EV_WIDTH);
+    PrintTextOnWindowWithFont(windowId, gStringVar1, x, GROWTH_INFO_FOOTER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    PrintTextOnWindowWithFont(windowId, gText_Slash, GROWTH_INFO_EV_X + GROWTH_INFO_EV_WIDTH + 2, GROWTH_INFO_FOOTER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    ConvertIntToDecimalStringN(gStringVar1, evCap, STR_CONV_MODE_LEADING_ZEROS, 3);
+    PrintTextOnWindowWithFont(windowId, gStringVar1, GROWTH_INFO_EV_X + GROWTH_INFO_EV_WIDTH + 8, GROWTH_INFO_FOOTER_Y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+
+    PrintTextOnWindowWithFont(windowId, sText_Remain, GROWTH_INFO_LABEL_X, GROWTH_INFO_FOOTER_Y + GROWTH_INFO_ROW_HEIGHT, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+    ConvertIntToDecimalStringN(gStringVar1, remaining, STR_CONV_MODE_LEADING_ZEROS, 3);
+    x = GROWTH_INFO_EV_X + GetStringRightAlignXOffset(GROWTH_INFO_FONT, gStringVar1, GROWTH_INFO_EV_WIDTH);
+    PrintTextOnWindowWithFont(windowId, gStringVar1, x, GROWTH_INFO_FOOTER_Y + GROWTH_INFO_ROW_HEIGHT, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+}
+
+static void Task_PrintGrowthInfoPage(u8 taskId)
+{
+    PrintGrowthInfoPageText();
+    DestroyTask(taskId);
+}
+
+static void PrintGrowthInfoRow(u8 windowId, const u8 *label, u8 row, u16 ev, u8 iv)
+{
+    u8 y = GROWTH_INFO_ROW_START_Y + row * GROWTH_INFO_ROW_HEIGHT;
+    s32 x;
+
+    PrintTextOnWindowWithFont(windowId, label, GROWTH_INFO_LABEL_X, y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+
+    ConvertIntToDecimalStringN(gStringVar1, ev, STR_CONV_MODE_LEADING_ZEROS, 3);
+    x = GROWTH_INFO_EV_X + GetStringRightAlignXOffset(GROWTH_INFO_FONT, gStringVar1, GROWTH_INFO_EV_WIDTH);
+    PrintTextOnWindowWithFont(windowId, gStringVar1, x, y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+
+    ConvertIntToDecimalStringN(gStringVar1, iv, STR_CONV_MODE_LEADING_ZEROS, 2);
+    x = GROWTH_INFO_IV_X + GetStringRightAlignXOffset(GROWTH_INFO_FONT, gStringVar1, GROWTH_INFO_IV_WIDTH);
+    PrintTextOnWindowWithFont(windowId, gStringVar1, x, y, 0, GROWTH_INFO_TEXT_COLOR, GROWTH_INFO_FONT);
+}
+
+static u16 GetMonEVTotal(struct Pokemon *mon)
+{
+    u16 total = 0;
+    u32 i;
+
+    for (i = 0; i < NUM_STATS; i++)
+        total += GetMonData(mon, sGrowthInfoEvData[i]);
+
+    return total;
+}
+
+static u16 GetMonEVCap(void)
+{
+    u32 evCap = GetCurrentEVCap();
+
+    if (evCap > MAX_TOTAL_EVS)
+        evCap = MAX_TOTAL_EVS;
+
+    return evCap;
+}
+
+#undef GROWTH_INFO_FONT
+#undef GROWTH_INFO_BG_COLOR
+#undef GROWTH_INFO_TEXT_COLOR
+#undef GROWTH_INFO_LABEL_X
+#undef GROWTH_INFO_HEADER_Y
+#undef GROWTH_INFO_ROW_START_Y
+#undef GROWTH_INFO_ROW_HEIGHT
+#undef GROWTH_INFO_EV_X
+#undef GROWTH_INFO_EV_WIDTH
+#undef GROWTH_INFO_IV_X
+#undef GROWTH_INFO_IV_WIDTH
+#undef GROWTH_INFO_FOOTER_Y
 
 static void PrintBattleMoves(void)
 {

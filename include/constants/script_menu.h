@@ -125,6 +125,12 @@
 #define MULTI_BERRY_PLOT                   114
 #define MULTI_ELMS_LAB_STARTER_REGION      115
 #define MULTI_ELMS_LAB_STARTER_TRIO        116
+#define MULTI_GOLDENROD_GAME_CORNER_PRIZE_CATEGORIES 117
+#define MULTI_GOLDENROD_GAME_CORNER_POKEMON          118
+#define MULTI_GOLDENROD_GAME_CORNER_ITEMS            119
+#define MULTI_GOLDENROD_VOLTORB_FLIP                 120
+#define MULTI_LEAGUE_PROSPECT_PSEUDO                 121
+#define MULTI_GOLDENROD_BIKE_CHOICE                  122
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

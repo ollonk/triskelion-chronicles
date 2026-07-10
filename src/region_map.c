@@ -75,6 +75,13 @@ struct MultiNameFlyDest
     u16 flag;
 };
 
+struct RegionalFlyDest
+{
+    u16 mapSecId;
+    u16 flag;
+    u16 healLocation;
+};
+
 static EWRAM_DATA struct RegionMap *sRegionMap = NULL;
 
 static EWRAM_DATA struct {
@@ -557,6 +564,41 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_ROUTE_133] = {MAP_GROUP(ROUTE133), MAP_NUM(ROUTE133), HEAL_LOCATION_NONE},
     [MAPSEC_ROUTE_134] = {MAP_GROUP(ROUTE134), MAP_NUM(ROUTE134), HEAL_LOCATION_NONE},
 };
+
+static const struct RegionalFlyDest sRegionalFlyDestinations[] =
+{
+    {MAPSEC_NEWBARK_TOWN,     FLAG_VISITED_NEW_BARK_TOWN,    HEAL_LOCATION_NEW_BARK_TOWN},
+    {MAPSEC_CHERRYGROVE_CITY, FLAG_VISITED_CHERRYGROVE_CITY, HEAL_LOCATION_CHERRYGROVE_CITY},
+    {MAPSEC_VIOLET_CITY,      FLAG_VISITED_VIOLET_CITY,      HEAL_LOCATION_VIOLET_CITY},
+    {MAPSEC_AZALEA_TOWN,      FLAG_VISITED_AZALEA_TOWN,      HEAL_LOCATION_AZALEA_TOWN},
+    {MAPSEC_GOLDENROD_CITY,   FLAG_VISITED_GOLDENROD_CITY,   HEAL_LOCATION_GOLDENROD_CITY},
+    {MAPSEC_ECRUTEAK_CITY,    FLAG_VISITED_ECRUTEAK_CITY,    HEAL_LOCATION_ECRUTEAK_CITY},
+    {MAPSEC_OLIVINE_CITY,     FLAG_VISITED_OLIVINE_CITY,     HEAL_LOCATION_OLIVINE_CITY},
+    {MAPSEC_PALLET_TOWN,      FLAG_VISITED_PALLET_TOWN,      HEAL_LOCATION_PALLET_TOWN},
+    {MAPSEC_VIRIDIAN_CITY,    FLAG_VISITED_VIRIDIAN_CITY,    HEAL_LOCATION_VIRIDIAN_CITY},
+    {MAPSEC_PEWTER_CITY,      FLAG_VISITED_PEWTER_CITY,      HEAL_LOCATION_PEWTER_CITY},
+    {MAPSEC_CERULEAN_CITY,    FLAG_VISITED_CERULEAN_CITY,    HEAL_LOCATION_CERULEAN_CITY},
+    {MAPSEC_LAVENDER_TOWN,    FLAG_VISITED_LAVENDER_TOWN,    HEAL_LOCATION_LAVENDER_TOWN},
+    {MAPSEC_VERMILION_CITY,   FLAG_VISITED_VERMILION_CITY,   HEAL_LOCATION_VERMILION_CITY},
+    {MAPSEC_CELADON_CITY,     FLAG_VISITED_CELADON_CITY,     HEAL_LOCATION_CELADON_CITY},
+    {MAPSEC_FUCHSIA_CITY,     FLAG_VISITED_FUCHSIA_CITY,     HEAL_LOCATION_FUCHSIA_CITY},
+    {MAPSEC_CINNABAR_ISLAND,  FLAG_VISITED_CINNABAR_ISLAND,  HEAL_LOCATION_CINNABAR_ISLAND},
+    {MAPSEC_INDIGO_PLATEAU,   FLAG_VISITED_INDIGO_PLATEAU,   HEAL_LOCATION_INDIGO_PLATEAU},
+    {MAPSEC_SAFFRON_CITY,     FLAG_VISITED_SAFFRON_CITY,     HEAL_LOCATION_SAFFRON_CITY},
+};
+
+static const struct RegionalFlyDest *GetRegionalFlyDestination(u16 mapSecId)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sRegionalFlyDestinations); i++)
+    {
+        if (sRegionalFlyDestinations[i].mapSecId == mapSecId)
+            return &sRegionalFlyDestinations[i];
+    }
+
+    return NULL;
+}
 
 static const u8 *const sEverGrandeCityNames[] =
 {
@@ -1617,6 +1659,11 @@ static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
 
 static u8 GetMapsecType(u16 mapSecId)
 {
+    const struct RegionalFlyDest *regionalFlyDest = GetRegionalFlyDestination(mapSecId);
+
+    if (regionalFlyDest != NULL)
+        return FlagGet(regionalFlyDest->flag) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+
     switch (mapSecId)
     {
     case MAPSEC_NONE:
@@ -2463,6 +2510,11 @@ static void CB_ExitFlyMap(void)
 
 u32 FilterFlyDestination(struct RegionMap* regionMap)
 {
+    const struct RegionalFlyDest *regionalFlyDest = GetRegionalFlyDestination(regionMap->mapSecId);
+
+    if (regionalFlyDest != NULL)
+        return regionalFlyDest->healLocation;
+
     switch (regionMap->mapSecId)
     {
     case MAPSEC_SOUTHERN_ISLAND:

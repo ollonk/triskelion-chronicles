@@ -282,6 +282,54 @@ static const struct MenuAction MultichoiceList_GameCornerCoins[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_GoldenrodGameCornerPrizeCategories[] =
+{
+    {COMPOUND_STRING("POKEMON")},
+    {COMPOUND_STRING("TMs/ITEMS")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_GoldenrodGameCornerPokemon[] =
+{
+    {COMPOUND_STRING("ABRA{CLEAR_TO 0x48}200 COINS")},
+    {COMPOUND_STRING("SANDSHREW{CLEAR_TO 0x48}700 COINS")},
+    {COMPOUND_STRING("DRATINI{CLEAR_TO 0x48}2,100 COINS")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_GoldenrodGameCornerItems[] =
+{
+    {COMPOUND_STRING("SILK SCARF{CLEAR_TO 0x48}1,000 COINS")},
+    {COMPOUND_STRING("TM24{CLEAR_TO 0x48}4,000 COINS")},
+    {COMPOUND_STRING("TM13{CLEAR_TO 0x48}4,000 COINS")},
+    {COMPOUND_STRING("TM35{CLEAR_TO 0x48}4,000 COINS")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_GoldenrodVoltorbFlip[] =
+{
+    {COMPOUND_STRING("LEFT")},
+    {COMPOUND_STRING("MIDDLE")},
+    {COMPOUND_STRING("RIGHT")},
+    {COMPOUND_STRING("CASH OUT")},
+};
+
+static const struct MenuAction MultichoiceList_LeagueProspectPseudo[] =
+{
+    {COMPOUND_STRING("DRATINI")},
+    {COMPOUND_STRING("LARVITAR")},
+    {COMPOUND_STRING("BELDUM")},
+    {COMPOUND_STRING("BAGON")},
+    {gText_Cancel2},
+};
+
+static const struct MenuAction MultichoiceList_GoldenrodBikeChoice[] =
+{
+    {COMPOUND_STRING("MACH BIKE")},
+    {COMPOUND_STRING("ACRO BIKE")},
+    {gText_Cancel2},
+};
+
 static const struct MenuAction MultichoiceList_HowsFishing[] =
 {
     {COMPOUND_STRING("Excellent")},
@@ -924,6 +972,12 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_ELMS_LAB_STARTER_REGION]    = MULTICHOICE(MultichoiceList_ElmsLabStarterRegion),
     [MULTI_ELMS_LAB_STARTER_TRIO]      = MULTICHOICE(MultichoiceList_ElmsLabStarterTrio),
+    [MULTI_GOLDENROD_GAME_CORNER_PRIZE_CATEGORIES] = MULTICHOICE(MultichoiceList_GoldenrodGameCornerPrizeCategories),
+    [MULTI_GOLDENROD_GAME_CORNER_POKEMON]          = MULTICHOICE(MultichoiceList_GoldenrodGameCornerPokemon),
+    [MULTI_GOLDENROD_GAME_CORNER_ITEMS]            = MULTICHOICE(MultichoiceList_GoldenrodGameCornerItems),
+    [MULTI_GOLDENROD_VOLTORB_FLIP]                 = MULTICHOICE(MultichoiceList_GoldenrodVoltorbFlip),
+    [MULTI_LEAGUE_PROSPECT_PSEUDO]                 = MULTICHOICE(MultichoiceList_LeagueProspectPseudo),
+    [MULTI_GOLDENROD_BIKE_CHOICE]                  = MULTICHOICE(MultichoiceList_GoldenrodBikeChoice),
 };
 
 const u8 *const gStdStrings[] =

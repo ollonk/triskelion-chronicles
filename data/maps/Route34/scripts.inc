@@ -5,12 +5,22 @@ Route34_EventScript_RouteSign::
 	msgbox Route34_Text_RouteSign, MSGBOX_SIGN
 	end
 
+Route34_EventScript_DayCareWatcher::
+	msgbox Route34_Text_DayCareWatcher, MSGBOX_NPC
+	end
+
 Route34_Text_RouteSign::
 	.string "ROUTE 34\n"
 	.string "GOLDENROD CITY -\n"
 	.string "AZALEA TOWN\p"
 	.string "ILEX FOREST\n"
 	.string "SOMEWHERE BETWEEN$"
+
+Route34_Text_DayCareWatcher::
+	.string "POKEMON come out of DAY\n"
+	.string "CARE with stronger legs.\p"
+	.string "TRAINERS come out with\n"
+	.string "lighter wallets.$"
 
 Route34_EventScript_Todd::
 	trainerbattle_single TRAINER_JOHTO_CAMPER_TODD, Route34_Text_ToddIntro, Route34_Text_ToddDefeat

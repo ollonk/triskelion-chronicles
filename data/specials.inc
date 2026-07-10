@@ -512,6 +512,12 @@ gSpecials::
 	def_special SaveForBattleTowerLink
 	def_special Unused_SetWeatherSunny
 	def_special SetUnlockedPokedexFlags
+	def_special PokeLink_RefreshWorldState
+	def_special PokeLink_ShowCollectionLogDemoPopup
+	def_special PokeLink_UnlockAllApps
+	def_special DebugRoom_GiveMewtwo
+	def_special DebugRoom_GiveSupplies
+	def_special DebugRoom_UnlockFlyDestinations
 	def_special IsTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
 	def_special EnableNationalPokedex

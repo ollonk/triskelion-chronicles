@@ -45,6 +45,7 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/flags.h"
 #include "constants/heal_locations.h"
 #include "constants/items.h"
 #include "constants/vars.h"
@@ -203,6 +204,7 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     SetNewGameStartWarp();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    FlagSet(FLAG_SYS_B_DASH);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();

@@ -125,6 +125,15 @@
   "coord_events": [
     {
       "type": "trigger",
+      "x": 12,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_ELMS_LAB_STARTER_STATE",
+      "var_value": "4",
+      "script": "ElmsLab_EventScript_OakStopsPlayerForPokedex"
+    },
+    {
+      "type": "trigger",
       "x": 13,
       "y": 18,
       "elevation": 3,
@@ -140,6 +149,33 @@
       "var": "VAR_ELMS_LAB_STARTER_STATE",
       "var_value": "4",
       "script": "ElmsLab_EventScript_OakStopsPlayerForPokedex"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 19,
+      "elevation": 3,
+      "var": "VAR_ELMS_LAB_STARTER_STATE",
+      "var_value": "4",
+      "script": "ElmsLab_EventScript_OakStopsPlayerForPokedex"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 19,
+      "elevation": 3,
+      "var": "VAR_ELMS_LAB_STARTER_STATE",
+      "var_value": "4",
+      "script": "ElmsLab_EventScript_OakStopsPlayerForPokedex"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 19,
+      "elevation": 3,
+      "var": "VAR_ELMS_LAB_STARTER_STATE",
+      "var_value": "4",
+      "script": "ElmsLab_EventScript_OakStopsPlayerForPokedex"
     }
   ],
   "bg_events": [
@@ -150,6 +186,22 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "ElmsLab_EventScript_PC"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "ElmsLab_EventScript_HealingMachine"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "ElmsLab_EventScript_HealingMachine"
     },
     {
       "type": "sign",

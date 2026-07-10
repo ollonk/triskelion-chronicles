@@ -34,6 +34,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "pokelink.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "overworld.h"
@@ -620,6 +621,8 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
     gSpecialVar_Result = AddBagItem(itemId, quantity);
+    if (gSpecialVar_Result == TRUE)
+        PokeLink_TryLogCollectedItem(itemId, quantity);
     return FALSE;
 }
 

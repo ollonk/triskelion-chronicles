@@ -1,0 +1,136 @@
+{
+  "id": "MAP_DEBUG_ROOM",
+  "name": "DebugRoom",
+  "layout": "LAYOUT_GOLDENROD_DEPTSTORE_1F",
+  "music": "MUS_POKE_MART",
+  "region_map_section": "MAPSEC_NEWBARK_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "local_id": "LOCALID_DEBUG_MEWTWO",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 10,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_Mewtwo",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_SUPPLIES",
+      "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_Supplies",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_POKELINK",
+      "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
+      "x": 18,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_PokeLink",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_FLY",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 22,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_Fly",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_EXIT_NEW_BARK",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_ExitNewBark",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_EXIT_PALLET",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 8,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_ExitPallet",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEBUG_EXIT_LITTLEROOT",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 12,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "DebugRoom_EventScript_ExitLittleroot",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 15,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_NEW_BARK_TOWN",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "DebugRoom_EventScript_Sign"
+    }
+  ]
+}

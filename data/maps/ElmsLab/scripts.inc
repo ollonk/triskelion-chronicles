@@ -125,6 +125,7 @@ ElmsLab_EventScript_BeginSurpriseScene::
 ElmsLab_Movement_PlayerStepInside:
 	walk_up
 	walk_up
+	walk_left
 	step_end
 
 ElmsLab_Movement_ElmEnterBehindPlayer:
@@ -218,6 +219,7 @@ ElmsLab_Movement_BirchGatherForStarterChoice:
 	step_end
 
 ElmsLab_Movement_PlayerFollowToStarterChoice:
+	walk_right
 	walk_up
 	walk_up
 	walk_up
@@ -258,6 +260,25 @@ ElmsLab_Movement_OakReturnAfterPokedex:
 	walk_up
 	walk_up
 	walk_up
+	walk_in_place_faster_down
+	step_end
+
+ElmsLab_Movement_AideWalkToPokeBallGift:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_in_place_faster_right
+	step_end
+
+ElmsLab_Movement_AideReturnAfterPokeBallGift:
+	walk_in_place_faster_up
+	walk_up
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	walk_in_place_faster_down
 	step_end
 
@@ -337,6 +358,23 @@ ElmsLab_EventScript_Oak::
 	goto ElmsLab_EventScript_ShowOakOffer
 
 ElmsLab_EventScript_OakAfterStarter::
+	goto_if_unset FLAG_GOT_POKELINK, ElmsLab_EventScript_OakAfterStarterNoPokeLink
+	goto_if_set FLAG_POKELINK_APP_DEXNAV, ElmsLab_EventScript_OakAfterStarterDexNavReady
+	msgbox ElmsLab_Text_OakAfterStarter, MSGBOX_DEFAULT
+	msgbox ElmsLab_Text_OakDexNavSync, MSGBOX_DEFAULT
+	setflag FLAG_POKELINK_APP_DEXNAV
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox ElmsLab_Text_DexNavUnlocked, MSGBOX_DEFAULT
+	waitfanfare
+	release
+	end
+
+ElmsLab_EventScript_OakAfterStarterNoPokeLink::
+	msgbox ElmsLab_Text_OakAfterStarter, MSGBOX_DEFAULT
+	release
+	end
+
+ElmsLab_EventScript_OakAfterStarterDexNavReady::
 	msgbox ElmsLab_Text_OakAfterStarter, MSGBOX_DEFAULT
 	release
 	end
@@ -391,7 +429,11 @@ ElmsLab_EventScript_OakStopsPlayerForPokedex::
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	msgbox ElmsLab_Text_OakExplainPokedex, MSGBOX_DEFAULT
+	applymovement LOCALID_AIDE, ElmsLab_Movement_AideWalkToPokeBallGift
+	waitmovement 0
 	call ElmsLab_EventScript_AideGivePokeBalls
+	applymovement LOCALID_AIDE, ElmsLab_Movement_AideReturnAfterPokeBallGift
+	waitmovement 0
 	applymovement LOCALID_OAK, ElmsLab_Movement_OakReturnAfterPokedex
 	waitmovement 0
 	setvar VAR_ELMS_LAB_STARTER_STATE, 5
@@ -515,56 +557,128 @@ ElmsLab_EventScript_CancelSpecies::
 ElmsLab_EventScript_GiveBulbasaur::
 	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BULBASAUR
+	call ElmsLab_EventScript_StoreKantoGrassStarter
 	givemon SPECIES_BULBASAUR, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveCharmander::
 	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHARMANDER
+	call ElmsLab_EventScript_StoreKantoFireStarter
 	givemon SPECIES_CHARMANDER, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveSquirtle::
 	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_SQUIRTLE
+	call ElmsLab_EventScript_StoreKantoWaterStarter
 	givemon SPECIES_SQUIRTLE, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveChikorita::
 	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
+	call ElmsLab_EventScript_StoreJohtoGrassStarter
 	givemon SPECIES_CHIKORITA, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveCyndaquil::
 	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
+	call ElmsLab_EventScript_StoreJohtoFireStarter
 	givemon SPECIES_CYNDAQUIL, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveTotodile::
 	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
+	call ElmsLab_EventScript_StoreJohtoWaterStarter
 	givemon SPECIES_TOTODILE, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveTreecko::
 	bufferspeciesname STR_VAR_1, SPECIES_TREECKO
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TREECKO
+	call ElmsLab_EventScript_StoreHoennGrassStarter
 	givemon SPECIES_TREECKO, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveTorchic::
 	bufferspeciesname STR_VAR_1, SPECIES_TORCHIC
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORCHIC
+	call ElmsLab_EventScript_StoreHoennFireStarter
 	givemon SPECIES_TORCHIC, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
 
 ElmsLab_EventScript_GiveMudkip::
 	bufferspeciesname STR_VAR_1, SPECIES_MUDKIP
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MUDKIP
+	call ElmsLab_EventScript_StoreHoennWaterStarter
 	givemon SPECIES_MUDKIP, 5
 	goto ElmsLab_EventScript_FinishGiveStarter
+
+ElmsLab_EventScript_StoreKantoGrassStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_BULBASAUR
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_KANTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_GRASS
+	setflag FLAG_TRISKELION_CHOSE_KANTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreKantoFireStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_CHARMANDER
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_KANTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_FIRE
+	setflag FLAG_TRISKELION_CHOSE_KANTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreKantoWaterStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_SQUIRTLE
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_KANTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_WATER
+	setflag FLAG_TRISKELION_CHOSE_KANTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreJohtoGrassStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_CHIKORITA
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_JOHTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_GRASS
+	setflag FLAG_TRISKELION_CHOSE_JOHTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreJohtoFireStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_CYNDAQUIL
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_JOHTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_FIRE
+	setflag FLAG_TRISKELION_CHOSE_JOHTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreJohtoWaterStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_TOTODILE
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_JOHTO
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_WATER
+	setflag FLAG_TRISKELION_CHOSE_JOHTO_STARTER
+	return
+
+ElmsLab_EventScript_StoreHoennGrassStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_TREECKO
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_HOENN
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_GRASS
+	setflag FLAG_TRISKELION_CHOSE_HOENN_STARTER
+	return
+
+ElmsLab_EventScript_StoreHoennFireStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_TORCHIC
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_HOENN
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_FIRE
+	setflag FLAG_TRISKELION_CHOSE_HOENN_STARTER
+	return
+
+ElmsLab_EventScript_StoreHoennWaterStarter::
+	setvar VAR_TRISKELION_STARTER_SPECIES, SPECIES_MUDKIP
+	setvar VAR_TRISKELION_STARTER_REGION, STARTER_REGION_HOENN
+	setvar VAR_TRISKELION_STARTER_ELEMENT, STARTER_ELEMENT_WATER
+	setflag FLAG_TRISKELION_CHOSE_HOENN_STARTER
+	return
 
 ElmsLab_EventScript_FinishGiveStarter::
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, ElmsLab_EventScript_StarterToParty
@@ -603,7 +717,10 @@ ElmsLab_EventScript_StarterReceived::
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_GOT_ELMS_LAB_STARTER
+	clearflag FLAG_HIDE_POKELINK_PICKUP
 	setvar VAR_ELMS_LAB_STARTER_STATE, 4
+	setvar VAR_ACT1_STORY_STAGE, ACT1_STAGE_STARTER_RECEIVED
+	special PokeLink_RefreshWorldState
 	msgbox ElmsLab_Text_StarterReceived, MSGBOX_DEFAULT
 	release
 	end
@@ -619,6 +736,14 @@ ElmsLab_EventScript_PC::
 
 ElmsLab_EventScript_Bookshelf::
 	msgbox ElmsLab_Text_Bookshelf, MSGBOX_SIGN
+	end
+
+ElmsLab_EventScript_HealingMachine::
+	lockall
+	msgbox ElmsLab_Text_HealingMachine, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	releaseall
 	end
 
 ElmsLab_Text_OakBirchSurprise:
@@ -666,9 +791,24 @@ ElmsLab_Text_ElmComeBack:
 	.string "We'll set everything out together.$"
 
 ElmsLab_Text_ElmNineChoices:
-	.string "ELM: My, my! What a rare chance!\p"
-	.string "{PLAYER}, you may choose from\n"
-	.string "nine POKEMON today.\p"
+	.string "ELM: Three professors in one lab\n"
+	.string "is a little crowded, yes.\p"
+	.string "OAK: But the LEAGUE is changing.\n"
+	.string "JOHTO, KANTO, and HOENN are\l"
+	.string "not as separate as they were.\p"
+	.string "BIRCH: More fieldwork! More\n"
+	.string "habitats! More chances to get\l"
+	.string "chased by wild POKEMON!\p"
+	.string "ELM: And more responsibility\n"
+	.string "for new TRAINERS.\p"
+	.string "OAK: Eight sanctioned BADGES\n"
+	.string "qualify a TRAINER for the first\l"
+	.string "Champion Assessment.\p"
+	.string "BIRCH: After that, tournament\n"
+	.string "people start saying things like\l"
+	.string "interregional liability.\p"
+	.string "ELM: For now, choose carefully.\n"
+	.string "Your first partner will matter.\p"
 	.string "Talk to one of us, then check the\n"
 	.string "POKE BALLS on the table.$"
 
@@ -687,6 +827,14 @@ ElmsLab_Text_OakAfterStarter:
 	.string "OAK: Your journey is beginning.\p"
 	.string "Meet many POKEMON, and learn\n"
 	.string "all you can.$"
+
+ElmsLab_Text_OakDexNavSync:
+	.string "OAK: Your POKEDEX can use\n"
+	.string "a field-search module now.\p"
+	.string "I'll activate DEXNAV.$"
+
+ElmsLab_Text_DexNavUnlocked:
+	.string "DEXNAV app unlocked!$"
 
 ElmsLab_Text_BirchOffersPokemon:
 	.string "BIRCH: How about HOENN's three?\p"
@@ -761,8 +909,10 @@ ElmsLab_Text_ReceivedStarter:
 
 ElmsLab_Text_StarterReceived:
 	.string "ELM: A wonderful choice!\p"
-	.string "The party can wait. Your journey\n"
-	.string "should begin while the day is young.$"
+	.string "Take good care of that\n"
+	.string "POKEMON.\p"
+	.string "Your journey should begin\n"
+	.string "while the day is young.$"
 
 ElmsLab_Text_AlreadyChoseStarter:
 	.string "The remaining POKEMON are resting\n"
@@ -800,3 +950,7 @@ ElmsLab_Text_PC:
 ElmsLab_Text_Bookshelf:
 	.string "Books about POKEMON habitats are\n"
 	.string "packed onto the shelf.$"
+
+ElmsLab_Text_HealingMachine:
+	.string "You placed your POKEMON in the\n"
+	.string "healing machine.$"

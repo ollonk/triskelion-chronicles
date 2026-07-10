@@ -353,6 +353,9 @@ ifeq ($(COMPETITIVE_PARTY_SYNTAX),1)
 
 AUTO_GEN_TARGETS += $(DATA_SRC_SUBDIR)/trainers.h
 AUTO_GEN_TARGETS += $(DATA_SRC_SUBDIR)/battle_partners.h
+
+$(C_BUILDDIR)/data.o: $(DATA_SRC_SUBDIR)/trainers.h
+$(C_BUILDDIR)/battle_tower.o: $(DATA_SRC_SUBDIR)/battle_partners.h
 endif
 
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast

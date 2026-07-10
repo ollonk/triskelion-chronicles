@@ -899,6 +899,8 @@ static void TryUpdateGymLeaderRematchFromTrainer(void)
 
 static u16 GetTrainerFlagFromId(u16 trainerId)
 {
+    if (trainerId >= TRAINER_DORIAN_AZALEA_BULBASAUR && trainerId <= TRAINER_MARA_GOLDENROD_MARSHTOMP)
+        return ACT1_RIVAL_TRAINER_FLAGS_START + (trainerId - TRAINER_DORIAN_AZALEA_BULBASAUR);
     if (trainerId >= TRAINER_JOHTO_YOUNGSTER_JOEY && trainerId < TRAINERS_COUNT)
         return JOHTO_TRAINER_FLAGS_START + (trainerId - TRAINER_JOHTO_YOUNGSTER_JOEY);
     return TRAINER_FLAGS_START + trainerId;
@@ -1109,7 +1111,7 @@ void SetUpTwoTrainersBattle(void)
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     TrainerBattleParameter *temp = (TrainerBattleParameter*)(data + OPCODE_OFFSET);
-    return FlagGet(TRAINER_FLAGS_START + temp->params.opponentA);
+    return FlagGet(GetTrainerFlagFromId(temp->params.opponentA));
 }
 #undef OPCODE_OFFSET
 

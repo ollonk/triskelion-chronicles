@@ -14,9 +14,19 @@ Route32_EventScript_RouteSignSouth::
 	msgbox Route32_Text_RouteSignSouth, MSGBOX_SIGN
 	end
 
+Route32_EventScript_BirdWatcher::
+	msgbox Route32_Text_BirdWatcher, MSGBOX_NPC
+	end
+
 Route32_Text_RouteSignSouth::
 	.string "UNION CAVE\n"
 	.string "AHEAD$"
+
+Route32_Text_BirdWatcher::
+	.string "HOOTHOOT sleep through\n"
+	.string "daytime battles.\p"
+	.string "At night, they watch\n"
+	.string "every step.$"
 
 Route32_EventScript_Justin::
 	trainerbattle_single TRAINER_JOHTO_FISHERMAN_JUSTIN, Route32_Text_JustinIntro, Route32_Text_JustinDefeat

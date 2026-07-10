@@ -5,14 +5,31 @@ Route30_EventScript_RouteSign::
 	msgbox Route30_Text_RouteSign, MSGBOX_SIGN
 	end
 
+Route30_EventScript_MrPokemonsHouseSign::
+	msgbox Route30_Text_MrPokemonsHouseSign, MSGBOX_SIGN
+	end
+
+Route30_EventScript_BerryKeeper::
+	msgbox Route30_Text_BerryKeeper, MSGBOX_NPC
+	end
+
 Route30_Text_RouteSign::
 	.string "ROUTE 30\n"
-	.string "VIOLET CITY -\n"
+	.string "ROUTE 31 -\n"
 	.string "CHERRYGROVE CITY$"
 
-Route30_EventScript_Joey::
-	trainerbattle_single TRAINER_JOHTO_YOUNGSTER_JOEY, Route30_Text_JoeyIntro, Route30_Text_JoeyDefeat
-	msgbox Route30_Text_TrainerPostBattle, MSGBOX_AUTOCLOSE
+Route30_Text_MrPokemonsHouseSign::
+	.string "MR. POKEMON'S HOUSE$"
+
+Route30_Text_BerryKeeper::
+	.string "Those BERRY trees are for\n"
+	.string "passing TRAINERS.\p"
+	.string "Take what you need, and\n"
+	.string "check back another day.$"
+
+Route30_EventScript_Calvin::
+	trainerbattle_single TRAINER_ACT1_YOUNGSTER_CALVIN, Route30_Text_CalvinIntro, Route30_Text_CalvinDefeat
+	msgbox Route30_Text_CalvinPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route30_EventScript_Mikey::
@@ -25,15 +42,26 @@ Route30_EventScript_Don::
 	msgbox Route30_Text_TrainerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route30_Text_JoeyIntro::
-	.string "I just lost, so I'm\n"
-	.string "trying to find more\l"
-	.string "POKEMON.\p"
-	.string "Wait! You look weak!\n"
-	.string "Come on, let's battle!$"
+Route30_EventScript_Mira::
+	trainerbattle_single TRAINER_ACT1_LASS_MIRA, Route30_Text_MiraIntro, Route30_Text_MiraDefeat
+	msgbox Route30_Text_MiraPostBattle, MSGBOX_AUTOCLOSE
+	end
 
-Route30_Text_JoeyDefeat::
-	.string "Aww, I lost again!$"
+Route30_Text_CalvinIntro::
+	.string "This spot's open today,\n"
+	.string "so I'm training here.\p"
+	.string "Want a battle?$"
+
+Route30_Text_CalvinDefeat::
+	.string "Aww, back to training!$"
+
+Route30_Text_CalvinPostBattle::
+	.string "My friend JOEY hasn't been\n"
+	.string "around lately.\p"
+	.string "He used to call everyone\n"
+	.string "about his RATTATA.\p"
+	.string "Maybe he finally found\n"
+	.string "something better to do.$"
 
 Route30_Text_MikeyIntro::
 	.string "You're a POKEMON\n"
@@ -52,6 +80,19 @@ Route30_Text_DonIntro::
 
 Route30_Text_DonDefeat::
 	.string "My bugs were squished!$"
+
+Route30_Text_MiraIntro::
+	.string "My POKEMON and I are\n"
+	.string "checking the north path.\p"
+	.string "Battle me if you're\n"
+	.string "heading that way!$"
+
+Route30_Text_MiraDefeat::
+	.string "Your path looks clear.$"
+
+Route30_Text_MiraPostBattle::
+	.string "A good route team needs\n"
+	.string "answers for small surprises.$"
 
 Route30_Text_TrainerPostBattle::
 	.string "Route battles are the\n"

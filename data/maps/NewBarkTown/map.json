@@ -20,27 +20,42 @@
     }
   ],
   "object_events": [
-    {
-      "local_id": "LOCALID_SURPRISE_BLOCKER",
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 4,
+        {
+            "local_id": "LOCALID_SURPRISE_BLOCKER",
+            "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+            "x": 4,
       "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NewBarkTown_EventScript_SurpriseBlocker",
-      "flag": "FLAG_GOT_ELMS_LAB_STARTER"
-    }
-  ],
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "NewBarkTown_EventScript_SurpriseBlocker",
+            "flag": "FLAG_GOT_POKELINK"
+        },
+        {
+            "local_id": "LOCALID_POKELINK_REMINDER",
+            "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+            "x": 12,
+            "y": 10,
+            "elevation": 3,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "NewBarkTown_EventScript_PokeLinkReminder",
+            "flag": "0"
+        }
+    ],
   "warp_events": [
     {
+      "_comment": "Temporary developer entrance. This Elm house warp previously pointed incorrectly to Pallet Town; route it to the debug room until Elm's house interior is finalized.",
       "x": 17,
       "y": 14,
       "elevation": 0,
-      "dest_map": "MAP_RG_PALLET_TOWN",
+      "dest_map": "MAP_DEBUG_ROOM",
       "dest_warp_id": "0"
     },
     {

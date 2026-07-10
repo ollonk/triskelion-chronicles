@@ -1,5 +1,7 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "bg.h"
+#include "data.h"
 #include "day_night.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -16,12 +18,14 @@
 #include "malloc.h"
 #include "menu.h"
 #include "metatile_behavior.h"
+#include "match_call.h"
 #include "money.h"
 #include "overworld.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "pokelink.h"
 #include "random.h"
+#include "region_map.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -38,10 +42,15 @@
 #include "window.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
+#include "constants/flags.h"
+#include "constants/hold_effects.h"
 #include "constants/rgb.h"
 #include "constants/items.h"
+#include "constants/map_groups.h"
+#include "constants/rematches.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "constants/vars.h"
 
 enum
 {
@@ -62,11 +71,15 @@ enum
     POKELINK_STATE_SIGHTINGS_DETAIL,
     POKELINK_STATE_COLLECTION_LIST,
     POKELINK_STATE_COLLECTION_DETAIL,
+    POKELINK_STATE_PHONE_LIST,
+    POKELINK_STATE_PHONE_CALL,
+    POKELINK_STATE_MESSAGES_LIST,
+    POKELINK_STATE_MESSAGES_DETAIL,
     POKELINK_STATE_LAUNCH,
     POKELINK_STATE_EXIT,
 };
 
-#define POKELINK_TEST_UNLOCK_ALL TRUE
+#define POKELINK_TEST_UNLOCK_ALL FALSE
 #define POKELINK_GRID_COLS 4
 #define POKELINK_GRID_ROWS 3
 #define POKELINK_PAGE_SIZE (POKELINK_GRID_COLS * POKELINK_GRID_ROWS)
@@ -89,7 +102,22 @@ enum
 #define POKELINK_SIGHTINGS_VISIBLE_ROWS 7
 #define POKELINK_SIGHTINGS_FLAG_NONE 0xFFFF
 #define POKELINK_COLLECTION_VISIBLE_ROWS 6
+#define POKELINK_COLLECTION_DETAIL_VISIBLE_ROWS 6
 #define POKELINK_COLLECTION_FLAG_NONE 0xFFFF
+#define POKELINK_COLLECTION_POPUP_WAIT_FRAMES 210
+#define POKELINK_COLLECTION_POPUP_WINDOW_WIDTH 26
+#define POKELINK_COLLECTION_POPUP_WINDOW_HEIGHT 8
+#define POKELINK_COLLECTION_POPUP_FRAME_X 29
+#define POKELINK_COLLECTION_POPUP_FRAME_WIDTH 150
+#define POKELINK_COLLECTION_POPUP_FRAME_HEIGHT 56
+#define POKELINK_COLLECTION_POPUP_IN_Y 4
+#define POKELINK_COLLECTION_POPUP_OUT_Y -56
+#define POKELINK_COLLECTION_POPUP_SLIDE_SPEED 4
+#define POKELINK_COLLECTION_POPUP_SLIDE_FRAMES ((POKELINK_COLLECTION_POPUP_IN_Y - POKELINK_COLLECTION_POPUP_OUT_Y) / POKELINK_COLLECTION_POPUP_SLIDE_SPEED)
+#define POKELINK_COLLECTION_POPUP_PALETTE_MASK (1 << 15)
+#define POKELINK_PHONE_VISIBLE_ROWS 7
+#define POKELINK_MESSAGE_VISIBLE_ROWS 6
+#define POKELINK_MESSAGE_FLAG_NONE 0xFFFF
 
 struct PokeLinkApp
 {
@@ -119,7 +147,6 @@ struct PokeLinkSightingsEntry
 struct PokeLinkCollectionArea
 {
     const u8 *name;
-    u16 visitedFlag;
 };
 
 struct PokeLinkCollectionCategory
@@ -137,7 +164,16 @@ struct PokeLinkCollectionEntry
     u16 seenFlag;
     u16 obtainedFlag;
     u16 lockedFlag;
+    u16 notificationFlag;
     const u8 *note;
+};
+
+struct PokeLinkReceivedMessage
+{
+    const u8 *sender;
+    const u8 *subject;
+    const u8 *body;
+    u16 visibleFlag;
 };
 
 struct PokeLinkState
@@ -173,16 +209,45 @@ static void MoveSightingsCursor(s16 *cursor, s16 *top, s8 delta);
 static u8 GetSightingsStatus(const struct PokeLinkSightingsEntry *entry);
 static const u8 *GetSightingsStatusText(u8 status);
 static const u8 *GetSightingsDisplayName(const struct PokeLinkSightingsEntry *entry, u8 status);
-static void DrawCollectionList(u8 mode, u8 cursor, u8 top);
-static void DrawCollectionDetail(u8 mode, u8 cursor);
-static void MoveCollectionCursor(s16 *cursor, s16 *top, s8 delta, u8 mode);
-static u8 ToggleCollectionMode(s16 *cursor, s16 *top, u8 mode);
+static void DrawCollectionList(u8 cursor, u8 top);
+static void DrawCollectionDetail(u8 cursor, u8 top);
+static void MoveCollectionCursor(s16 *cursor, s16 *top, s8 delta);
+static void MoveCollectionDetailTop(s16 *top, s8 delta, u8 category);
 static void GetCollectionAreaProgress(u8 area, u8 *found, u8 *total);
 static void GetCollectionCategoryProgress(u8 category, u8 *found, u8 *total);
+static void GetCollectionCompletionistProgress(u8 *found, u8 *total);
+static u8 CountCollectionCategoryEntries(u8 category);
+static u8 CountCollectionDetailRows(u8 category);
+static bool8 IsMegaEvolutionUnlocked(void);
+static bool8 IsCollectionCategoryUnlocked(u8 category);
+static bool8 IsCollectionCompletionistCategory(u8 category);
+static bool8 IsCollectionEntryNotifiable(const struct PokeLinkCollectionEntry *entry);
 static u8 GetCollectionEntryStatus(const struct PokeLinkCollectionEntry *entry);
 static const u8 *GetCollectionStatusText(u8 status);
+static const u8 *GetCollectionAreaDisplayName(u8 area, u8 found);
 static const u8 *GetCollectionEntryDisplayName(const struct PokeLinkCollectionEntry *entry, u8 status);
+static const u8 *GetCollectionEntryAreaDisplayName(const struct PokeLinkCollectionEntry *entry, u8 status);
+static const u8 *GetCollectionProgressText(u8 category, u8 found, u8 total);
 static u8 *BufferCollectionProgress(u8 found, u8 total);
+static void QueueCollectionLogPopup(const u8 *itemName);
+static void Task_CollectionLogPopup(u8 taskId);
+static bool8 CollectionLogPopupShouldWait(void);
+static bool8 CollectionLogPopupShouldDismiss(void);
+static u8 GetCollectionLogPopupBlendCoeff(u8 timer, bool8 fadeOut);
+static void DrawCollectionLogPopup(u8 windowId, s16 y, u8 blendCoeff);
+static void FillCollectionLogPopupRectClipped(u8 windowId, s16 x, s16 y, s16 width, s16 height, u8 color);
+static void EndCollectionLogPopup(u8 taskId);
+static void DrawPhoneList(u8 cursor, u8 top);
+static void DrawPhoneCall(u8 cursor);
+static void MovePhoneCursor(s16 *cursor, s16 *top, s8 delta);
+static u8 CountRegisteredPhoneContacts(void);
+static u8 GetPhoneContactRematchId(u8 contactIndex);
+static u8 *BufferPhoneContactLocation(u8 rematchId);
+static void DrawMessagesList(u8 cursor, u8 top);
+static void DrawMessageDetail(u8 cursor);
+static void MoveMessageCursor(s16 *cursor, s16 *top, s8 delta);
+static u8 CountVisibleMessages(void);
+static const struct PokeLinkReceivedMessage *GetVisibleMessage(u8 messageIndex);
 static void FillPokeLinkAppsRectClipped(s16 x, s16 y, s16 width, s16 height, u8 color);
 static void DrawGloomscrollPost(s16 y, u8 accent, const u8 *handle, const u8 *body);
 static void DrawGloomscrollShort(s16 x, u8 accent, const u8 *caption);
@@ -235,6 +300,9 @@ static const u8 sText_PokeLinkConfirmHelp[] = _("{DPAD_UPDOWN} Pick {A_BUTTON} O
 static const u8 sText_PokeLinkFavoriteSet[] = _("Added to quick shortcuts.");
 static const u8 sText_PokeLinkFavoriteCleared[] = _("Removed from quick shortcuts.");
 static const u8 sText_PokeLinkCannotFavorite[] = _("This app can't be a shortcut.");
+static const u8 sText_PokeLinkNoApps[] = _("No apps installed.");
+static const u8 sText_PokeLinkNoAppsDetail[] = _("Talk to people around JOHTO\nto unlock POKéLINK apps.");
+static const u8 sText_PokeLinkNoAppsHelp[] = _("{B_BUTTON} Back");
 static const u8 sText_PokeLinkNone[] = _("None");
 static const u8 sText_PokeLinkName[] = _("Name");
 static const u8 sText_PokeLinkMoney[] = _("Money");
@@ -242,52 +310,52 @@ static const u8 sText_PokeLinkBadges[] = _("Badges");
 static const u8 sText_PokeLinkShortcutSet[] = _("Shortcut set");
 static const u8 sText_PokeLinkReady[] = _("Ready");
 static const u8 sText_AppMap[] = _("Map");
-static const u8 sText_AppSightings[] = _("Sightings");
+static const u8 sText_AppSightings[] = _("Encounters");
 static const u8 sText_AppCollectionLog[] = _("Collection Log");
 static const u8 sText_AppProfile[] = _("Tetris");
 static const u8 sText_AppGloomscroll[] = _("Gloomscroll");
 static const u8 sText_AppDexNav[] = _("DexNav");
 static const u8 sText_AppRadio[] = _("Radio");
 static const u8 sText_AppVsSeeker[] = _("VS Seeker");
-static const u8 sText_AppFlashlight[] = _("Flashlight");
+static const u8 sText_AppPhone[] = _("Phone");
 static const u8 sText_AppDelivery[] = _("Delibird Delivery");
 static const u8 sText_AppAbraCab[] = _("AbraCab");
-static const u8 sText_AppNotes[] = _("Notes");
+static const u8 sText_AppMessages[] = _("Messages");
 static const u8 sShort_Map[] = _("MAP");
-static const u8 sShort_Sightings[] = _("SEEN");
+static const u8 sShort_Sightings[] = _("ENCT");
 static const u8 sShort_CollectionLog[] = _("LOG");
 static const u8 sShort_Profile[] = _("TETR");
 static const u8 sShort_Gloomscroll[] = _("GLOM");
 static const u8 sShort_DexNav[] = _("DEX");
 static const u8 sShort_Radio[] = _("RDO");
 static const u8 sShort_VsSeeker[] = _("VS");
-static const u8 sShort_Flashlight[] = _("LITE");
+static const u8 sShort_Phone[] = _("CALL");
 static const u8 sShort_Delivery[] = _("DLVY");
 static const u8 sShort_AbraCab[] = _("CAB");
-static const u8 sShort_Notes[] = _("NOTE");
+static const u8 sShort_Messages[] = _("MSG");
 static const u8 sPokeLinkTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sPokeLinkDarkTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
+static const u8 sCollectionPopupTitleColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
+static const u8 sCollectionPopupTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 
 static const u8 sDesc_Map[] = _("Browse the region map.");
-static const u8 sDesc_Sightings[] = _("Tracks strange reports and unresolved sightings.");
+static const u8 sDesc_Sightings[] = _("Tracks local encounters and strange reports.");
 static const u8 sDesc_CollectionLog[] = _("Tracks items, gifts, hidden pickups, and treasures.");
 static const u8 sDesc_Profile[] = _("Stack blocks and chase a high score.");
 static const u8 sDesc_Gloomscroll[] = _("Lose track of time online.");
 static const u8 sDesc_DexNav[] = _("Field encounter search upgrade.");
 static const u8 sDesc_Radio[] = _("Pokégear-style radio channels.");
 static const u8 sDesc_VsSeeker[] = _("Trainer rematch tools.");
-static const u8 sDesc_Flashlight[] = _("Field lighting utility.");
+static const u8 sDesc_Phone[] = _("Call registered people.");
 static const u8 sDesc_Delivery[] = _("Order mart basics to the field.");
 static const u8 sDesc_AbraCab[] = _("Paid teleport travel service.");
-static const u8 sDesc_Notes[] = _("Story notes and quest reminders.");
+static const u8 sDesc_Messages[] = _("Received messages inbox.");
 
 static const u8 sMsg_DexNav[] = _("DexNav app installed.\pDEXNAV_ENABLED is currently FALSE, so the app is a stub for now.");
 static const u8 sMsg_Radio[] = _("Opening Radio...");
 static const u8 sMsg_VsSeeker[] = _("VS Seeker app installed.\pTODO: wire rematch tracking here and retire Match Call.");
-static const u8 sMsg_Flashlight[] = _("Flashlight app installed.\pTODO: call field lighting logic without requiring HM05.");
 static const u8 sMsg_Delivery[] = _("Opening Delibird Delivery...");
 static const u8 sMsg_AbraCab[] = _("Opening AbraCab...");
-static const u8 sMsg_Notes[] = _("Notes app prototype.\pTODO: populate this with event-flag-based story objectives.");
 static const u8 sMsg_Gloomscroll[] = _("GLOOMSCROLL closed.\pOkay! It's time to stop scrolling\nand go outside!");
 static const u8 sText_GloomscrollConfirmNight[] = _("Scroll until night?");
 static const u8 sText_GloomscrollConfirmMorning[] = _("Scroll until morning?");
@@ -351,41 +419,71 @@ static const u8 sText_SightingsCaughtNotes[] = _("Case closed in the field log."
 static const u8 sText_SightingsRumorGeneric[] = _("Old reports describe a rare presence.");
 static const u8 sText_SightingsWhereGeneric[] = _("Follow rumors before exact places.");
 static const u8 sText_SightingsConditionsGeneric[] = _("Check unusual local conditions.");
-static const u8 sText_CollectionHelpList[] = _("{DPAD_UPDOWN} Pick {A_BUTTON} Open {B_BUTTON} Back L/R Tab");
-static const u8 sText_CollectionHelpDetail[] = _("{B_BUTTON} List L/R Tab");
-static const u8 sText_CollectionAreaTab[] = _("AREA");
-static const u8 sText_CollectionCategoryTab[] = _("CATEGORY");
-static const u8 sText_CollectionListHeaderArea[] = _("AREA          FOUND  STATUS");
-static const u8 sText_CollectionListHeaderCategory[] = _("CATEGORY      FOUND  STATUS");
+static const u8 sText_CollectionHelpList[] = _("{DPAD_UPDOWN} Pick {A_BUTTON} Open {B_BUTTON} Back");
+static const u8 sText_CollectionHelpDetail[] = _("{DPAD_UPDOWN} Scroll {B_BUTTON} Categories");
+static const u8 sText_CollectionListHeader[] = _("CATEGORY      FOUND  STATUS");
 static const u8 sText_CollectionFoundLabel[] = _("Found:");
 static const u8 sText_CollectionStatusLabel[] = _("Status:");
-static const u8 sText_CollectionUnknown[] = _("Unknown");
-static const u8 sText_CollectionSurveyed[] = _("Surveyed");
+static const u8 sText_CollectionUnknown[] = _("Missing");
+static const u8 sText_CollectionSurveyed[] = _("Partial");
 static const u8 sText_CollectionSeen[] = _("Seen");
 static const u8 sText_CollectionLocked[] = _("Locked");
-static const u8 sText_CollectionClaimed[] = _("Claimed");
-static const u8 sText_CollectionCleared[] = _("Cleared");
-static const u8 sText_CollectionUnknownItem[] = _("???");
-static const u8 sText_CollectionNoNote[] = _("Future log hooks go here.");
+static const u8 sText_CollectionClaimed[] = _("Found");
+static const u8 sText_CollectionCleared[] = _("Complete");
+static const u8 sText_CollectionUnknownItem[] = _("????");
+static const u8 sText_CollectionNoNote[] = _("No entries logged yet.");
+static const u8 sText_CollectionLockedProgress[] = _("--");
+static const u8 sText_CollectionMegaLocked[] = _("Unlock Mega Evolution to\ntrack Mega Stones.");
+static const u8 sText_CollectionPopupNewItem[] = _("New item:");
+static const u8 sText_CollectionPopupDemoItem[] = _("Rare Candy");
+static const u8 sText_PhoneHelpList[] = _("{DPAD_UPDOWN} Pick {A_BUTTON} Call {B_BUTTON} Back");
+static const u8 sText_PhoneHelpCall[] = _("{A_BUTTON}/{B_BUTTON} Hang up");
+static const u8 sText_PhoneListHeader[] = _("CONTACT     LOCATION");
+static const u8 sText_PhoneNoContacts[] = _("No registered contacts.");
+static const u8 sText_PhoneCalling[] = _("Calling...");
+static const u8 sText_MessagesHelpList[] = _("{DPAD_UPDOWN} Pick {A_BUTTON} Read {B_BUTTON} Back");
+static const u8 sText_MessagesHelpDetail[] = _("{B_BUTTON} Inbox");
+static const u8 sText_MessagesListHeader[] = _("INBOX       MESSAGE");
+static const u8 sText_MessagesNoMessages[] = _("No received messages.");
+static const u8 sText_MessageSenderMom[] = _("MOM");
+static const u8 sText_MessageSenderElm[] = _("ELM");
+static const u8 sText_MessageSenderPokeLink[] = _("POKéLINK");
+static const u8 sText_MessageSenderMara[] = _("MARA");
+static const u8 sText_MessageSenderDorian[] = _("DORIAN");
+static const u8 sText_MessageSubjectWelcome[] = _("Welcome");
+static const u8 sText_MessageSubjectStarter[] = _("Your partner");
+static const u8 sText_MessageSubjectMap[] = _("Map online");
+static const u8 sText_MessageSubjectMara[] = _("Route 29");
+static const u8 sText_MessageSubjectDorian[] = _("Azalea");
+static const u8 sText_MessageSubjectMaraGoldenrod[] = _("Goldenrod");
+static const u8 sText_MessageSubjectRadio[] = _("Radio");
+static const u8 sText_MessageBodyWelcome[] = _("MOM: Keep your POKéLINK charged.\nCall if you get lonely.");
+static const u8 sText_MessageBodyStarter[] = _("ELM: Take good care of your\nnew partner POKéMON!");
+static const u8 sText_MessageBodyMap[] = _("POKéLINK: Map service activated.\nStay aware of your route.");
+static const u8 sText_MessageBodyMara[] = _("MARA: Not bad back there.\nDon't let it go to your head.");
+static const u8 sText_MessageBodyDorian[] = _("DORIAN: Bad read. Train before\nBugsy. I will.");
+static const u8 sText_MessageBodyMaraGoldenrod[] = _("MARA: Goldenrod is huge.\nSnacks helped. Battle helped more.");
+static const u8 sText_MessageBodyRadio[] = _("POKéLINK: Radio channels are now\navailable from your device.");
 static const u8 sText_AreaRoute29[] = _("Route 29");
+static const u8 sText_AreaRoute30[] = _("Route 30");
+static const u8 sText_AreaRoute31[] = _("Route 31");
+static const u8 sText_AreaRoute32[] = _("Route 32");
+static const u8 sText_AreaRoute33[] = _("Route 33");
+static const u8 sText_AreaRoute34[] = _("Route 34");
+static const u8 sText_AreaCherrygroveCity[] = _("Cherrygrove");
 static const u8 sText_AreaVioletCity[] = _("Violet City");
+static const u8 sText_AreaSproutTower[] = _("Sprout Tower");
+static const u8 sText_AreaIlexForest[] = _("Ilex Forest");
 static const u8 sText_AreaAzaleaTown[] = _("Azalea Town");
 static const u8 sText_AreaGoldenrodCity[] = _("Goldenrod");
 static const u8 sText_AreaNationalPark[] = _("Natl. Park");
 static const u8 sText_AreaRuinsOfAlph[] = _("Ruins Alph");
 static const u8 sText_CategoryTmsHms[] = _("TMs/HMs");
-static const u8 sText_CategoryBattleItems[] = _("Battle Items");
-static const u8 sText_CategoryMegaStones[] = _("Mega Stones");
 static const u8 sText_CategoryHeldItems[] = _("Held Items");
-static const u8 sText_CategoryEvolutionItems[] = _("Evo Items");
-static const u8 sText_CategoryMedicine[] = _("Medicine");
-static const u8 sText_CategoryPokeBalls[] = _("Poke Balls");
-static const u8 sText_CategoryBerries[] = _("Berries");
-static const u8 sText_CategoryValuables[] = _("Valuables");
-static const u8 sText_CategoryKeyItems[] = _("Key Items");
-static const u8 sText_CategoryGiftsTrades[] = _("Gifts/Trades");
-static const u8 sText_CategoryHiddenItems[] = _("Hidden Items");
-static const u8 sText_CategoryOther[] = _("Other");
+static const u8 sText_CategoryMegaStones[] = _("Mega Stones");
+static const u8 sText_CategoryEvolutionItems[] = _("Evolution Items");
+static const u8 sText_CategoryOther[] = _("Misc/Other");
+static const u8 sText_CategoryCompletionist[] = _("Completionist");
 static const u8 sText_CollectionNoteVisible[] = _("Visible pickup.");
 static const u8 sText_CollectionNoteHidden[] = _("Hidden pickup.");
 static const u8 sText_CollectionNoteGift[] = _("Gift or reward.");
@@ -403,12 +501,6 @@ enum
 
 enum
 {
-    COLLECTION_MODE_AREA,
-    COLLECTION_MODE_CATEGORY
-};
-
-enum
-{
     COLLECTION_STATUS_UNKNOWN,
     COLLECTION_STATUS_SURVEYED,
     COLLECTION_STATUS_SEEN,
@@ -420,25 +512,26 @@ enum
 enum
 {
     COLLECTION_CAT_TMS_HMS,
-    COLLECTION_CAT_BATTLE_ITEMS,
-    COLLECTION_CAT_MEGA_STONES,
     COLLECTION_CAT_HELD_ITEMS,
+    COLLECTION_CAT_MEGA_STONES,
     COLLECTION_CAT_EVOLUTION_ITEMS,
-    COLLECTION_CAT_MEDICINE,
-    COLLECTION_CAT_POKE_BALLS,
-    COLLECTION_CAT_BERRIES,
-    COLLECTION_CAT_VALUABLES,
-    COLLECTION_CAT_KEY_ITEMS,
-    COLLECTION_CAT_GIFTS_TRADES,
-    COLLECTION_CAT_HIDDEN_ITEMS,
     COLLECTION_CAT_OTHER,
+    COLLECTION_CAT_COMPLETIONIST,
     COLLECTION_CAT_COUNT
 };
 
 enum
 {
     COLLECTION_AREA_ROUTE_29,
+    COLLECTION_AREA_ROUTE_30,
+    COLLECTION_AREA_ROUTE_31,
+    COLLECTION_AREA_ROUTE_32,
+    COLLECTION_AREA_ROUTE_33,
+    COLLECTION_AREA_ROUTE_34,
+    COLLECTION_AREA_CHERRYGROVE_CITY,
     COLLECTION_AREA_VIOLET_CITY,
+    COLLECTION_AREA_SPROUT_TOWER,
+    COLLECTION_AREA_ILEX_FOREST,
     COLLECTION_AREA_AZALEA_TOWN,
     COLLECTION_AREA_GOLDENROD_CITY,
     COLLECTION_AREA_NATIONAL_PARK,
@@ -501,7 +594,7 @@ static const struct PokeLinkSightingsEntry sSightingsEntries[] =
 
 #undef SIGHTING_ENTRY
 
-#define COLLECTION_ENTRY(_item, _category, _area, _qty, _note)                  \
+#define COLLECTION_ENTRY(_item, _category, _area, _qty, _obtainedFlag, _note)   \
     {                                                                           \
         .itemId = _item,                                                        \
         .category = _category,                                                  \
@@ -509,55 +602,115 @@ static const struct PokeLinkSightingsEntry sSightingsEntries[] =
         .quantity = _qty,                                                       \
         .visibilityFlag = POKELINK_COLLECTION_FLAG_NONE,                        \
         .seenFlag = POKELINK_COLLECTION_FLAG_NONE,                              \
-        .obtainedFlag = POKELINK_COLLECTION_FLAG_NONE,                          \
+        .obtainedFlag = _obtainedFlag,                                          \
         .lockedFlag = POKELINK_COLLECTION_FLAG_NONE,                            \
+        .notificationFlag = POKELINK_COLLECTION_FLAG_NONE,                      \
+        .note = _note,                                                          \
+    }
+
+#define COLLECTION_ENTRY_NOTIFY(_item, _category, _area, _qty, _obtainedFlag, _notificationFlag, _note) \
+    {                                                                           \
+        .itemId = _item,                                                        \
+        .category = _category,                                                  \
+        .area = _area,                                                          \
+        .quantity = _qty,                                                       \
+        .visibilityFlag = POKELINK_COLLECTION_FLAG_NONE,                        \
+        .seenFlag = POKELINK_COLLECTION_FLAG_NONE,                              \
+        .obtainedFlag = _obtainedFlag,                                          \
+        .lockedFlag = POKELINK_COLLECTION_FLAG_NONE,                            \
+        .notificationFlag = _notificationFlag,                                  \
         .note = _note,                                                          \
     }
 
 static const struct PokeLinkCollectionArea sCollectionAreas[] =
 {
-    [COLLECTION_AREA_ROUTE_29] = {sText_AreaRoute29, POKELINK_COLLECTION_FLAG_NONE},
-    [COLLECTION_AREA_VIOLET_CITY] = {sText_AreaVioletCity, POKELINK_COLLECTION_FLAG_NONE},
-    [COLLECTION_AREA_AZALEA_TOWN] = {sText_AreaAzaleaTown, POKELINK_COLLECTION_FLAG_NONE},
-    [COLLECTION_AREA_GOLDENROD_CITY] = {sText_AreaGoldenrodCity, POKELINK_COLLECTION_FLAG_NONE},
-    [COLLECTION_AREA_NATIONAL_PARK] = {sText_AreaNationalPark, POKELINK_COLLECTION_FLAG_NONE},
-    [COLLECTION_AREA_RUINS_OF_ALPH] = {sText_AreaRuinsOfAlph, POKELINK_COLLECTION_FLAG_NONE},
+    [COLLECTION_AREA_ROUTE_29] = {sText_AreaRoute29},
+    [COLLECTION_AREA_ROUTE_30] = {sText_AreaRoute30},
+    [COLLECTION_AREA_ROUTE_31] = {sText_AreaRoute31},
+    [COLLECTION_AREA_ROUTE_32] = {sText_AreaRoute32},
+    [COLLECTION_AREA_ROUTE_33] = {sText_AreaRoute33},
+    [COLLECTION_AREA_ROUTE_34] = {sText_AreaRoute34},
+    [COLLECTION_AREA_CHERRYGROVE_CITY] = {sText_AreaCherrygroveCity},
+    [COLLECTION_AREA_VIOLET_CITY] = {sText_AreaVioletCity},
+    [COLLECTION_AREA_SPROUT_TOWER] = {sText_AreaSproutTower},
+    [COLLECTION_AREA_ILEX_FOREST] = {sText_AreaIlexForest},
+    [COLLECTION_AREA_AZALEA_TOWN] = {sText_AreaAzaleaTown},
+    [COLLECTION_AREA_GOLDENROD_CITY] = {sText_AreaGoldenrodCity},
+    [COLLECTION_AREA_NATIONAL_PARK] = {sText_AreaNationalPark},
+    [COLLECTION_AREA_RUINS_OF_ALPH] = {sText_AreaRuinsOfAlph},
 };
 
 static const struct PokeLinkCollectionCategory sCollectionCategories[] =
 {
     [COLLECTION_CAT_TMS_HMS] = {sText_CategoryTmsHms},
-    [COLLECTION_CAT_BATTLE_ITEMS] = {sText_CategoryBattleItems},
-    [COLLECTION_CAT_MEGA_STONES] = {sText_CategoryMegaStones},
     [COLLECTION_CAT_HELD_ITEMS] = {sText_CategoryHeldItems},
+    [COLLECTION_CAT_MEGA_STONES] = {sText_CategoryMegaStones},
     [COLLECTION_CAT_EVOLUTION_ITEMS] = {sText_CategoryEvolutionItems},
-    [COLLECTION_CAT_MEDICINE] = {sText_CategoryMedicine},
-    [COLLECTION_CAT_POKE_BALLS] = {sText_CategoryPokeBalls},
-    [COLLECTION_CAT_BERRIES] = {sText_CategoryBerries},
-    [COLLECTION_CAT_VALUABLES] = {sText_CategoryValuables},
-    [COLLECTION_CAT_KEY_ITEMS] = {sText_CategoryKeyItems},
-    [COLLECTION_CAT_GIFTS_TRADES] = {sText_CategoryGiftsTrades},
-    [COLLECTION_CAT_HIDDEN_ITEMS] = {sText_CategoryHiddenItems},
     [COLLECTION_CAT_OTHER] = {sText_CategoryOther},
+    [COLLECTION_CAT_COMPLETIONIST] = {sText_CategoryCompletionist},
 };
 
 static const struct PokeLinkCollectionEntry sCollectionEntries[] =
 {
-    COLLECTION_ENTRY(ITEM_POTION,      COLLECTION_CAT_MEDICINE,        COLLECTION_AREA_ROUTE_29,      1, sText_CollectionNoteVisible),
-    COLLECTION_ENTRY(ITEM_POKE_BALL,   COLLECTION_CAT_POKE_BALLS,      COLLECTION_AREA_ROUTE_29,      3, sText_CollectionNoteGift),
-    COLLECTION_ENTRY(ITEM_ORAN_BERRY,  COLLECTION_CAT_BERRIES,         COLLECTION_AREA_ROUTE_29,      1, sText_CollectionNoteHidden),
-    COLLECTION_ENTRY(ITEM_TM01,        COLLECTION_CAT_TMS_HMS,         COLLECTION_AREA_VIOLET_CITY,   1, sText_CollectionNoteGift),
-    COLLECTION_ENTRY(ITEM_X_ATTACK,    COLLECTION_CAT_BATTLE_ITEMS,    COLLECTION_AREA_VIOLET_CITY,   1, sText_CollectionNoteVisible),
-    COLLECTION_ENTRY(ITEM_FIRE_STONE,  COLLECTION_CAT_EVOLUTION_ITEMS, COLLECTION_AREA_AZALEA_TOWN,   1, sText_CollectionNoteProgress),
-    COLLECTION_ENTRY(ITEM_LEFTOVERS,   COLLECTION_CAT_HELD_ITEMS,      COLLECTION_AREA_GOLDENROD_CITY,1, sText_CollectionNoteHidden),
-    COLLECTION_ENTRY(ITEM_BICYCLE,     COLLECTION_CAT_KEY_ITEMS,       COLLECTION_AREA_GOLDENROD_CITY,1, sText_CollectionNoteGift),
-    COLLECTION_ENTRY(ITEM_NUGGET,      COLLECTION_CAT_VALUABLES,       COLLECTION_AREA_NATIONAL_PARK, 1, sText_CollectionNoteHidden),
-    COLLECTION_ENTRY(ITEM_VENUSAURITE, COLLECTION_CAT_MEGA_STONES,     COLLECTION_AREA_NATIONAL_PARK, 1, sText_CollectionNoteProgress),
-    COLLECTION_ENTRY(ITEM_HM01,        COLLECTION_CAT_TMS_HMS,         COLLECTION_AREA_RUINS_OF_ALPH, 1, sText_CollectionNoteGift),
-    COLLECTION_ENTRY(ITEM_NUGGET,      COLLECTION_CAT_HIDDEN_ITEMS,    COLLECTION_AREA_RUINS_OF_ALPH, 1, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY_NOTIFY(ITEM_TM01,  COLLECTION_CAT_TMS_HMS,         COLLECTION_AREA_VIOLET_CITY,       1, POKELINK_COLLECTION_FLAG_NONE, FLAG_COLLECTION_LOG_POPUP_TM01, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_HM_FLASH, COLLECTION_CAT_TMS_HMS,      COLLECTION_AREA_SPROUT_TOWER,      1, FLAG_RECEIVED_HM_FLASH,        FLAG_COLLECTION_LOG_POPUP_HM_FLASH, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_HM01,  COLLECTION_CAT_TMS_HMS,         COLLECTION_AREA_RUINS_OF_ALPH,     1, FLAG_RECEIVED_HM_CUT,          FLAG_COLLECTION_LOG_POPUP_HM_CUT, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_TM_THUNDERBOLT, COLLECTION_CAT_TMS_HMS, COLLECTION_AREA_GOLDENROD_CITY,   1, FLAG_RECEIVED_GOLDENROD_GAME_CORNER_TM_THUNDERBOLT,  FLAG_COLLECTION_LOG_POPUP_TM_THUNDERBOLT, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_TM_ICE_BEAM, COLLECTION_CAT_TMS_HMS,   COLLECTION_AREA_GOLDENROD_CITY,    1, FLAG_RECEIVED_GOLDENROD_GAME_CORNER_TM_ICE_BEAM,     FLAG_COLLECTION_LOG_POPUP_TM_ICE_BEAM, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_TM_FLAMETHROWER, COLLECTION_CAT_TMS_HMS, COLLECTION_AREA_GOLDENROD_CITY,  1, FLAG_RECEIVED_GOLDENROD_GAME_CORNER_TM_FLAMETHROWER, FLAG_COLLECTION_LOG_POPUP_TM_FLAMETHROWER, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_LEFTOVERS, COLLECTION_CAT_HELD_ITEMS,  COLLECTION_AREA_GOLDENROD_CITY,    1, POKELINK_COLLECTION_FLAG_NONE, FLAG_COLLECTION_LOG_POPUP_LEFTOVERS, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY_NOTIFY(ITEM_SILK_SCARF, COLLECTION_CAT_HELD_ITEMS, COLLECTION_AREA_GOLDENROD_CITY,    1, FLAG_RECEIVED_GOLDENROD_GAME_CORNER_SILK_SCARF,      FLAG_COLLECTION_LOG_POPUP_SILK_SCARF, sText_CollectionNoteGift),
+    COLLECTION_ENTRY_NOTIFY(ITEM_VENUSAURITE, COLLECTION_CAT_MEGA_STONES, COLLECTION_AREA_NATIONAL_PARK,   1, POKELINK_COLLECTION_FLAG_NONE, FLAG_COLLECTION_LOG_POPUP_VENUSAURITE, sText_CollectionNoteProgress),
+    COLLECTION_ENTRY_NOTIFY(ITEM_FIRE_STONE, COLLECTION_CAT_EVOLUTION_ITEMS, COLLECTION_AREA_AZALEA_TOWN,  1, POKELINK_COLLECTION_FLAG_NONE, FLAG_COLLECTION_LOG_POPUP_FIRE_STONE, sText_CollectionNoteProgress),
+    COLLECTION_ENTRY(ITEM_POTION,       COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_29,          1, FLAG_ITEM_ROUTE_29_POTION,     sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_POKE_BALL,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_29,          1, FLAG_HIDDEN_ITEM_ROUTE_29_POKE_BALL, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_POKE_BALL,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_29,         10, FLAG_RECEIVED_ELMS_LAB_POKE_BALLS, sText_CollectionNoteGift),
+    COLLECTION_ENTRY(ITEM_ORAN_BERRY,   COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_29,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_PECHA_BERRY,  COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_29,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_PEARL,        COLLECTION_CAT_OTHER,           COLLECTION_AREA_CHERRYGROVE_CITY,  1, FLAG_HIDDEN_ITEM_CHERRYGROVE_CITY_PEARL, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_ANTIDOTE,     COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_30,          1, FLAG_ITEM_ROUTE_30_ANTIDOTE,   sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_POTION,       COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_30,          1, FLAG_HIDDEN_ITEM_ROUTE_30_POTION, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_CHERI_BERRY,  COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_30,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_ORAN_BERRY,   COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_30,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_GREAT_BALL,   COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_31,          1, FLAG_ITEM_ROUTE_31_GREAT_BALL, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_TINY_MUSHROOM, COLLECTION_CAT_OTHER,          COLLECTION_AREA_ROUTE_31,          1, FLAG_HIDDEN_ITEM_ROUTE_31_TINY_MUSHROOM, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_SUPER_POTION, COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_32,          1, FLAG_ITEM_ROUTE_32_SUPER_POTION, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_GREAT_BALL,   COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_32,          1, FLAG_HIDDEN_ITEM_ROUTE_32_GREAT_BALL, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_LEPPA_BERRY,  COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_32,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_CHESTO_BERRY, COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_32,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_AWAKENING,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_33,          1, FLAG_ITEM_ROUTE_33_AWAKENING,  sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_TINY_MUSHROOM, COLLECTION_CAT_OTHER,          COLLECTION_AREA_ROUTE_33,          1, FLAG_HIDDEN_ITEM_ROUTE_33_TINY_MUSHROOM, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_FULL_HEAL,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_34,          1, FLAG_ITEM_ROUTE_34_FULL_HEAL,  sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_FULL_HEAL,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_34,          1, FLAG_HIDDEN_ITEM_ROUTE_34_FULL_HEAL, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_PERSIM_BERRY, COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_34,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_ASPEAR_BERRY, COLLECTION_CAT_OTHER,           COLLECTION_AREA_ROUTE_34,          1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY_NOTIFY(ITEM_X_ATTACK, COLLECTION_CAT_OTHER,        COLLECTION_AREA_VIOLET_CITY,       1, FLAG_ITEM_VIOLET_CITY_X_ATTACK, FLAG_COLLECTION_LOG_POPUP_X_ATTACK, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_PARALYZE_HEAL, COLLECTION_CAT_OTHER,          COLLECTION_AREA_VIOLET_CITY,       1, FLAG_HIDDEN_ITEM_VIOLET_CITY_PARALYZE_HEAL, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_ESCAPE_ROPE,  COLLECTION_CAT_OTHER,           COLLECTION_AREA_SPROUT_TOWER,      1, FLAG_ITEM_SPROUT_TOWER_1F_ESCAPE_ROPE, sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_SUPER_POTION, COLLECTION_CAT_OTHER,           COLLECTION_AREA_ILEX_FOREST,       1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteProgress),
+    COLLECTION_ENTRY(ITEM_ETHER,        COLLECTION_CAT_OTHER,           COLLECTION_AREA_ILEX_FOREST,       1, FLAG_ITEM_ILEX_FOREST_ETHER,  sText_CollectionNoteVisible),
+    COLLECTION_ENTRY(ITEM_TINY_MUSHROOM, COLLECTION_CAT_OTHER,          COLLECTION_AREA_ILEX_FOREST,       1, FLAG_HIDDEN_ITEM_ILEX_FOREST_TINY_MUSHROOM, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_SUPER_POTION, COLLECTION_CAT_OTHER,           COLLECTION_AREA_AZALEA_TOWN,       1, FLAG_HIDDEN_ITEM_AZALEA_TOWN_SUPER_POTION, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_BICYCLE,      COLLECTION_CAT_OTHER,           COLLECTION_AREA_GOLDENROD_CITY,    1, FLAG_RECEIVED_BIKE,            sText_CollectionNoteGift),
+    COLLECTION_ENTRY(ITEM_COIN_CASE,    COLLECTION_CAT_OTHER,           COLLECTION_AREA_GOLDENROD_CITY,    1, FLAG_RECEIVED_COIN_CASE,       sText_CollectionNoteGift),
+    COLLECTION_ENTRY(ITEM_ETHER,        COLLECTION_CAT_OTHER,           COLLECTION_AREA_GOLDENROD_CITY,    1, FLAG_HIDDEN_ITEM_GOLDENROD_CITY_ETHER, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_NUGGET,       COLLECTION_CAT_OTHER,           COLLECTION_AREA_NATIONAL_PARK,     1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteHidden),
+    COLLECTION_ENTRY(ITEM_NUGGET,       COLLECTION_CAT_OTHER,           COLLECTION_AREA_RUINS_OF_ALPH,     1, POKELINK_COLLECTION_FLAG_NONE, sText_CollectionNoteHidden),
 };
 
 #undef COLLECTION_ENTRY
+#undef COLLECTION_ENTRY_NOTIFY
+
+static const struct PokeLinkReceivedMessage sReceivedMessages[] =
+{
+    {sText_MessageSenderMom,      sText_MessageSubjectWelcome, sText_MessageBodyWelcome, POKELINK_MESSAGE_FLAG_NONE},
+    {sText_MessageSenderElm,      sText_MessageSubjectStarter, sText_MessageBodyStarter, FLAG_GOT_ELMS_LAB_STARTER},
+    {sText_MessageSenderPokeLink, sText_MessageSubjectMap,     sText_MessageBodyMap,     FLAG_POKELINK_APP_MAP},
+    {sText_MessageSenderMara,     sText_MessageSubjectMara,    sText_MessageBodyMara,    FLAG_DEFEATED_MARA_ROUTE29},
+    {sText_MessageSenderDorian,   sText_MessageSubjectDorian,  sText_MessageBodyDorian,  FLAG_DEFEATED_DORIAN_AZALEA},
+    {sText_MessageSenderPokeLink, sText_MessageSubjectRadio,   sText_MessageBodyRadio,   FLAG_POKELINK_APP_RADIO},
+    {sText_MessageSenderMara,     sText_MessageSubjectMaraGoldenrod, sText_MessageBodyMaraGoldenrod, FLAG_DEFEATED_MARA_GOLDENROD},
+};
 
 static const u16 sDelibirdDeliveryBasicItems[] =
 {
@@ -568,7 +721,7 @@ static const u16 sDelibirdDeliveryBasicItems[] =
     ITEM_AWAKENING,
     ITEM_ESCAPE_ROPE,
     ITEM_REPEL,
-    ITEM_NONE
+    ITEM_LIST_END
 };
 
 static const u16 sDelibirdDeliveryMidItems[] =
@@ -585,7 +738,7 @@ static const u16 sDelibirdDeliveryMidItems[] =
     ITEM_ESCAPE_ROPE,
     ITEM_REPEL,
     ITEM_SUPER_REPEL,
-    ITEM_NONE
+    ITEM_LIST_END
 };
 
 static const u16 sDelibirdDeliveryLateItems[] =
@@ -604,23 +757,23 @@ static const u16 sDelibirdDeliveryLateItems[] =
     ITEM_ESCAPE_ROPE,
     ITEM_SUPER_REPEL,
     ITEM_MAX_REPEL,
-    ITEM_NONE
+    ITEM_LIST_END
 };
 
 static const struct PokeLinkApp sPokeLinkApps[POKELINK_APP_COUNT] =
 {
     [POKELINK_APP_MAP]        = {sText_AppMap,        sShort_Map,        sDesc_Map,        NULL,             FLAG_POKELINK_APP_MAP,        FALSE, TRUE},
-    [POKELINK_APP_SIGHTINGS]  = {sText_AppSightings,  sShort_Sightings,  sDesc_Sightings,  NULL,             0,                            TRUE,  TRUE},
-    [POKELINK_APP_COLLECTION_LOG] = {sText_AppCollectionLog, sShort_CollectionLog, sDesc_CollectionLog, NULL, 0,                            TRUE,  TRUE},
-    [POKELINK_APP_PROFILE]    = {sText_AppProfile,    sShort_Profile,    sDesc_Profile,    NULL,             0,                            TRUE,  TRUE},
-    [POKELINK_APP_GLOOMSCROLL] = {sText_AppGloomscroll, sShort_Gloomscroll, sDesc_Gloomscroll, sMsg_Gloomscroll, 0,                            TRUE,  TRUE},
+    [POKELINK_APP_SIGHTINGS]  = {sText_AppSightings,  sShort_Sightings,  sDesc_Sightings,  NULL,             FLAG_POKELINK_APP_ENCOUNTERS, FALSE, TRUE},
+    [POKELINK_APP_COLLECTION_LOG] = {sText_AppCollectionLog, sShort_CollectionLog, sDesc_CollectionLog, NULL, FLAG_POKELINK_APP_COLLECTION_LOG, FALSE, TRUE},
+    [POKELINK_APP_PROFILE]    = {sText_AppProfile,    sShort_Profile,    sDesc_Profile,    NULL,             FLAG_POKELINK_APP_PROFILE,    FALSE, TRUE},
+    [POKELINK_APP_GLOOMSCROLL] = {sText_AppGloomscroll, sShort_Gloomscroll, sDesc_Gloomscroll, sMsg_Gloomscroll, FLAG_POKELINK_APP_GLOOMSCROLL, FALSE, TRUE},
     [POKELINK_APP_DEXNAV]     = {sText_AppDexNav,     sShort_DexNav,     sDesc_DexNav,     sMsg_DexNav,      FLAG_POKELINK_APP_DEXNAV,     FALSE, TRUE},
     [POKELINK_APP_RADIO]      = {sText_AppRadio,      sShort_Radio,      sDesc_Radio,      sMsg_Radio,       FLAG_POKELINK_APP_RADIO,      FALSE, TRUE},
     [POKELINK_APP_VS_SEEKER]  = {sText_AppVsSeeker,   sShort_VsSeeker,   sDesc_VsSeeker,   sMsg_VsSeeker,    FLAG_POKELINK_APP_VS_SEEKER,  FALSE, TRUE},
-    [POKELINK_APP_FLASHLIGHT] = {sText_AppFlashlight, sShort_Flashlight, sDesc_Flashlight, sMsg_Flashlight,  FLAG_POKELINK_APP_FLASHLIGHT, FALSE, TRUE},
+    [POKELINK_APP_PHONE]      = {sText_AppPhone,      sShort_Phone,      sDesc_Phone,      NULL,             FLAG_POKELINK_APP_PHONE,      FALSE, TRUE},
     [POKELINK_APP_DELIVERY]   = {sText_AppDelivery,   sShort_Delivery,   sDesc_Delivery,   sMsg_Delivery,    FLAG_POKELINK_APP_DELIVERY,   FALSE, TRUE},
     [POKELINK_APP_ABRACAB]    = {sText_AppAbraCab,    sShort_AbraCab,    sDesc_AbraCab,    sMsg_AbraCab,     FLAG_POKELINK_APP_ABRACAB,    FALSE, TRUE},
-    [POKELINK_APP_NOTES]      = {sText_AppNotes,      sShort_Notes,      sDesc_Notes,      sMsg_Notes,       FLAG_POKELINK_APP_NOTES,      FALSE, TRUE},
+    [POKELINK_APP_MESSAGES]   = {sText_AppMessages,   sShort_Messages,   sDesc_Messages,   NULL,             FLAG_POKELINK_APP_MESSAGES,   FALSE, TRUE},
 };
 
 static const u8 sDefaultShortcutApps[] =
@@ -637,10 +790,10 @@ enum
     POKELINK_ICON_DEXNAV,
     POKELINK_ICON_RADIO,
     POKELINK_ICON_VS_SEEKER,
-    POKELINK_ICON_FLASHLIGHT,
+    POKELINK_ICON_PHONE,
     POKELINK_ICON_DELIVERY,
     POKELINK_ICON_ABRACAB,
-    POKELINK_ICON_NOTES,
+    POKELINK_ICON_MESSAGES,
     POKELINK_ICON_PROFILE,
     POKELINK_ICON_SETTINGS,
     POKELINK_ICON_GLOOMSCROLL,
@@ -658,10 +811,10 @@ static const u8 sPokeLinkAppIconIndexes[POKELINK_APP_COUNT] =
     [POKELINK_APP_DEXNAV]     = POKELINK_ICON_DEXNAV,
     [POKELINK_APP_RADIO]      = POKELINK_ICON_RADIO,
     [POKELINK_APP_VS_SEEKER]  = POKELINK_ICON_VS_SEEKER,
-    [POKELINK_APP_FLASHLIGHT] = POKELINK_ICON_FLASHLIGHT,
+    [POKELINK_APP_PHONE]      = POKELINK_ICON_PHONE,
     [POKELINK_APP_DELIVERY]   = POKELINK_ICON_DELIVERY,
     [POKELINK_APP_ABRACAB]    = POKELINK_ICON_ABRACAB,
-    [POKELINK_APP_NOTES]      = POKELINK_ICON_NOTES,
+    [POKELINK_APP_MESSAGES]   = POKELINK_ICON_MESSAGES,
 };
 
 static const struct BgTemplate sPokeLinkBgTemplates[] =
@@ -731,6 +884,17 @@ static const struct WindowTemplate sPokeLinkWindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
+static const struct WindowTemplate sCollectionLogPopupWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 0,
+    .width = POKELINK_COLLECTION_POPUP_WINDOW_WIDTH,
+    .height = POKELINK_COLLECTION_POPUP_WINDOW_HEIGHT,
+    .paletteNum = 15,
+    .baseBlock = 1
+};
+
 static const u8 sPokeLinkIconsGfx[] = INCBIN_U8("graphics/pokelink/pokelink_icons_32x32.4bpp");
 static const u8 sPokeLinkCursorGfx[] = INCBIN_U8("graphics/pokelink/pokelink_cursor.4bpp");
 static const u16 sPokeLinkAssetsPal[] = INCBIN_U16("graphics/pokelink/pokelink_icons_32x32.gbapal");
@@ -776,9 +940,9 @@ static const union AnimCmd sPokeLinkIconAnim_VsSeeker[] =
     ANIMCMD_FRAME(POKELINK_ICON_VS_SEEKER * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
     ANIMCMD_END
 };
-static const union AnimCmd sPokeLinkIconAnim_Flashlight[] =
+static const union AnimCmd sPokeLinkIconAnim_Phone[] =
 {
-    ANIMCMD_FRAME(POKELINK_ICON_FLASHLIGHT * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
+    ANIMCMD_FRAME(POKELINK_ICON_PHONE * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
     ANIMCMD_END
 };
 static const union AnimCmd sPokeLinkIconAnim_Delivery[] =
@@ -791,9 +955,9 @@ static const union AnimCmd sPokeLinkIconAnim_AbraCab[] =
     ANIMCMD_FRAME(POKELINK_ICON_ABRACAB * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
     ANIMCMD_END
 };
-static const union AnimCmd sPokeLinkIconAnim_Notes[] =
+static const union AnimCmd sPokeLinkIconAnim_Messages[] =
 {
-    ANIMCMD_FRAME(POKELINK_ICON_NOTES * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
+    ANIMCMD_FRAME(POKELINK_ICON_MESSAGES * POKELINK_ICON_SPRITE_TILE_COUNT, 0),
     ANIMCMD_END
 };
 static const union AnimCmd sPokeLinkIconAnim_Profile[] =
@@ -828,10 +992,10 @@ static const union AnimCmd *const sPokeLinkIconAnimTable[] =
     sPokeLinkIconAnim_DexNav,
     sPokeLinkIconAnim_Radio,
     sPokeLinkIconAnim_VsSeeker,
-    sPokeLinkIconAnim_Flashlight,
+    sPokeLinkIconAnim_Phone,
     sPokeLinkIconAnim_Delivery,
     sPokeLinkIconAnim_AbraCab,
-    sPokeLinkIconAnim_Notes,
+    sPokeLinkIconAnim_Messages,
     sPokeLinkIconAnim_Profile,
     sPokeLinkIconAnim_Settings,
     sPokeLinkIconAnim_Gloomscroll,
@@ -877,6 +1041,9 @@ static EWRAM_DATA bool8 sInitialMessagePending = FALSE;
 static EWRAM_DATA bool8 sInitialGloomscrollPending = FALSE;
 static EWRAM_DATA bool8 sInitialSightingsPending = FALSE;
 static EWRAM_DATA bool8 sInitialCollectionPending = FALSE;
+static EWRAM_DATA u8 sCollectionPopupWindowId = 0;
+static EWRAM_DATA bool8 sCollectionPopupHasWindow = FALSE;
+static EWRAM_DATA u8 sCollectionPopupItemName[ITEM_NAME_LENGTH + 1] = {0};
 static EWRAM_DATA u8 sInitialMessageAppId = 0;
 static EWRAM_DATA u16 sPokeLinkIconTileStart = 0;
 static EWRAM_DATA u16 sPokeLinkSightingsIconTileStart = 0;
@@ -934,8 +1101,6 @@ void CB2_InitPokeLink(void)
             return;
         }
         BuildVisibleAppList();
-        if (sPokeLink->visibleCount == 0)
-            sPokeLink->visibleApps[sPokeLink->visibleCount++] = POKELINK_APP_PROFILE;
         LoadPokeLinkGraphics();
         CreatePokeLinkSprites();
         DrawPokeLink();
@@ -1051,9 +1216,13 @@ static void VBlankCB_PokeLink(void)
 #define tMenuCursor data[2]
 #define tSightingsCursor data[3]
 #define tSightingsTop data[4]
-#define tCollectionMode data[5]
+#define tCollectionDetailTop data[5]
 #define tCollectionCursor data[6]
 #define tCollectionTop data[7]
+#define tPhoneCursor data[8]
+#define tPhoneTop data[9]
+#define tMessageCursor data[10]
+#define tMessageTop data[11]
 
 static void Task_PokeLink(u8 taskId)
 {
@@ -1083,18 +1252,36 @@ static void Task_PokeLink(u8 taskId)
             else if (sInitialCollectionPending)
             {
                 sInitialCollectionPending = FALSE;
-                tCollectionMode = COLLECTION_MODE_AREA;
+                tCollectionDetailTop = 0;
                 tCollectionCursor = 0;
                 tCollectionTop = 0;
-                DrawCollectionList(tCollectionMode, tCollectionCursor, tCollectionTop);
+                DrawCollectionList(tCollectionCursor, tCollectionTop);
                 tState = POKELINK_STATE_COLLECTION_LIST;
             }
             else if (sInitialMessagePending)
             {
-                DrawPokeLinkMessage(sInitialMessageAppId);
+                appId = sInitialMessageAppId;
                 sInitialMessagePending = FALSE;
                 sInitialMessageAppId = 0;
-                tState = POKELINK_STATE_MESSAGE;
+                if (appId == POKELINK_APP_PHONE)
+                {
+                    tPhoneCursor = 0;
+                    tPhoneTop = 0;
+                    DrawPhoneList(tPhoneCursor, tPhoneTop);
+                    tState = POKELINK_STATE_PHONE_LIST;
+                }
+                else if (appId == POKELINK_APP_MESSAGES)
+                {
+                    tMessageCursor = 0;
+                    tMessageTop = 0;
+                    DrawMessagesList(tMessageCursor, tMessageTop);
+                    tState = POKELINK_STATE_MESSAGES_LIST;
+                }
+                else
+                {
+                    DrawPokeLinkMessage(appId);
+                    tState = POKELINK_STATE_MESSAGE;
+                }
             }
             else
             {
@@ -1113,6 +1300,11 @@ static void Task_PokeLink(u8 taskId)
             MovePokeLinkCursor(1, 0);
         else if (JOY_NEW(SELECT_BUTTON))
         {
+            if (sPokeLink->visibleCount == 0)
+            {
+                PlaySE(SE_FAILURE);
+                return;
+            }
             appId = sPokeLink->visibleApps[sPokeLink->cursor];
             ToggleFavorite(appId);
             DrawPokeLinkDetail();
@@ -1120,6 +1312,11 @@ static void Task_PokeLink(u8 taskId)
         }
         else if (JOY_NEW(A_BUTTON))
         {
+            if (sPokeLink->visibleCount == 0)
+            {
+                PlaySE(SE_FAILURE);
+                return;
+            }
             appId = sPokeLink->visibleApps[sPokeLink->cursor];
             OpenSelectedApp(taskId, appId);
         }
@@ -1202,19 +1399,14 @@ static void Task_PokeLink(u8 taskId)
         break;
     case POKELINK_STATE_COLLECTION_LIST:
         if (JOY_NEW(DPAD_UP))
-            MoveCollectionCursor(&tCollectionCursor, &tCollectionTop, -1, tCollectionMode);
+            MoveCollectionCursor(&tCollectionCursor, &tCollectionTop, -1);
         else if (JOY_NEW(DPAD_DOWN))
-            MoveCollectionCursor(&tCollectionCursor, &tCollectionTop, 1, tCollectionMode);
-        else if (JOY_NEW(L_BUTTON | R_BUTTON | DPAD_LEFT | DPAD_RIGHT))
-        {
-            PlaySE(SE_SELECT);
-            tCollectionMode = ToggleCollectionMode(&tCollectionCursor, &tCollectionTop, tCollectionMode);
-            DrawCollectionList(tCollectionMode, tCollectionCursor, tCollectionTop);
-        }
+            MoveCollectionCursor(&tCollectionCursor, &tCollectionTop, 1);
         else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            DrawCollectionDetail(tCollectionMode, tCollectionCursor);
+            tCollectionDetailTop = 0;
+            DrawCollectionDetail(tCollectionCursor, tCollectionDetailTop);
             tState = POKELINK_STATE_COLLECTION_DETAIL;
         }
         else if (JOY_NEW(B_BUTTON))
@@ -1225,18 +1417,81 @@ static void Task_PokeLink(u8 taskId)
         }
         break;
     case POKELINK_STATE_COLLECTION_DETAIL:
-        if (JOY_NEW(L_BUTTON | R_BUTTON | DPAD_LEFT | DPAD_RIGHT))
+        if (JOY_NEW(DPAD_UP))
+            MoveCollectionDetailTop(&tCollectionDetailTop, -1, tCollectionCursor);
+        else if (JOY_NEW(DPAD_DOWN))
+            MoveCollectionDetailTop(&tCollectionDetailTop, 1, tCollectionCursor);
+        else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
-            tCollectionMode = ToggleCollectionMode(&tCollectionCursor, &tCollectionTop, tCollectionMode);
-            DrawCollectionList(tCollectionMode, tCollectionCursor, tCollectionTop);
+            DrawCollectionList(tCollectionCursor, tCollectionTop);
             tState = POKELINK_STATE_COLLECTION_LIST;
+        }
+        break;
+    case POKELINK_STATE_PHONE_LIST:
+        if (JOY_NEW(DPAD_UP))
+            MovePhoneCursor(&tPhoneCursor, &tPhoneTop, -1);
+        else if (JOY_NEW(DPAD_DOWN))
+            MovePhoneCursor(&tPhoneCursor, &tPhoneTop, 1);
+        else if (JOY_NEW(A_BUTTON))
+        {
+            if (CountRegisteredPhoneContacts() == 0)
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else
+            {
+                PlaySE(SE_POKENAV_CALL);
+                DrawPhoneCall(tPhoneCursor);
+                tState = POKELINK_STATE_PHONE_CALL;
+            }
         }
         else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
-            DrawCollectionList(tCollectionMode, tCollectionCursor, tCollectionTop);
-            tState = POKELINK_STATE_COLLECTION_LIST;
+            DrawPokeLink();
+            tState = POKELINK_STATE_MAIN;
+        }
+        break;
+    case POKELINK_STATE_PHONE_CALL:
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
+        {
+            PlaySE(SE_POKENAV_HANG_UP);
+            DrawPhoneList(tPhoneCursor, tPhoneTop);
+            tState = POKELINK_STATE_PHONE_LIST;
+        }
+        break;
+    case POKELINK_STATE_MESSAGES_LIST:
+        if (JOY_NEW(DPAD_UP))
+            MoveMessageCursor(&tMessageCursor, &tMessageTop, -1);
+        else if (JOY_NEW(DPAD_DOWN))
+            MoveMessageCursor(&tMessageCursor, &tMessageTop, 1);
+        else if (JOY_NEW(A_BUTTON))
+        {
+            if (CountVisibleMessages() == 0)
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else
+            {
+                PlaySE(SE_SELECT);
+                DrawMessageDetail(tMessageCursor);
+                tState = POKELINK_STATE_MESSAGES_DETAIL;
+            }
+        }
+        else if (JOY_NEW(B_BUTTON))
+        {
+            PlaySE(SE_SELECT);
+            DrawPokeLink();
+            tState = POKELINK_STATE_MAIN;
+        }
+        break;
+    case POKELINK_STATE_MESSAGES_DETAIL:
+        if (JOY_NEW(B_BUTTON))
+        {
+            PlaySE(SE_SELECT);
+            DrawMessagesList(tMessageCursor, tMessageTop);
+            tState = POKELINK_STATE_MESSAGES_LIST;
         }
         break;
     case POKELINK_STATE_LAUNCH:
@@ -1264,9 +1519,13 @@ static void Task_PokeLink(u8 taskId)
 #undef tMenuCursor
 #undef tSightingsCursor
 #undef tSightingsTop
-#undef tCollectionMode
+#undef tCollectionDetailTop
 #undef tCollectionCursor
 #undef tCollectionTop
+#undef tPhoneCursor
+#undef tPhoneTop
+#undef tMessageCursor
+#undef tMessageTop
 
 static void BuildVisibleAppList(void)
 {
@@ -1306,6 +1565,8 @@ static void DrawPokeLinkApps(void)
     s16 iconY;
 
     FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
+    if (sPokeLink->visibleCount == 0)
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 42, 56, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_PokeLinkNoApps);
 
     for (i = 0; i < POKELINK_PAGE_SIZE && sPokeLink->top + i < sPokeLink->visibleCount; i++)
     {
@@ -1320,10 +1581,21 @@ static void DrawPokeLinkApps(void)
 
 static void DrawPokeLinkDetail(void)
 {
-    u8 appId = sPokeLink->visibleApps[sPokeLink->cursor];
+    u8 appId;
     u8 textX;
 
     FillWindowPixelBuffer(WIN_DETAIL, PIXEL_FILL(0));
+    if (sPokeLink->visibleCount == 0)
+    {
+        textX = GetStringCenterAlignXOffset(FONT_NORMAL, sText_PokeLinkTitle, sPokeLinkWindowTemplates[WIN_DETAIL].width * 8);
+        AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, textX, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_PokeLinkTitle);
+        AddTextPrinterParameterized3(WIN_DETAIL, FONT_NARROW, 2, 15, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_PokeLinkNoAppsDetail);
+        PutWindowTilemap(WIN_DETAIL);
+        CopyWindowToVram(WIN_DETAIL, COPYWIN_FULL);
+        return;
+    }
+
+    appId = sPokeLink->visibleApps[sPokeLink->cursor];
     textX = GetStringCenterAlignXOffset(FONT_NORMAL, sPokeLinkApps[appId].name, sPokeLinkWindowTemplates[WIN_DETAIL].width * 8);
     AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, textX, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sPokeLinkApps[appId].name);
 
@@ -1334,7 +1606,7 @@ static void DrawPokeLinkDetail(void)
 static void DrawPokeLinkHelp(void)
 {
     FillWindowPixelBuffer(WIN_HELP, PIXEL_FILL(0));
-    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sText_PokeLinkHelp, 0, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sPokeLink->visibleCount == 0 ? sText_PokeLinkNoAppsHelp : sText_PokeLinkHelp, 0, 1, TEXT_SKIP_DRAW, NULL);
     PutWindowTilemap(WIN_HELP);
     CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
 }
@@ -1623,20 +1895,16 @@ static const u8 *GetSightingsDisplayName(const struct PokeLinkSightingsEntry *en
     return GetSpeciesName(entry->species);
 }
 
-static void DrawCollectionList(u8 mode, u8 cursor, u8 top)
+static void DrawCollectionList(u8 cursor, u8 top)
 {
     u8 i;
-    u8 count = mode == COLLECTION_MODE_AREA ? ARRAY_COUNT(sCollectionAreas) : ARRAY_COUNT(sCollectionCategories);
 
     SetPokeLinkSpritesVisible(FALSE);
     FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
     FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
-    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW,
-        mode == COLLECTION_MODE_AREA ? sText_CollectionListHeaderArea : sText_CollectionListHeaderCategory);
-    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 181, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW,
-        mode == COLLECTION_MODE_AREA ? sText_CollectionAreaTab : sText_CollectionCategoryTab);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_CollectionListHeader);
 
-    for (i = 0; i < POKELINK_COLLECTION_VISIBLE_ROWS && top + i < count; i++)
+    for (i = 0; i < POKELINK_COLLECTION_VISIBLE_ROWS && top + i < ARRAY_COUNT(sCollectionCategories); i++)
     {
         u8 id = top + i;
         u8 y = 18 + i * 14;
@@ -1645,17 +1913,20 @@ static void DrawCollectionList(u8 mode, u8 cursor, u8 top)
         u8 status;
         const u8 *name;
 
-        if (mode == COLLECTION_MODE_AREA)
+        name = sCollectionCategories[id].name;
+        if (IsCollectionCompletionistCategory(id))
         {
-            name = sCollectionAreas[id].name;
-            GetCollectionAreaProgress(id, &found, &total);
+            GetCollectionCompletionistProgress(&found, &total);
             status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
-                   : (found != 0 || (sCollectionAreas[id].visitedFlag != POKELINK_COLLECTION_FLAG_NONE && FlagGet(sCollectionAreas[id].visitedFlag))) ? COLLECTION_STATUS_SURVEYED
+                   : found != 0 ? COLLECTION_STATUS_SURVEYED
                    : COLLECTION_STATUS_UNKNOWN;
+        }
+        else if (!IsCollectionCategoryUnlocked(id))
+        {
+            status = COLLECTION_STATUS_LOCKED;
         }
         else
         {
-            name = sCollectionCategories[id].name;
             GetCollectionCategoryProgress(id, &found, &total);
             status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
                    : found != 0 ? COLLECTION_STATUS_SURVEYED
@@ -1666,8 +1937,8 @@ static void DrawCollectionList(u8 mode, u8 cursor, u8 top)
             AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 2, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, gText_SelectorArrow2);
 
         AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 14, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, name);
-        AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 104, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, BufferCollectionProgress(found, total));
-        AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 146, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionStatusText(status));
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 112, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionProgressText(id, found, total));
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 154, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionStatusText(status));
     }
 
     PutWindowTilemap(WIN_APPS);
@@ -1684,79 +1955,88 @@ static void DrawCollectionList(u8 mode, u8 cursor, u8 top)
     CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
 }
 
-static void DrawCollectionDetail(u8 mode, u8 cursor)
+static void DrawCollectionDetail(u8 cursor, u8 top)
 {
     u8 found = 0;
     u8 total = 0;
     u8 printed = 0;
+    u8 skipped = 0;
     u8 i;
-    u8 j;
     u8 y;
     u8 status;
     const u8 *title;
+    bool8 isCompletionist = IsCollectionCompletionistCategory(cursor);
 
     SetPokeLinkSpritesVisible(FALSE);
     FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
     FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
 
-    if (mode == COLLECTION_MODE_AREA)
+    title = sCollectionCategories[cursor].name;
+    if (isCompletionist)
     {
-        title = sCollectionAreas[cursor].name;
-        GetCollectionAreaProgress(cursor, &found, &total);
+        GetCollectionCompletionistProgress(&found, &total);
+        status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
+               : found != 0 ? COLLECTION_STATUS_SURVEYED
+               : COLLECTION_STATUS_UNKNOWN;
+    }
+    else if (!IsCollectionCategoryUnlocked(cursor))
+    {
+        status = COLLECTION_STATUS_LOCKED;
     }
     else
     {
-        title = sCollectionCategories[cursor].name;
         GetCollectionCategoryProgress(cursor, &found, &total);
+        status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
+               : found != 0 ? COLLECTION_STATUS_SURVEYED
+               : COLLECTION_STATUS_UNKNOWN;
     }
-
-    status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
-           : found != 0 ? COLLECTION_STATUS_SURVEYED
-           : COLLECTION_STATUS_UNKNOWN;
 
     AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 4, 0, sPokeLinkTextColors, TEXT_SKIP_DRAW, title);
     AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 18, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_CollectionFoundLabel);
-    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 50, 18, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, BufferCollectionProgress(found, total));
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 50, 18, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionProgressText(cursor, found, total));
     AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 103, 18, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_CollectionStatusLabel);
     AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 153, 18, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionStatusText(status));
 
-    if (mode == COLLECTION_MODE_AREA)
+    if (!IsCollectionCategoryUnlocked(cursor))
     {
-        for (i = 0; i < ARRAY_COUNT(sCollectionCategories) && printed < 5; i++)
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 8, 43, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_CollectionMegaLocked);
+        printed++;
+    }
+    else if (isCompletionist)
+    {
+        for (i = top; i < ARRAY_COUNT(sCollectionAreas) && printed < POKELINK_COLLECTION_DETAIL_VISIBLE_ROWS; i++)
         {
             found = 0;
             total = 0;
-            for (j = 0; j < ARRAY_COUNT(sCollectionEntries); j++)
-            {
-                if (sCollectionEntries[j].area == cursor && sCollectionEntries[j].category == i)
-                {
-                    total++;
-                    if (GetCollectionEntryStatus(&sCollectionEntries[j]) == COLLECTION_STATUS_CLAIMED)
-                        found++;
-                }
-            }
-
-            if (total == 0)
-                continue;
+            GetCollectionAreaProgress(i, &found, &total);
+            status = (total != 0 && found == total) ? COLLECTION_STATUS_CLEARED
+                   : found != 0 ? COLLECTION_STATUS_SURVEYED
+                   : COLLECTION_STATUS_UNKNOWN;
 
             y = 35 + printed * 13;
-            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 8, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sCollectionCategories[i].name);
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 8, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionAreaDisplayName(i, found));
             AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 106, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, BufferCollectionProgress(found, total));
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 151, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionStatusText(status));
             printed++;
         }
     }
     else
     {
-        for (i = 0; i < ARRAY_COUNT(sCollectionEntries) && printed < 5; i++)
+        for (i = 0; i < ARRAY_COUNT(sCollectionEntries) && printed < POKELINK_COLLECTION_DETAIL_VISIBLE_ROWS; i++)
         {
             const struct PokeLinkCollectionEntry *entry = &sCollectionEntries[i];
             if (entry->category != cursor)
                 continue;
+            if (skipped < top)
+            {
+                skipped++;
+                continue;
+            }
 
             y = 35 + printed * 13;
             status = GetCollectionEntryStatus(entry);
             AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 8, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionEntryDisplayName(entry, status));
-            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 92, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sCollectionAreas[entry->area].name);
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 92, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionEntryAreaDisplayName(entry, status));
             AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 164, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, GetCollectionStatusText(status));
             printed++;
         }
@@ -1779,9 +2059,9 @@ static void DrawCollectionDetail(u8 mode, u8 cursor)
     CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
 }
 
-static void MoveCollectionCursor(s16 *cursor, s16 *top, s8 delta, u8 mode)
+static void MoveCollectionCursor(s16 *cursor, s16 *top, s8 delta)
 {
-    s16 count = mode == COLLECTION_MODE_AREA ? ARRAY_COUNT(sCollectionAreas) : ARRAY_COUNT(sCollectionCategories);
+    s16 count = ARRAY_COUNT(sCollectionCategories);
     s16 newCursor = *cursor + delta;
 
     if (newCursor < 0 || newCursor >= count)
@@ -1794,14 +2074,23 @@ static void MoveCollectionCursor(s16 *cursor, s16 *top, s8 delta, u8 mode)
         *top = *cursor - POKELINK_COLLECTION_VISIBLE_ROWS + 1;
 
     PlaySE(SE_SELECT);
-    DrawCollectionList(mode, *cursor, *top);
+    DrawCollectionList(*cursor, *top);
 }
 
-static u8 ToggleCollectionMode(s16 *cursor, s16 *top, u8 mode)
+static void MoveCollectionDetailTop(s16 *top, s8 delta, u8 category)
 {
-    *cursor = 0;
-    *top = 0;
-    return mode == COLLECTION_MODE_AREA ? COLLECTION_MODE_CATEGORY : COLLECTION_MODE_AREA;
+    s16 count = CountCollectionDetailRows(category);
+    s16 newTop = *top + delta;
+    s16 maxTop = count - POKELINK_COLLECTION_DETAIL_VISIBLE_ROWS;
+
+    if (maxTop < 0)
+        maxTop = 0;
+    if (newTop < 0 || newTop > maxTop)
+        return;
+
+    *top = newTop;
+    PlaySE(SE_SELECT);
+    DrawCollectionDetail(category, *top);
 }
 
 static void GetCollectionAreaProgress(u8 area, u8 *found, u8 *total)
@@ -1813,6 +2102,8 @@ static void GetCollectionAreaProgress(u8 area, u8 *found, u8 *total)
     for (i = 0; i < ARRAY_COUNT(sCollectionEntries); i++)
     {
         if (sCollectionEntries[i].area != area)
+            continue;
+        if (!IsCollectionCategoryUnlocked(sCollectionEntries[i].category))
             continue;
         (*total)++;
         if (GetCollectionEntryStatus(&sCollectionEntries[i]) == COLLECTION_STATUS_CLAIMED)
@@ -1826,6 +2117,9 @@ static void GetCollectionCategoryProgress(u8 category, u8 *found, u8 *total)
 
     *found = 0;
     *total = 0;
+    if (!IsCollectionCategoryUnlocked(category) || IsCollectionCompletionistCategory(category))
+        return;
+
     for (i = 0; i < ARRAY_COUNT(sCollectionEntries); i++)
     {
         if (sCollectionEntries[i].category != category)
@@ -1836,10 +2130,95 @@ static void GetCollectionCategoryProgress(u8 category, u8 *found, u8 *total)
     }
 }
 
+static void GetCollectionCompletionistProgress(u8 *found, u8 *total)
+{
+    u8 i;
+    u8 areaFound;
+    u8 areaTotal;
+
+    *found = 0;
+    *total = 0;
+    for (i = 0; i < ARRAY_COUNT(sCollectionAreas); i++)
+    {
+        GetCollectionAreaProgress(i, &areaFound, &areaTotal);
+        if (areaTotal == 0)
+            continue;
+
+        (*total)++;
+        if (areaFound == areaTotal)
+            (*found)++;
+    }
+}
+
+static u8 CountCollectionCategoryEntries(u8 category)
+{
+    u8 i;
+    u8 count = 0;
+
+    if (!IsCollectionCategoryUnlocked(category) || IsCollectionCompletionistCategory(category))
+        return 0;
+
+    for (i = 0; i < ARRAY_COUNT(sCollectionEntries); i++)
+    {
+        if (sCollectionEntries[i].category == category)
+            count++;
+    }
+
+    return count;
+}
+
+static u8 CountCollectionDetailRows(u8 category)
+{
+    if (!IsCollectionCategoryUnlocked(category))
+        return 0;
+    if (IsCollectionCompletionistCategory(category))
+        return ARRAY_COUNT(sCollectionAreas);
+
+    return CountCollectionCategoryEntries(category);
+}
+
+static bool8 IsCollectionCategoryUnlocked(u8 category)
+{
+    if (category == COLLECTION_CAT_MEGA_STONES && !IsMegaEvolutionUnlocked())
+        return FALSE;
+
+    return TRUE;
+}
+
+static bool8 IsMegaEvolutionUnlocked(void)
+{
+    return CheckBagHasItem(ITEM_MEGA_RING, 1);
+}
+
+static bool8 IsCollectionCompletionistCategory(u8 category)
+{
+    return category == COLLECTION_CAT_COMPLETIONIST;
+}
+
+static bool8 IsCollectionEntryNotifiable(const struct PokeLinkCollectionEntry *entry)
+{
+    if (entry->notificationFlag == POKELINK_COLLECTION_FLAG_NONE)
+        return FALSE;
+    if (!IsCollectionCategoryUnlocked(entry->category))
+        return FALSE;
+    if (entry->category == COLLECTION_CAT_TMS_HMS
+     || entry->category == COLLECTION_CAT_HELD_ITEMS
+     || entry->category == COLLECTION_CAT_MEGA_STONES
+     || entry->category == COLLECTION_CAT_EVOLUTION_ITEMS)
+        return TRUE;
+    if (ItemId_GetBattleUsage(entry->itemId) != 0)
+        return TRUE;
+
+    return FALSE;
+}
+
 static u8 GetCollectionEntryStatus(const struct PokeLinkCollectionEntry *entry)
 {
-    if ((entry->obtainedFlag != POKELINK_COLLECTION_FLAG_NONE && FlagGet(entry->obtainedFlag))
-     || CheckBagHasItem(entry->itemId, entry->quantity))
+    if (!IsCollectionCategoryUnlocked(entry->category))
+        return COLLECTION_STATUS_LOCKED;
+    if (entry->obtainedFlag != POKELINK_COLLECTION_FLAG_NONE)
+        return FlagGet(entry->obtainedFlag) ? COLLECTION_STATUS_CLAIMED : COLLECTION_STATUS_UNKNOWN;
+    if (CheckBagHasItem(entry->itemId, entry->quantity))
         return COLLECTION_STATUS_CLAIMED;
     if (entry->lockedFlag != POKELINK_COLLECTION_FLAG_NONE && FlagGet(entry->lockedFlag))
         return COLLECTION_STATUS_LOCKED;
@@ -1868,12 +2247,36 @@ static const u8 *GetCollectionStatusText(u8 status)
     return sStatusTexts[status];
 }
 
+static const u8 *GetCollectionAreaDisplayName(u8 area, u8 found)
+{
+    if (found == 0)
+        return sText_CollectionUnknownItem;
+
+    return sCollectionAreas[area].name;
+}
+
 static const u8 *GetCollectionEntryDisplayName(const struct PokeLinkCollectionEntry *entry, u8 status)
 {
-    if (status == COLLECTION_STATUS_CLAIMED || status == COLLECTION_STATUS_SEEN || status == COLLECTION_STATUS_LOCKED)
-        return ItemId_GetName(entry->itemId);
+    if (status != COLLECTION_STATUS_CLAIMED)
+        return sText_CollectionUnknownItem;
 
-    return sText_CollectionUnknownItem;
+    return ItemId_GetName(entry->itemId);
+}
+
+static const u8 *GetCollectionEntryAreaDisplayName(const struct PokeLinkCollectionEntry *entry, u8 status)
+{
+    if (status != COLLECTION_STATUS_CLAIMED)
+        return sText_CollectionUnknownItem;
+
+    return sCollectionAreas[entry->area].name;
+}
+
+static const u8 *GetCollectionProgressText(u8 category, u8 found, u8 total)
+{
+    if (!IsCollectionCategoryUnlocked(category))
+        return sText_CollectionLockedProgress;
+
+    return BufferCollectionProgress(found, total);
 }
 
 static u8 *BufferCollectionProgress(u8 found, u8 total)
@@ -1883,6 +2286,484 @@ static u8 *BufferCollectionProgress(u8 found, u8 total)
     str = ConvertIntToDecimalStringN(str, total, STR_CONV_MODE_LEFT_ALIGN, 2);
     *str = EOS;
     return gStringVar1;
+}
+
+void PokeLink_TryLogCollectedItem(u16 itemId, u16 quantity)
+{
+    u8 i;
+
+    if (itemId == ITEM_NONE || quantity == 0)
+        return;
+    if (!FlagGet(FLAG_POKELINK_APP_COLLECTION_LOG))
+        return;
+
+    for (i = 0; i < ARRAY_COUNT(sCollectionEntries); i++)
+    {
+        const struct PokeLinkCollectionEntry *entry = &sCollectionEntries[i];
+
+        if (entry->itemId != itemId)
+            continue;
+        if (!IsCollectionEntryNotifiable(entry))
+            continue;
+        if (FlagGet(entry->notificationFlag))
+            return;
+        if (entry->obtainedFlag != POKELINK_COLLECTION_FLAG_NONE && FlagGet(entry->obtainedFlag))
+            return;
+
+        FlagSet(entry->notificationFlag);
+        QueueCollectionLogPopup(ItemId_GetName(itemId));
+        return;
+    }
+}
+
+void PokeLink_ShowCollectionLogDemoPopup(void)
+{
+    QueueCollectionLogPopup(sText_CollectionPopupDemoItem);
+}
+
+static void QueueCollectionLogPopup(const u8 *itemName)
+{
+    u8 taskId;
+
+    if (gMain.callback2 != CB2_Overworld)
+        return;
+
+    StringCopyN(sCollectionPopupItemName, itemName, ITEM_NAME_LENGTH);
+    sCollectionPopupItemName[ITEM_NAME_LENGTH] = EOS;
+
+    taskId = FindTaskIdByFunc(Task_CollectionLogPopup);
+    if (taskId != TASK_NONE)
+        EndCollectionLogPopup(taskId);
+
+    CreateTask(Task_CollectionLogPopup, 0x40);
+}
+
+#define tPopupState  data[0]
+#define tPopupTimer  data[1]
+#define tPopupY      data[2]
+
+static void Task_CollectionLogPopup(u8 taskId)
+{
+    switch (gTasks[taskId].tPopupState)
+    {
+    case 0:
+        if (CollectionLogPopupShouldWait())
+            return;
+
+        Menu_LoadStdPalAt(BG_PLTT_ID(15));
+        sCollectionPopupWindowId = AddWindow(&sCollectionLogPopupWindowTemplate);
+        if (sCollectionPopupWindowId == WINDOW_NONE)
+        {
+            DestroyTask(taskId);
+            return;
+        }
+        sCollectionPopupHasWindow = TRUE;
+        PutWindowTilemap(sCollectionPopupWindowId);
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tPopupTimer = 0;
+        gTasks[taskId].tPopupState = 1;
+        break;
+    case 1:
+    {
+        u8 blendCoeff;
+
+        if (CollectionLogPopupShouldDismiss())
+        {
+            EndCollectionLogPopup(taskId);
+            return;
+        }
+        gTasks[taskId].tPopupY = POKELINK_COLLECTION_POPUP_OUT_Y + gTasks[taskId].tPopupTimer * POKELINK_COLLECTION_POPUP_SLIDE_SPEED;
+        if (gTasks[taskId].tPopupY >= POKELINK_COLLECTION_POPUP_IN_Y)
+        {
+            gTasks[taskId].tPopupY = POKELINK_COLLECTION_POPUP_IN_Y;
+            blendCoeff = 0;
+            gTasks[taskId].tPopupTimer = 0;
+            gTasks[taskId].tPopupState = 2;
+        }
+        else
+        {
+            blendCoeff = GetCollectionLogPopupBlendCoeff(gTasks[taskId].tPopupTimer, FALSE);
+            gTasks[taskId].tPopupTimer++;
+        }
+        DrawCollectionLogPopup(sCollectionPopupWindowId, gTasks[taskId].tPopupY, blendCoeff);
+        break;
+    }
+    case 2:
+        if (CollectionLogPopupShouldDismiss())
+        {
+            EndCollectionLogPopup(taskId);
+            return;
+        }
+        if (++gTasks[taskId].tPopupTimer >= POKELINK_COLLECTION_POPUP_WAIT_FRAMES)
+        {
+            gTasks[taskId].tPopupTimer = 0;
+            gTasks[taskId].tPopupState = 3;
+        }
+        break;
+    case 3:
+    {
+        u8 blendCoeff;
+
+        if (CollectionLogPopupShouldDismiss())
+        {
+            EndCollectionLogPopup(taskId);
+            return;
+        }
+        gTasks[taskId].tPopupY = POKELINK_COLLECTION_POPUP_IN_Y - gTasks[taskId].tPopupTimer * POKELINK_COLLECTION_POPUP_SLIDE_SPEED;
+        if (gTasks[taskId].tPopupY <= POKELINK_COLLECTION_POPUP_OUT_Y)
+        {
+            EndCollectionLogPopup(taskId);
+            return;
+        }
+        blendCoeff = GetCollectionLogPopupBlendCoeff(gTasks[taskId].tPopupTimer, TRUE);
+        gTasks[taskId].tPopupTimer++;
+        DrawCollectionLogPopup(sCollectionPopupWindowId, gTasks[taskId].tPopupY, blendCoeff);
+        break;
+    }
+    }
+}
+
+#undef tPopupState
+#undef tPopupTimer
+#undef tPopupY
+
+static bool8 CollectionLogPopupShouldWait(void)
+{
+    if (gMain.callback2 != CB2_Overworld)
+        return TRUE;
+    if (gPaletteFade.active)
+        return TRUE;
+    if (ScriptContext_IsEnabled())
+        return TRUE;
+    if (ArePlayerFieldControlsLocked())
+        return TRUE;
+    if (IsTextPrinterActive(0))
+        return TRUE;
+
+    return FALSE;
+}
+
+static bool8 CollectionLogPopupShouldDismiss(void)
+{
+    return CollectionLogPopupShouldWait();
+}
+
+static u8 GetCollectionLogPopupBlendCoeff(u8 timer, bool8 fadeOut)
+{
+    u8 coeff;
+
+    if (timer >= POKELINK_COLLECTION_POPUP_SLIDE_FRAMES)
+        return fadeOut ? 16 : 0;
+
+    coeff = timer * 16 / POKELINK_COLLECTION_POPUP_SLIDE_FRAMES;
+    return fadeOut ? coeff : 16 - coeff;
+}
+
+static void DrawCollectionLogPopup(u8 windowId, s16 y, u8 blendCoeff)
+{
+    u8 titleX;
+    u8 labelX;
+    u8 itemX;
+
+    BlendPalettes(POKELINK_COLLECTION_POPUP_PALETTE_MASK, blendCoeff, RGB_BLACK);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    FillCollectionLogPopupRectClipped(windowId, POKELINK_COLLECTION_POPUP_FRAME_X, y, POKELINK_COLLECTION_POPUP_FRAME_WIDTH, POKELINK_COLLECTION_POPUP_FRAME_HEIGHT, 2);
+    FillCollectionLogPopupRectClipped(windowId, POKELINK_COLLECTION_POPUP_FRAME_X + 2, y + 2, POKELINK_COLLECTION_POPUP_FRAME_WIDTH - 4, POKELINK_COLLECTION_POPUP_FRAME_HEIGHT - 4, 1);
+    FillCollectionLogPopupRectClipped(windowId, POKELINK_COLLECTION_POPUP_FRAME_X + 4, y + 4, POKELINK_COLLECTION_POPUP_FRAME_WIDTH - 8, 12, 2);
+
+    if (y >= -3)
+    {
+        titleX = POKELINK_COLLECTION_POPUP_FRAME_X + GetStringCenterAlignXOffset(FONT_NORMAL, sText_AppCollectionLog, POKELINK_COLLECTION_POPUP_FRAME_WIDTH);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, titleX, y + 3, sCollectionPopupTitleColors, TEXT_SKIP_DRAW, sText_AppCollectionLog);
+    }
+    if (y >= -20)
+    {
+        labelX = POKELINK_COLLECTION_POPUP_FRAME_X + GetStringCenterAlignXOffset(FONT_NORMAL, sText_CollectionPopupNewItem, POKELINK_COLLECTION_POPUP_FRAME_WIDTH);
+        itemX = POKELINK_COLLECTION_POPUP_FRAME_X + GetStringCenterAlignXOffset(FONT_NORMAL, sCollectionPopupItemName, POKELINK_COLLECTION_POPUP_FRAME_WIDTH);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, labelX, y + 25, sCollectionPopupTitleColors, TEXT_SKIP_DRAW, sText_CollectionPopupNewItem);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, itemX, y + 40, sCollectionPopupTextColors, TEXT_SKIP_DRAW, sCollectionPopupItemName);
+    }
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+}
+
+static void FillCollectionLogPopupRectClipped(u8 windowId, s16 x, s16 y, s16 width, s16 height, u8 color)
+{
+    s16 right = x + width;
+    s16 bottom = y + height;
+
+    if (x < 0)
+        x = 0;
+    if (y < 0)
+        y = 0;
+    if (right > POKELINK_COLLECTION_POPUP_WINDOW_WIDTH * 8)
+        right = POKELINK_COLLECTION_POPUP_WINDOW_WIDTH * 8;
+    if (bottom > POKELINK_COLLECTION_POPUP_WINDOW_HEIGHT * 8)
+        bottom = POKELINK_COLLECTION_POPUP_WINDOW_HEIGHT * 8;
+    if (right <= x || bottom <= y)
+        return;
+
+    FillWindowPixelRect(windowId, PIXEL_FILL(color), x, y, right - x, bottom - y);
+}
+
+static void EndCollectionLogPopup(u8 taskId)
+{
+    if (sCollectionPopupHasWindow)
+    {
+        BlendPalettes(POKELINK_COLLECTION_POPUP_PALETTE_MASK, 0, RGB_BLACK);
+        FillWindowPixelBuffer(sCollectionPopupWindowId, PIXEL_FILL(0));
+        ClearWindowTilemap(sCollectionPopupWindowId);
+        CopyWindowToVram(sCollectionPopupWindowId, COPYWIN_FULL);
+        RemoveWindow(sCollectionPopupWindowId);
+        sCollectionPopupHasWindow = FALSE;
+        sCollectionPopupWindowId = 0;
+    }
+    DestroyTask(taskId);
+}
+
+static void DrawPhoneList(u8 cursor, u8 top)
+{
+    u8 i;
+    u8 contactCount = CountRegisteredPhoneContacts();
+
+    SetPokeLinkSpritesVisible(FALSE);
+    FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
+    FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_PhoneListHeader);
+
+    if (contactCount == 0)
+    {
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 37, 48, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_PhoneNoContacts);
+    }
+    else
+    {
+        for (i = 0; i < POKELINK_PHONE_VISIBLE_ROWS && top + i < contactCount; i++)
+        {
+            u8 rematchId = GetPhoneContactRematchId(top + i);
+            u8 y = 17 + i * 13;
+            const u8 *trainerName = GetTrainerNameFromId(gRematchTable[rematchId].trainerIds[0]);
+
+            if (top + i == cursor)
+                AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 2, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, gText_SelectorArrow2);
+
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 14, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, trainerName);
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 99, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, BufferPhoneContactLocation(rematchId));
+        }
+    }
+
+    PutWindowTilemap(WIN_APPS);
+    CopyWindowToVram(WIN_APPS, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_DETAIL, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, 0, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_AppPhone);
+    PutWindowTilemap(WIN_DETAIL);
+    CopyWindowToVram(WIN_DETAIL, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_HELP, PIXEL_FILL(0));
+    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sText_PhoneHelpList, 0, 1, TEXT_SKIP_DRAW, NULL);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
+}
+
+static void DrawPhoneCall(u8 cursor)
+{
+    u8 rematchId = GetPhoneContactRematchId(cursor);
+    u16 trainerId = gRematchTable[rematchId].trainerIds[0];
+
+    SelectMatchCallMessage(trainerId, gStringVar4);
+
+    SetPokeLinkSpritesVisible(FALSE);
+    FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
+    FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 4, 0, sPokeLinkTextColors, TEXT_SKIP_DRAW, GetTrainerNameFromId(trainerId));
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 19, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_PhoneCalling);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 35, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, gStringVar4);
+    PutWindowTilemap(WIN_APPS);
+    CopyWindowToVram(WIN_APPS, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_DETAIL, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, 0, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_AppPhone);
+    PutWindowTilemap(WIN_DETAIL);
+    CopyWindowToVram(WIN_DETAIL, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_HELP, PIXEL_FILL(0));
+    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sText_PhoneHelpCall, 0, 1, TEXT_SKIP_DRAW, NULL);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
+}
+
+static void MovePhoneCursor(s16 *cursor, s16 *top, s8 delta)
+{
+    s16 count = CountRegisteredPhoneContacts();
+    s16 newCursor = *cursor + delta;
+
+    if (newCursor < 0 || newCursor >= count)
+        return;
+
+    *cursor = newCursor;
+    if (*cursor < *top)
+        *top = *cursor;
+    else if (*cursor >= *top + POKELINK_PHONE_VISIBLE_ROWS)
+        *top = *cursor - POKELINK_PHONE_VISIBLE_ROWS + 1;
+
+    PlaySE(SE_SELECT);
+    DrawPhoneList(*cursor, *top);
+}
+
+static u8 CountRegisteredPhoneContacts(void)
+{
+    u8 i;
+    u8 count = 0;
+
+    for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    {
+        if (FlagGet(TRAINER_REGISTERED_FLAGS_START + i))
+            count++;
+    }
+
+    return count;
+}
+
+static u8 GetPhoneContactRematchId(u8 contactIndex)
+{
+    u8 i;
+
+    for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    {
+        if (!FlagGet(TRAINER_REGISTERED_FLAGS_START + i))
+            continue;
+
+        if (contactIndex == 0)
+            return i;
+
+        contactIndex--;
+    }
+
+    return 0;
+}
+
+static u8 *BufferPhoneContactLocation(u8 rematchId)
+{
+    const struct MapHeader *mapHeader = Overworld_GetMapHeaderByGroupAndId(gRematchTable[rematchId].mapGroup, gRematchTable[rematchId].mapNum);
+    return GetMapName(gStringVar1, mapHeader->regionMapSectionId, 0);
+}
+
+static void DrawMessagesList(u8 cursor, u8 top)
+{
+    u8 i;
+    u8 messageCount = CountVisibleMessages();
+
+    SetPokeLinkSpritesVisible(FALSE);
+    FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
+    FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_MessagesListHeader);
+
+    if (messageCount == 0)
+    {
+        AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 40, 48, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, sText_MessagesNoMessages);
+    }
+    else
+    {
+        for (i = 0; i < POKELINK_MESSAGE_VISIBLE_ROWS && top + i < messageCount; i++)
+        {
+            const struct PokeLinkReceivedMessage *message = GetVisibleMessage(top + i);
+            u8 y = 18 + i * 14;
+
+            if (top + i == cursor)
+                AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 2, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, gText_SelectorArrow2);
+
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 14, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, message->sender);
+            AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 89, y, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, message->subject);
+        }
+    }
+
+    PutWindowTilemap(WIN_APPS);
+    CopyWindowToVram(WIN_APPS, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_DETAIL, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, 0, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_AppMessages);
+    PutWindowTilemap(WIN_DETAIL);
+    CopyWindowToVram(WIN_DETAIL, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_HELP, PIXEL_FILL(0));
+    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sText_MessagesHelpList, 0, 1, TEXT_SKIP_DRAW, NULL);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
+}
+
+static void DrawMessageDetail(u8 cursor)
+{
+    const struct PokeLinkReceivedMessage *message = GetVisibleMessage(cursor);
+
+    SetPokeLinkSpritesVisible(FALSE);
+    FillWindowPixelBuffer(WIN_APPS, PIXEL_FILL(0));
+    FillWindowPixelRect(WIN_APPS, PIXEL_FILL(2), 0, 0, 224, 14);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NORMAL, 4, 0, sPokeLinkTextColors, TEXT_SKIP_DRAW, message->sender);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 20, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, message->subject);
+    AddTextPrinterParameterized3(WIN_APPS, FONT_NARROW, 4, 42, sPokeLinkDarkTextColors, TEXT_SKIP_DRAW, message->body);
+    PutWindowTilemap(WIN_APPS);
+    CopyWindowToVram(WIN_APPS, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_DETAIL, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(WIN_DETAIL, FONT_NORMAL, 0, 1, sPokeLinkTextColors, TEXT_SKIP_DRAW, sText_AppMessages);
+    PutWindowTilemap(WIN_DETAIL);
+    CopyWindowToVram(WIN_DETAIL, COPYWIN_FULL);
+
+    FillWindowPixelBuffer(WIN_HELP, PIXEL_FILL(0));
+    AddTextPrinterParameterized(WIN_HELP, FONT_NARROW, sText_MessagesHelpDetail, 0, 1, TEXT_SKIP_DRAW, NULL);
+    PutWindowTilemap(WIN_HELP);
+    CopyWindowToVram(WIN_HELP, COPYWIN_FULL);
+}
+
+static void MoveMessageCursor(s16 *cursor, s16 *top, s8 delta)
+{
+    s16 count = CountVisibleMessages();
+    s16 newCursor = *cursor + delta;
+
+    if (newCursor < 0 || newCursor >= count)
+        return;
+
+    *cursor = newCursor;
+    if (*cursor < *top)
+        *top = *cursor;
+    else if (*cursor >= *top + POKELINK_MESSAGE_VISIBLE_ROWS)
+        *top = *cursor - POKELINK_MESSAGE_VISIBLE_ROWS + 1;
+
+    PlaySE(SE_SELECT);
+    DrawMessagesList(*cursor, *top);
+}
+
+static u8 CountVisibleMessages(void)
+{
+    u8 i;
+    u8 count = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sReceivedMessages); i++)
+    {
+        if (sReceivedMessages[i].visibleFlag == POKELINK_MESSAGE_FLAG_NONE || FlagGet(sReceivedMessages[i].visibleFlag))
+            count++;
+    }
+
+    return count;
+}
+
+static const struct PokeLinkReceivedMessage *GetVisibleMessage(u8 messageIndex)
+{
+    u8 i;
+
+    for (i = 0; i < ARRAY_COUNT(sReceivedMessages); i++)
+    {
+        if (sReceivedMessages[i].visibleFlag != POKELINK_MESSAGE_FLAG_NONE && !FlagGet(sReceivedMessages[i].visibleFlag))
+            continue;
+
+        if (messageIndex == 0)
+            return &sReceivedMessages[i];
+
+        messageIndex--;
+    }
+
+    return &sReceivedMessages[0];
 }
 
 static void FillPokeLinkAppsRectClipped(s16 x, s16 y, s16 width, s16 height, u8 color)
@@ -2118,6 +2999,11 @@ static void UpdatePokeLinkSprites(void)
 
     if (sPokeLink->cursorSpriteId != MAX_SPRITES)
     {
+        if (sPokeLink->visibleCount == 0)
+        {
+            gSprites[sPokeLink->cursorSpriteId].invisible = TRUE;
+            return;
+        }
         GetPokeLinkAppIconCoords(sPokeLink->cursor - sPokeLink->top, &x, &y);
         gSprites[sPokeLink->cursorSpriteId].x = x;
         gSprites[sPokeLink->cursorSpriteId].y = y;
@@ -2238,6 +3124,15 @@ static bool8 IsAppAvailable(u8 appId)
     return FlagGet(sPokeLinkApps[appId].unlockFlag);
 }
 
+void PokeLink_UnlockAllApps(void)
+{
+    u32 i;
+
+    FlagSet(FLAG_GOT_POKELINK);
+    for (i = 0; i < POKELINK_APP_COUNT; i++)
+        FlagSet(sPokeLinkApps[i].unlockFlag);
+}
+
 static bool8 IsFavoriteSlotValid(u16 value)
 {
     u8 appId;
@@ -2322,11 +3217,27 @@ static void OpenSelectedApp(u8 taskId, u8 appId)
     else if (appId == POKELINK_APP_COLLECTION_LOG)
     {
         PlaySE(SE_SELECT);
-        gTasks[taskId].data[5] = COLLECTION_MODE_AREA;
+        gTasks[taskId].data[5] = 0;
         gTasks[taskId].data[6] = 0;
         gTasks[taskId].data[7] = 0;
-        DrawCollectionList(COLLECTION_MODE_AREA, 0, 0);
+        DrawCollectionList(0, 0);
         gTasks[taskId].data[0] = POKELINK_STATE_COLLECTION_LIST;
+    }
+    else if (appId == POKELINK_APP_PHONE)
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].data[8] = 0;
+        gTasks[taskId].data[9] = 0;
+        DrawPhoneList(0, 0);
+        gTasks[taskId].data[0] = POKELINK_STATE_PHONE_LIST;
+    }
+    else if (appId == POKELINK_APP_MESSAGES)
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].data[10] = 0;
+        gTasks[taskId].data[11] = 0;
+        DrawMessagesList(0, 0);
+        gTasks[taskId].data[0] = POKELINK_STATE_MESSAGES_LIST;
     }
     else
     {
@@ -2334,6 +3245,60 @@ static void OpenSelectedApp(u8 taskId, u8 appId)
         DrawPokeLinkMessage(appId);
         gTasks[taskId].data[0] = POKELINK_STATE_MESSAGE;
     }
+}
+
+void PokeLink_RefreshWorldState(void)
+{
+    u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
+    u16 mapNum = gSaveBlock1Ptr->location.mapNum;
+    u16 stage = VarGet(VAR_ACT1_STORY_STAGE);
+
+#define CURRENT_MAP_IS(map) (mapGroup == MAP_GROUP(map) && mapNum == MAP_NUM(map))
+
+    if (CURRENT_MAP_IS(ROUTE29))
+        FlagSet(FLAG_POKELINK_AREA_ROUTE29);
+
+    if (CURRENT_MAP_IS(VIOLET_CITY) || CURRENT_MAP_IS(JOHTO_GYMS_VIOLET)
+     || CURRENT_MAP_IS(SPROUT_TOWER_ENTRY) || CURRENT_MAP_IS(SPROUT_TOWER_1F)
+     || CURRENT_MAP_IS(SPROUT_TOWER_2F))
+        FlagSet(FLAG_POKELINK_AREA_VIOLET_CITY);
+
+    if (CURRENT_MAP_IS(SPROUT_TOWER_ENTRY) || CURRENT_MAP_IS(SPROUT_TOWER_1F)
+     || CURRENT_MAP_IS(SPROUT_TOWER_2F) || FlagGet(FLAG_CLEARED_SPROUT_TOWER))
+        FlagSet(FLAG_POKELINK_AREA_SPROUT_TOWER);
+
+    if (CURRENT_MAP_IS(ILEX_FOREST) || FlagGet(FLAG_ROCKET_ILEX_EVENT_CLEARED))
+        FlagSet(FLAG_POKELINK_AREA_ILEX_FOREST);
+
+    if (CURRENT_MAP_IS(AZALEA_TOWN) || CURRENT_MAP_IS(GYM_AZALEA)
+     || FlagGet(FLAG_BADGE02_GET))
+        FlagSet(FLAG_POKELINK_AREA_AZALEA_TOWN);
+
+    if (CURRENT_MAP_IS(GOLDENROD_CITY) || CURRENT_MAP_IS(GYM_GOLDENROD)
+     || CURRENT_MAP_IS(JOHTO_NAME_RATER)
+     || CURRENT_MAP_IS(RADIO_TOWER_1F) || FlagGet(FLAG_BADGE03_GET))
+        FlagSet(FLAG_POKELINK_AREA_GOLDENROD_CITY);
+
+    if (FlagGet(FLAG_BADGE03_GET) && stage < ACT1_STAGE_PLAIN_BADGE)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_PLAIN_BADGE);
+    else if (FlagGet(FLAG_POKELINK_APP_RADIO) && stage < ACT1_STAGE_RADIO_UNLOCKED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_RADIO_UNLOCKED);
+    else if (FlagGet(FLAG_BADGE02_GET) && stage < ACT1_STAGE_HIVE_BADGE)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_HIVE_BADGE);
+    else if (FlagGet(FLAG_ROCKET_ILEX_EVENT_CLEARED) && stage < ACT1_STAGE_ILEX_CLEARED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_ILEX_CLEARED);
+    else if (FlagGet(FLAG_ROCKET_ILEX_EVENT_STARTED) && stage < ACT1_STAGE_ILEX_STARTED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_ILEX_STARTED);
+    else if (FlagGet(FLAG_BADGE01_GET) && stage < ACT1_STAGE_ZEPHYR_BADGE)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_ZEPHYR_BADGE);
+    else if (FlagGet(FLAG_POKELINK_APP_MAP) && stage < ACT1_STAGE_MAP_UNLOCKED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_MAP_UNLOCKED);
+    else if (FlagGet(FLAG_DEFEATED_MARA_ROUTE29) && stage < ACT1_STAGE_MARA_DEFEATED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_MARA_DEFEATED);
+    else if (FlagGet(FLAG_GOT_ELMS_LAB_STARTER) && stage < ACT1_STAGE_STARTER_RECEIVED)
+        VarSet(VAR_ACT1_STORY_STAGE, ACT1_STAGE_STARTER_RECEIVED);
+
+#undef CURRENT_MAP_IS
 }
 
 static u8 CountBadges(void)

@@ -14,6 +14,7 @@ mart_cherrygrove_EventScript_Clerk::
 
 	.align 2
 mart_cherrygrove_Pokemart_Basic:
+	.2byte ITEM_POKE_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
@@ -26,6 +27,10 @@ mart_cherrygrove_ExpandedItems::
 	release
 	end
 
+mart_cherrygrove_EventScript_CautiousShopper::
+	msgbox mart_cherrygrove_Text_CautiousShopper, MSGBOX_NPC
+	end
+
 	.align 2
 mart_cherrygrove_Pokemart_Expanded:
 	.2byte ITEM_POKE_BALL
@@ -34,3 +39,8 @@ mart_cherrygrove_Pokemart_Expanded:
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	pokemartlistend
+
+mart_cherrygrove_Text_CautiousShopper::
+	.string "Before POKE BALLS came in,\n"
+	.string "everyone bought POTIONS.\p"
+	.string "Now everyone buys both.$"

@@ -32,6 +32,10 @@ mart_violet_ExpandedItems::
 	release
 	end
 
+mart_violet_EventScript_TowerShopper::
+	msgbox mart_violet_Text_TowerShopper, MSGBOX_NPC
+	end
+
 	.align 2
 mart_violet_Pokemart_Expanded:
 	.2byte ITEM_POKE_BALL
@@ -47,3 +51,9 @@ mart_violet_Pokemart_Expanded:
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFENSE
 	pokemartlistend
+
+mart_violet_Text_TowerShopper::
+	.string "ESCAPE ROPE is not giving\n"
+	.string "up.\p"
+	.string "It is knowing when a tower\n"
+	.string "has taught you enough.$"

@@ -1198,7 +1198,8 @@
     "GoldsHouse2F",
     "ElmsLab",
     "PlayersHouse",
-    "PlayersHouseB1"
+    "PlayersHouseB1",
+    "DebugRoom"
   ],
   "gMapGroup_IndoorCherrygrove": [
     "pokecenter_cherrygrove",

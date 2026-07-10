@@ -25,3 +25,19 @@ EventScript_ShopShelf::
 EventScript_Blueprint::
 	msgbox Text_Blueprint, MSGBOX_SIGN
 	end
+
+EventScript_JohtoTV::
+	msgbox Text_JohtoTV, MSGBOX_SIGN
+	end
+
+EventScript_JohtoRadio::
+	msgbox Text_JohtoRadio, MSGBOX_SIGN
+	end
+
+EventScript_JohtoBookshelf::
+	msgbox Text_JohtoBookshelf, MSGBOX_SIGN
+	end
+
+EventScript_JohtoDrawers::
+	msgbox Text_JohtoDrawers, MSGBOX_SIGN
+	end

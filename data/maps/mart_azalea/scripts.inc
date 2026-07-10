@@ -11,6 +11,10 @@ mart_azalea_EventScript_Clerk::
 	release
 	end
 
+mart_azalea_EventScript_ForestShopper::
+	msgbox mart_azalea_Text_ForestShopper, MSGBOX_NPC
+	end
+
 	.align 2
 mart_azalea_Pokemart:
 	.2byte ITEM_POKE_BALL
@@ -23,3 +27,9 @@ mart_azalea_Pokemart:
 	.2byte ITEM_REPEL
 	.2byte ITEM_HARBOR_MAIL
 	pokemartlistend
+
+mart_azalea_Text_ForestShopper::
+	.string "I buy REPEL before I buy\n"
+	.string "a snack here.\p"
+	.string "The forest has opinions\n"
+	.string "about shortcuts.$"

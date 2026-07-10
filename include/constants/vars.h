@@ -201,7 +201,7 @@
 #define VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR              0x40B5
 #define VAR_TRICK_HOUSE_PUZZLE_7_STATE_2                 0x40B6 // Leftover from RS, never set
 #define VAR_SLATEPORT_FAN_CLUB_STATE                     0x40B7
-#define VAR_UNUSED_0x40B8                                0x40B8 // Unused Var
+#define VAR_GOLDENROD_BIKE_CHOICE                        0x40B8
 #define VAR_MT_PYRE_STATE                                0x40B9
 #define VAR_NEW_MAUVILLE_STATE                           0x40BA
 #define VAR_UNUSED_0x40BB                                0x40BB // Unused Var
@@ -265,14 +265,52 @@
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 #define VAR_POKELINK_FAVORITE_3                          0x40F7
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+#define VAR_TRISKELION_STARTER_SPECIES                   0x40F8
+#define VAR_TRISKELION_STARTER_REGION                    0x40F9
+#define VAR_TRISKELION_STARTER_ELEMENT                   0x40FA
+#define VAR_ACT1_STORY_STAGE                             0x40FB
+#define VAR_POKELINK_COLLECTION_LOG_ROUTE31_STATE        0x40FC
+#define VAR_PROSPECT_TRIAL_PSEUDO_CHOICE                 0x40FD
+#define VAR_AZALEA_DORIAN_STATE                          0x40FE
+#define VAR_GOLDENROD_MARA_STATE                         0x40FF
+
+#define STARTER_REGION_KANTO 1
+#define STARTER_REGION_JOHTO 2
+#define STARTER_REGION_HOENN 3
+
+#define STARTER_ELEMENT_GRASS 1
+#define STARTER_ELEMENT_FIRE  2
+#define STARTER_ELEMENT_WATER 3
+
+#define ACT1_STAGE_INTRO             0
+#define ACT1_STAGE_STARTER_RECEIVED  1
+#define ACT1_STAGE_MARA_DEFEATED     2
+#define ACT1_STAGE_MAP_UNLOCKED      3
+#define ACT1_STAGE_ZEPHYR_BADGE      4
+#define ACT1_STAGE_ILEX_STARTED      5
+#define ACT1_STAGE_ILEX_CLEARED      6
+#define ACT1_STAGE_HIVE_BADGE        7
+#define ACT1_STAGE_RADIO_UNLOCKED    8
+#define ACT1_STAGE_PLAIN_BADGE       9
+
+#define DORIAN_AZALEA_STATE_HIDDEN 0
+#define DORIAN_AZALEA_STATE_READY  1
+#define DORIAN_AZALEA_STATE_DONE   2
+
+#define GOLDENROD_MARA_STATE_HIDDEN  0
+#define GOLDENROD_MARA_STATE_READY   1
+#define GOLDENROD_MARA_STATE_WAITING 2
+#define GOLDENROD_MARA_STATE_DONE    3
+
+#define BIKE_CHOICE_NONE 0
+#define BIKE_CHOICE_MACH 1
+#define BIKE_CHOICE_ACRO 2
+
+#define PSEUDO_CHOICE_NONE     0
+#define PSEUDO_CHOICE_DRATINI  1
+#define PSEUDO_CHOICE_LARVITAR 2
+#define PSEUDO_CHOICE_BELDUM   3
+#define PSEUDO_CHOICE_BAGON    4
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

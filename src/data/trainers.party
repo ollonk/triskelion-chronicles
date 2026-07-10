@@ -16921,16 +16921,16 @@ Music: Male
 Double Battle: No
 
 Caterpie
-Level: 2
+Level: 4
 
 Caterpie
-Level: 2
+Level: 4
 
 Weedle
-Level: 3
+Level: 5
 
 Caterpie
-Level: 2
+Level: 4
 
 === TRAINER_JOHTO_FISHERMAN_JUSTIN ===
 Name: JUSTIN
@@ -17424,3 +17424,727 @@ Double Battle: No
 Drowzee
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_ACT1_YOUNGSTER_CALVIN ===
+Name: CALVIN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+
+Rattata
+Level: 4
+
+Pidgey
+Level: 5
+
+=== TRAINER_ACT1_LASS_MIRA ===
+Name: MIRA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+
+Sentret
+Level: 5
+
+Wurmple
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_BULBASAUR ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_CHARMANDER ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Charmander
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_SQUIRTLE ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Squirtle
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_CHIKORITA ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Chikorita
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_CYNDAQUIL ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Cyndaquil
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_TOTODILE ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Totodile
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_TREECKO ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Treecko
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_TORCHIC ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Torchic
+Level: 5
+
+=== TRAINER_MARA_ROUTE29_MUDKIP ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Mudkip
+Level: 5
+
+=== TRAINER_SPROUT_TOWER_SAGE_NICO ===
+Name: NICO
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+Double Battle: No
+
+Bellsprout
+Level: 7
+
+Hoothoot
+Level: 7
+
+=== TRAINER_SPROUT_TOWER_SAGE_JIN ===
+Name: JIN
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+Double Battle: No
+
+Bellsprout
+Level: 8
+
+Sunkern
+Level: 8
+
+=== TRAINER_FALKNER ===
+Name: FALKNER
+Class: Leader
+Pic: Leader Winona
+Gender: Male
+Music: Cool
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 9
+
+Taillow
+Level: 9
+
+Pidgeotto
+Level: 13
+
+=== TRAINER_VIOLET_GYM_BIRD_KEEPER_ABE ===
+Name: ABE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Cool
+Double Battle: No
+
+Spearow
+Level: 8
+
+Hoothoot
+Level: 9
+
+=== TRAINER_VIOLET_GYM_BIRD_KEEPER_ROD ===
+Name: ROD
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Cool
+Double Battle: No
+
+Pidgey
+Level: 8
+
+Taillow
+Level: 10
+
+=== TRAINER_ROCKET_ILEX_GRUNT_1 ===
+Name: ROCKET
+Class: Pkmn Trainer 1
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+
+Ekans
+Level: 13
+
+Zubat
+Level: 13
+
+=== TRAINER_ROCKET_ILEX_GRUNT_2 ===
+Name: ROCKET
+Class: Pkmn Trainer 1
+Pic: Magma Grunt F
+Gender: Female
+Music: Magma
+Double Battle: No
+
+Koffing
+Level: 14
+
+Houndour
+Level: 14
+
+=== TRAINER_ROCKET_ILEX_COMMANDER ===
+Name: ROCKET
+Class: Pkmn Trainer 1
+Pic: Magma Admin
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 15
+
+Koffing
+Level: 16
+
+Houndour
+Level: 17
+
+=== TRAINER_BUGSY ===
+Name: BUGSY
+Class: Leader
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Metapod
+Level: 14
+
+Kakuna
+Level: 14
+
+Nincada
+Level: 15
+
+Scyther
+Level: 17
+
+=== TRAINER_AZALEA_GYM_BUG_CATCHER_AL ===
+Name: AL
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+
+Caterpie
+Level: 12
+
+Weedle
+Level: 12
+
+Spinarak
+Level: 13
+
+=== TRAINER_AZALEA_GYM_TWINS_LIA_MIA ===
+Name: LIA & MIA
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Twins
+Double Battle: No
+
+Ledyba
+Level: 14
+
+Spinarak
+Level: 14
+
+=== TRAINER_WHITNEY ===
+Name: WHITNEY
+Class: Leader
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skitty
+Level: 17
+
+Clefairy
+Level: 17
+
+Zigzagoon
+Level: 18
+
+Miltank
+Level: 20
+
+=== TRAINER_GOLDENROD_GYM_LASS_CARRIE ===
+Name: CARRIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+
+Sentret
+Level: 16
+
+Skitty
+Level: 17
+
+=== TRAINER_GOLDENROD_GYM_BEAUTY_VICTORIA ===
+Name: VICTORIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+
+Meowth
+Level: 17
+
+Clefairy
+Level: 18
+
+=== TRAINER_LEAGUE_TRAINEE_GOLDENROD_1 ===
+Name: NELL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+
+Eevee
+Level: 18
+
+Natu
+Level: 18
+
+=== TRAINER_LEAGUE_TRAINEE_GOLDENROD_2 ===
+Name: OTTO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+
+Marill
+Level: 18
+
+Numel
+Level: 18
+
+=== TRAINER_LEAGUE_EVALUATOR_GOLDENROD ===
+Name: REN
+Class: Expert
+Pic: Expert F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Kecleon
+Level: 19
+
+Stantler
+Level: 20
+
+=== TRAINER_DORIAN_AZALEA_BULBASAUR ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_CHARMANDER ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Charmander
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_SQUIRTLE ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Squirtle
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_CHIKORITA ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Chikorita
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_CYNDAQUIL ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Cyndaquil
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_TOTODILE ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Totodile
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_TREECKO ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Treecko
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_TORCHIC ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Torchic
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_DORIAN_AZALEA_MUDKIP ===
+Name: DORIAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mudkip
+Level: 16
+
+Taillow
+Level: 15
+
+Gastly
+Level: 15
+
+=== TRAINER_MARA_GOLDENROD_IVYSAUR ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ivysaur
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_CHARMELEON ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Charmeleon
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_WARTORTLE ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Wartortle
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_BAYLEEF ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Bayleef
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_QUILAVA ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Quilava
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_CROCONAW ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Croconaw
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_GROVYLE ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Grovyle
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_COMBUSKEN ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Combusken
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
+
+=== TRAINER_MARA_GOLDENROD_MARSHTOMP ===
+Name: MARA
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marshtomp
+Level: 18
+
+Marill
+Level: 17
+
+Natu
+Level: 17
